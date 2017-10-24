@@ -116,6 +116,7 @@
 		#logo { 
 			margin-top: 0;
 			padding: 30px 0; 
+			width: 240px;
 		}
 		
 	}
@@ -144,7 +145,7 @@
 		display: block;
 		color: #1f1f1f;
 		font-family: 'Montserrat', sans-serif;
-		font-size: 13px;
+		font-size: 14px;
 		font-weight: 400;
 		text-decoration: none;
 		-webkit-transition: all .3s linear;
@@ -152,7 +153,7 @@
 	}
 	
 	.menu li a:hover,
-	.menu li.active > a { color: #000dbf; }
+	.menu li.active > a { color: #ca1954; }
 	
 	.menu > li > a {
 		position: relative;
