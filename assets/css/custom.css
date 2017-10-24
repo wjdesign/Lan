@@ -117,7 +117,7 @@
 	
 	p {  margin-bottom: 20px; }
 	
-	a  {color: #000dbf; }
+	a  {color: #ca1954; }
 	
 	a:hover,
 	a:focus { 
@@ -2202,12 +2202,13 @@
 		cursor: pointer;
 		background-color: #ecf2f8;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	    border-radius: 50em;
 		-webkit-transition: all 0.3s;
 				transition: all 0.3s;
 	}
 	
 	#scroll-up:hover {
-		background-color: #000dbf;
+		background-color: #ca1954;
 		color: #fff;
 	}
 
@@ -2550,7 +2551,7 @@
 	#footer .widget-title,
 	#footer-bottom .widget-title { 
 		margin-bottom: 30px;
-		color: #333;
+		color: #fd9bb4;
 		border-bottom: 1px solid #e0366e;
 		font-size: 13px;
 	}
