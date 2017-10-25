@@ -679,5 +679,17 @@
 		mobile_menu();
 		
 	});
+
+	//联络讯息点击复制至剪贴簿
+		$("#footer .widget-contact ul li a").click(function () {
+            var range = document.createRange();
+            range.selectNodeContents(this);
+            var selection = window.getSelection();
+            if(selection.rangeCount > 0) selection.removeAllRanges();	// 避免複製到已反白的文字
+            selection.addRange(range);
+            document.execCommand('copy');
+            alert("已将" + range + "复制到剪贴簿");
+        });
+        
 	
 })(window.jQuery);
