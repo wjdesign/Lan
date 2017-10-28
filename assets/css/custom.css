@@ -111,7 +111,7 @@
 	h4 a:hover, 
 	h5 a:hover, 
 	h6 a:hover {
-		color: #000dbf;
+		color: #ff90c1;
 		text-decoration: none;
 	}
 	
@@ -3005,7 +3005,7 @@
 	
 	#footer-top .widget-social .social-media a:hover,
 	#footer .widget-social .social-media a:hover ,
-	#footer-bottom .widget-social .social-media a:hover { background-color: #000dbf; }
+	#footer-bottom .widget-social .social-media a:hover { background-color: #ff90c1; }
 	
 	@media (min-width: 768px) and (max-width: 991px) {
 	

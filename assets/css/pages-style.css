@@ -886,7 +886,7 @@
 		bottom: 0;
 		left: 0;
 		content: "";
-		background-color: #ff90c1;
+		background-color: rgba(255, 144, 193, .8);
 		opacity: 0;
 		-webkit-transform: scale(0);
 			-ms-transform: scale(0);
