@@ -630,7 +630,7 @@
 
 		.vertical-tabs .nav-tabs li {
 			display: inline-block;
-    		width: 25%;
+    		width: 28%;
     		margin-right: 10px;
 		}
 		
@@ -666,6 +666,33 @@
  *	+ SOCIAL MEDIA
  ***********************************************************************************/
 	
+	#myModal .modal-footer .social-media {
+		height: 50px;
+	    line-height: 50px;
+	    padding: 0 15px;
+	    text-align: center;
+	    margin-bottom: 0;
+	    float: left;
+	}
+
+	@media only screen and (max-width: 461px) {
+		#myModal .modal-footer .social-media {
+			width: 100%;
+			margin: 0 auto;
+		}
+		#myModal .modal-footer {
+			text-align: center;
+		}
+		#footer-bottom #myModal .btn {
+			width: 100%;
+		}
+	}
+
+	#myModal .modal-footer .social-media a {
+		color: #ca1954;
+    	font-size: 22px;
+	}
+
 	.social-media { margin-bottom: 20px; }
 	
 	.social-media a {
@@ -3078,11 +3105,36 @@
 		z-index: 999999; 
 		color: #333;
 	}
+
+	.modal .modal-header {
+		border-bottom: 1px solid #ca1954;
+	}
 	
 	.modal.in .modal-dialog { 
-		-webkit-transform: translate(0, 50%); 
-			-ms-transform: translate(0, 50%); 
-				transform: translate(0, 50%); 
+		-webkit-transform: translate(0, 20%); 
+			-ms-transform: translate(0, 20%); 
+				transform: translate(0, 20%); 
+	}
+
+	.modal-body iframe {
+		width: 100%;
+	}
+
+	#sliderModal h3 {
+		margin-bottom: 0;
+	}
+	
+	#sliderModal .modal-body {
+		float: left;
+	}
+
+	#sliderModal .aboutList li {
+		font-size: 12px;
+		text-align: left;
+	}
+
+	#sliderModal h4 a {
+		color: #ca1954;
 	}
 	
 	.modal .widget-newsletter form { margin-bottom: 40px; }
@@ -3092,9 +3144,9 @@
 	@media (max-width: 767px) {
 	
 		.modal.in .modal-dialog { 
-			-webkit-transform: translate(0, 0);
-				-ms-transform: translate(0, 0);
-					transform: translate(0, 0);
+			-webkit-transform: translate(0, 10%);
+				-ms-transform: translate(0, 10%);
+					transform: translate(0, 10%);
 		}
 		
 		#footer-bottom .btn { margin-bottom: 40px; }
