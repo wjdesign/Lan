@@ -3136,6 +3136,10 @@
 	#sliderModal h4 a {
 		color: #ca1954;
 	}
+
+	#myModal .modal-dialog {
+		overflow: hidden;
+	}
 	
 	.modal .widget-newsletter form { margin-bottom: 40px; }
 	
