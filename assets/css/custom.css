@@ -2994,7 +2994,7 @@
 	.widget-contact ul li {
 	}
 	
-	.widget-contact:hover ul li {
+	.widget-contact ul li:hover {
 		color: #fff;
 	}
 
@@ -3005,7 +3005,7 @@
 		transition: color .2s;
 	}
 	
-	.widget-contact:hover ul li a {
+	.widget-contact ul li a:hover {
 		color:#fff;
 		text-decoration: none;
 	}
