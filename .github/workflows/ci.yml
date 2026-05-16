@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [master, main]
+  push:
+    branches-ignore: [master, main]
+
+jobs:
+  lint-and-build:
+    name: Lint, typecheck & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Typecheck
+        run: npm run typecheck --if-present
+
+      - name: Build (SSG)
+        env:
+          NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
+          NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
+        run: npm run generate
