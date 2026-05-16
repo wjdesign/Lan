@@ -12,7 +12,6 @@ permissions:
   pages: write
   id-token: write
 
-# Only one concurrent deployment, but don't cancel in-progress runs
 concurrency:
   group: 'pages'
   cancel-in-progress: false
@@ -25,14 +24,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: npm
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Generate static site
         env:
@@ -40,7 +42,7 @@ jobs:
           # so baseURL must include the repo name with a trailing slash.
           NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
           NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
-        run: npm run generate
+        run: pnpm generate
 
       - name: Add SPA fallback (404 = 200 for client routing on GH Pages)
         run: cp .output/public/200.html .output/public/404.html || true

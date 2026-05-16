@@ -2,12 +2,14 @@
 import type { PortfolioWork } from '~/data/portfolio'
 
 defineProps<{ work: PortfolioWork, index?: number }>()
+
+const localePath = useLocalePath()
 </script>
 
 <template>
   <NuxtLink
     v-reveal="{ delay: (index ?? 0) * 60 }"
-    :to="`/portfolio/${work.slug}`"
+    :to="localePath(`/portfolio/${work.slug}`)"
     class="group block img-zoom relative overflow-hidden rounded-sm bg-wine-900"
   >
     <div class="relative aspect-[3/4] overflow-hidden">
@@ -26,7 +28,7 @@ defineProps<{ work: PortfolioWork, index?: number }>()
       <h3 class="font-display text-2xl lg:text-3xl leading-tight">{{ work.title }}</h3>
       <p class="mt-2 text-sm text-champagne-100/85 line-clamp-2 font-serif">{{ work.excerpt }}</p>
       <div class="mt-4 flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-champagne-200 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-        View Story <UIcon name="i-lucide-arrow-right" class="size-3.5" />
+        {{ $t('portfolio.detail.viewStory') }} <UIcon name="i-lucide-arrow-right" class="size-3.5" />
       </div>
     </div>
   </NuxtLink>

@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { Service } from '~/data/services'
+import { useT } from '~/data/i18n'
 
 defineProps<{ service: Service, index?: number }>()
+const t = useT()
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -12,7 +15,7 @@ defineProps<{ service: Service, index?: number }>()
     <div class="img-zoom relative aspect-[4/5] overflow-hidden">
       <img
         :src="service.image"
-        :alt="service.title"
+        :alt="t(service.title)"
         class="absolute inset-0 size-full object-cover"
         loading="lazy"
       >
@@ -21,27 +24,27 @@ defineProps<{ service: Service, index?: number }>()
         <UIcon :name="service.icon" class="size-7 text-champagne-100" />
       </div>
       <div class="absolute bottom-6 left-6 right-6">
-        <p class="eyebrow !text-champagne-200 mb-2">{{ service.subtitle }}</p>
-        <h3 class="font-display text-3xl text-champagne-50">{{ service.title }}</h3>
+        <p class="eyebrow !text-champagne-200 mb-2">{{ t(service.subtitle) }}</p>
+        <h3 class="font-display text-3xl text-champagne-50">{{ t(service.title) }}</h3>
       </div>
     </div>
     <div class="p-7 lg:p-8">
-      <p class="text-ink-700 font-serif leading-loose text-[15px]">{{ service.description }}</p>
+      <p class="text-ink-700 font-serif leading-loose text-[15px]">{{ t(service.description) }}</p>
       <ul class="mt-5 space-y-2">
         <li
           v-for="h in service.highlights"
-          :key="h"
+          :key="t(h)"
           class="flex items-start gap-2 text-sm text-ink-700"
         >
           <UIcon name="i-ph-flower-tulip" class="mt-0.5 size-4 text-rose-400 shrink-0" />
-          <span>{{ h }}</span>
+          <span>{{ t(h) }}</span>
         </li>
       </ul>
       <NuxtLink
-        :to="`/services#${service.slug}`"
+        :to="`${localePath('/services')}#${service.slug}`"
         class="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.3em] uppercase text-wine-700 group-hover:gap-3 transition-all"
       >
-        了解更多
+        {{ $t('cta.readMore') }}
         <UIcon name="i-lucide-arrow-right" class="size-4" />
       </NuxtLink>
     </div>

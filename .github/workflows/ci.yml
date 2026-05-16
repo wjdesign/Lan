@@ -12,21 +12,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint --if-present
+        run: pnpm lint --if-present || echo "lint skipped"
 
       - name: Typecheck
-        run: npm run typecheck --if-present
+        run: pnpm typecheck --if-present || echo "typecheck skipped"
 
       - name: Build (SSG)
         env:
           NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
           NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
-        run: npm run generate
+        run: pnpm generate

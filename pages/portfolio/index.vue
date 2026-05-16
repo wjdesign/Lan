@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { portfolio, portfolioCategories, type PortfolioCategory } from '~/data/portfolio'
 
+const { t } = useI18n()
+
 useSeoMeta({
-  title: '作品集｜葉小蘭時尚彩妝・嘉義新娘秘書作品',
-  description: '葉小蘭時尚彩妝歷年作品集：白紗造型、宴客造型、訂婚／文定、媽媽妝、晚宴妝、形象拍攝。每一場儀式都是獨一無二的紀錄。',
-  ogTitle: '作品集｜葉小蘭時尚彩妝',
-  ogImage: '/images/portfolio/1035x350-1.jpg',
+  title: () => t('nav.portfolio') + ' ・ ' + t('brand.name'),
+  description: () => t('portfolio.hero.intro'),
+  ogImage: '/og-image.png',
 })
 
 const active = ref<PortfolioCategory | 'all'>('all')
@@ -14,27 +15,27 @@ const filtered = computed(() =>
     ? portfolio
     : portfolio.filter(p => p.category === active.value),
 )
+
+const catLabel = (value: string) => t(`portfolio.categories.${value}`)
 </script>
 
 <template>
   <div>
     <section class="bg-champagne-100/60">
       <div class="container-wide py-24 lg:py-32 max-w-4xl">
-        <p class="eyebrow mb-6" v-reveal>Portfolio</p>
+        <p class="eyebrow mb-6" v-reveal>{{ $t('portfolio.hero.eyebrow') }}</p>
         <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-[1.05] text-wine-800" v-reveal="{ delay: 80 }">
-          每一場儀式<br>
-          <span class="italic text-rose-600">都是值得收藏的故事</span>
+          {{ $t('portfolio.hero.titleA') }}<br>
+          <span class="italic text-rose-600">{{ $t('portfolio.hero.titleB') }}</span>
         </h1>
         <p class="mt-8 text-ink-700 font-serif leading-loose text-base lg:text-lg max-w-2xl" v-reveal="{ delay: 160 }">
-          以下作品橫跨白紗造型、宴客場、訂婚／文定、媽媽妝、晚宴與形象拍攝。
-          點擊任一作品，閱讀那場儀式背後的故事。
+          {{ $t('portfolio.hero.intro') }}
         </p>
       </div>
     </section>
 
     <section class="section">
       <div class="container-wide">
-        <!-- Category Filter -->
         <div class="flex flex-wrap gap-2 mb-12 lg:mb-16">
           <button
             v-for="cat in portfolioCategories"
@@ -47,7 +48,7 @@ const filtered = computed(() =>
             ]"
             @click="active = cat.value"
           >
-            {{ cat.label }}
+            {{ catLabel(cat.value) }}
           </button>
         </div>
 
@@ -65,7 +66,7 @@ const filtered = computed(() =>
         </TransitionGroup>
 
         <p v-if="!filtered.length" class="text-center py-20 text-ink-500 font-serif">
-          此類別目前尚無作品 — 敬請期待。
+          {{ $t('portfolio.empty') }}
         </p>
       </div>
     </section>

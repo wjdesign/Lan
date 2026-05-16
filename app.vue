@@ -1,7 +1,12 @@
 <script setup lang="ts">
-useHead({
-  htmlAttrs: { lang: 'zh-Hant-TW' },
+const head = useLocaleHead({
+  dir: true,
+  lang: true,
+  seo: true,
+  key: 'hid',
 })
+
+useHead(head)
 </script>
 
 <template>

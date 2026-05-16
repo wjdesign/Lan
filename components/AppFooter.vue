@@ -1,21 +1,30 @@
 <script setup lang="ts">
 import { siteConfig } from '~/data/site'
 
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 const year = new Date().getFullYear()
+const nav = computed(() => [
+  { label: t('nav.home'), to: localePath('/') },
+  { label: t('nav.about'), to: localePath('/about') },
+  { label: t('nav.services'), to: localePath('/services') },
+  { label: t('nav.portfolio'), to: localePath('/portfolio') },
+  { label: t('nav.journal'), to: localePath('/journal') },
+  { label: t('nav.contact'), to: localePath('/contact') },
+])
 </script>
 
 <template>
   <footer class="bg-wine-800 text-champagne-100 mt-24">
     <div class="container-wide py-20 lg:py-24 grid lg:grid-cols-12 gap-12">
       <div class="lg:col-span-5">
-        <p class="eyebrow !text-champagne-300 mb-6">{{ siteConfig.brand.nameEn }}</p>
+        <p class="eyebrow !text-champagne-300 mb-6">{{ $t('brand.nameEn') }}</p>
         <h2 class="font-display text-4xl lg:text-5xl text-champagne-50 leading-tight">
-          {{ siteConfig.brand.nameZh }}
+          {{ $t('brand.name') }}
         </h2>
         <p class="mt-6 text-champagne-200/80 leading-loose max-w-md">
-          {{ siteConfig.brand.tagline }}。<br>
-          自 {{ siteConfig.brand.foundedYear }} 年起駐點嘉義，<br>
-          以二十餘年資歷為每位新娘量身打造儀式感。
+          {{ $t('brand.tagline') }}
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a
@@ -33,9 +42,9 @@ const year = new Date().getFullYear()
       </div>
 
       <div class="lg:col-span-3">
-        <h3 class="text-sm tracking-[0.3em] uppercase text-champagne-300 mb-6">導覽</h3>
+        <h3 class="text-sm tracking-[0.3em] uppercase text-champagne-300 mb-6">{{ $t('footer.navTitle') }}</h3>
         <ul class="space-y-3 font-serif">
-          <li v-for="item in siteConfig.navigation" :key="item.to">
+          <li v-for="item in nav" :key="item.to">
             <NuxtLink :to="item.to" class="text-champagne-100/80 hover:text-champagne-50 transition-colors">
               {{ item.label }}
             </NuxtLink>
@@ -44,10 +53,10 @@ const year = new Date().getFullYear()
       </div>
 
       <div class="lg:col-span-4">
-        <h3 class="text-sm tracking-[0.3em] uppercase text-champagne-300 mb-6">聯絡</h3>
+        <h3 class="text-sm tracking-[0.3em] uppercase text-champagne-300 mb-6">{{ $t('footer.contactTitle') }}</h3>
         <dl class="space-y-3 text-champagne-100/85 font-serif text-[15px]">
           <div>
-            <dt class="text-champagne-300/70 text-xs tracking-widest mb-0.5">服務區域</dt>
+            <dt class="text-champagne-300/70 text-xs tracking-widest mb-0.5">{{ $t('footer.region') }}</dt>
             <dd>{{ siteConfig.contact.region }}</dd>
           </div>
           <div>
@@ -72,21 +81,20 @@ const year = new Date().getFullYear()
           </div>
         </dl>
         <UButton
-          to="/contact"
+          :to="localePath('/contact')"
           color="secondary"
           variant="solid"
           size="lg"
           class="mt-8"
-          icon="i-lucide-arrow-right"
-          :trailing="true"
+          trailing-icon="i-lucide-arrow-right"
         >
-          開始預約
+          {{ $t('cta.bookConsultation') }}
         </UButton>
       </div>
     </div>
     <div class="border-t border-champagne-300/10">
       <div class="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-champagne-300/60">
-        <p>© {{ year }} {{ siteConfig.brand.nameZh }} ・ All rights reserved.</p>
+        <p>© {{ year }} {{ $t('brand.name') }} ・ {{ $t('footer.rights') }}</p>
         <p class="tracking-wider">
           Site rebuilt in Nuxt．Designed with quiet luxury.
         </p>

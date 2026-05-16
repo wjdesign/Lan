@@ -1,0 +1,246 @@
+{
+  "locale": {
+    "name": "繁體中文",
+    "short": "繁中"
+  },
+  "brand": {
+    "name": "葉小蘭時尚彩妝",
+    "nameEn": "LAN YEH BRIDAL MAKEUP",
+    "tagline": "為每一場儀式 留下最從容的優雅"
+  },
+  "nav": {
+    "home": "首頁",
+    "about": "關於小蘭",
+    "services": "彩妝服務",
+    "portfolio": "作品集",
+    "journal": "日誌",
+    "contact": "預約"
+  },
+  "cta": {
+    "book": "線上預約",
+    "bookConsultation": "開始預約",
+    "bookOnline": "線上預約諮詢",
+    "lineInquiry": "LINE 直接洽詢",
+    "lineConsult": "LINE 諮詢",
+    "viewWorks": "欣賞作品",
+    "readMore": "了解更多",
+    "viewMore": "查看更多",
+    "viewAll": "查看全部",
+    "allWorks": "All Works",
+    "backHome": "回到首頁",
+    "scroll": "Scroll"
+  },
+  "home": {
+    "marquee": ["Bridal Couture", "葉小蘭時尚彩妝", "Since 2002", "駐點嘉義．服務全台", "Editorial & Evening"],
+    "heroSlides": [
+      {
+        "eyebrow": "Bridal Couture",
+        "titleTop": "為一生一次的時刻",
+        "titleBottom": "留下最從容的優雅",
+        "excerpt": "從晨間迎娶到燭光宴客，二十年資歷的細膩工序，為你打造一日多換的造型敘事。"
+      },
+      {
+        "eyebrow": "Evening & Gala",
+        "titleTop": "走進燈光的剎那",
+        "titleBottom": "是你最閃耀的一刻",
+        "excerpt": "頒獎典禮、品牌活動、晚宴派對——讓你成為現場最具存在感的那一束光。"
+      },
+      {
+        "eyebrow": "Editorial",
+        "titleTop": "鏡頭裡",
+        "titleBottom": "每一格都是收藏",
+        "excerpt": "形象拍攝、婚紗紀錄，妝感配合光線與主題，從棚拍到外拍都掌握得宜。"
+      }
+    ],
+    "about": {
+      "eyebrow": "About the Artist",
+      "titleA": "妝是一種儀式",
+      "titleB": "是讓你",
+      "titleC": "成為自己",
+      "titleD": "的時刻",
+      "p1": "從 2002 年踏入彩妝這一行，二十多年來經歷過上千位新娘、上百場宴客現場。每一個女孩走進工作室的時候，我看的不是「你想要什麼風格」——而是「你的眼神在哪一刻最像自己」。",
+      "p2": "我相信好的新娘妝，從來不是模板，而是一場深度的對話。從膚色、五官、禮服質地、儀式氛圍、到當天的光線——所有元素都會被仔細安排，讓你成為儀式裡最從容的那個主角。",
+      "ctaAbout": "認識小蘭老師"
+    },
+    "stats": [
+      { "value": "20+", "label": "年資歷", "sub": "Years of Craft" },
+      { "value": "1500+", "label": "對新人", "sub": "Brides Styled" },
+      { "value": "300+", "label": "場宴客", "sub": "Banquets Covered" },
+      { "value": "全台", "label": "預約服務", "sub": "Island-wide" }
+    ],
+    "services": {
+      "eyebrow": "Services",
+      "title": "從晨光到燭光 一日從容",
+      "subtitle": "新娘秘書、訂婚／媽媽造型、晚宴妝、形象拍攝、一對一彩妝教學——每一種儀式，都值得一份細膩的工序。"
+    },
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "titleA": "每一場儀式",
+      "titleB": "都是獨一無二的"
+    },
+    "testimonials": {
+      "eyebrow": "Voices",
+      "title": "她們說",
+      "subtitle": "每一句回饋都是我繼續做這份工作的理由。"
+    }
+  },
+  "footer": {
+    "navTitle": "導覽",
+    "contactTitle": "聯絡",
+    "region": "服務區域",
+    "rights": "All rights reserved."
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About",
+      "titleA": "二十年的工序",
+      "titleB": "為的是你最坦率的笑",
+      "intro": "葉小蘭老師——駐點嘉義、服務全台。從新娘秘書到形象彩妝，作品見於台灣各大宴會廳與外景婚禮。"
+    },
+    "profile": {
+      "eyebrow": "Lan Yeh ・ Founder & Lead Artist",
+      "titleA": "從一支眉筆開始的",
+      "titleB": "二十年工序",
+      "p1": "我最初接觸彩妝時，師承一位脾氣很嚴的老師。她讓我練底妝練了整整三個月——她說，新娘最重要的不是眼影顏色，是「皮膚的呼吸感」。這句話我記到今天。",
+      "p2": "從台中入行、最後回到家鄉嘉義成立工作室，我做過上千對新人的造型。在這座城市裡，我看著一個又一個女孩走進大廳、走過紅毯、走進新的人生。每一場，我都記得當天的光、當天的笑、和當天她哭出來的那一瞬間。",
+      "p3": "這份工作的核心，其實不是「化妝」——是「陪伴」。陪你度過儀式前最焦慮的幾個小時、陪你補妝、陪你緊張地確認髮型有沒有歪。而當儀式結束，相片洗出來，妳看著鏡頭裡的自己會說——「啊，這就是我。」",
+      "quote": "— 那一刻，就是我做這份工作的全部意義。"
+    },
+    "philosophy": {
+      "eyebrow": "Philosophy",
+      "title": "工作室的四個信念",
+      "items": [
+        { "title": "看見你的特質", "desc": "不套模板。從膚色、骨架、眼型，到你說話的語速與穿搭風格——讓妝感成為你的延伸而不是面具。" },
+        { "title": "尊重儀式氛圍", "desc": "日光教堂、晚宴飯店、家中文定——不同的場合需要不同強度的光感與色彩飽和度。" },
+        { "title": "經得起鏡頭", "desc": "4K 攝影、長時間錄影、近距離合照——底妝必須兼顧通透與耐看。每一處工序都為了「之後一輩子的相簿」。" },
+        { "title": "陪伴的能力", "desc": "化妝時是新娘最緊張的時刻。我會在這幾個小時裡，讓你感覺像在和一位老朋友聊天。" }
+      ]
+    },
+    "timeline": {
+      "eyebrow": "Timeline",
+      "title": "工作室的軌跡",
+      "subtitle": "二十餘年的旅程，每一年都是新的相遇。"
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services Overview",
+      "titleA": "每一場儀式",
+      "titleB": "都值得專屬的工序",
+      "intro": "從新娘秘書到晚宴形象、從一對一教學到外景婚禮——以下是工作室主要的六大服務項目。實際費用依場次、地點、套數客製，請透過 LINE 或表單詢價。"
+    },
+    "flow": {
+      "eyebrow": "Booking Flow",
+      "title": "預約流程",
+      "items": [
+        { "step": "01", "title": "線上諮詢", "desc": "透過 LINE 或表單聯絡，提供婚期、場地、預估造型套數，確認檔期。" },
+        { "step": "02", "title": "報價與保留", "desc": "確認檔期與需求後提供報價，繳交訂金即為你保留專屬日期。" },
+        { "step": "03", "title": "試妝 / 造型討論", "desc": "婚期前一個月安排試妝，依禮服風格、宴客場地光線、肌膚狀況討論妝感方向。" },
+        { "step": "04", "title": "婚禮當日", "desc": "依約定時間到府或到飯店，全日跟妝、補妝補髮、配合儀式時間軸調整造型。" },
+        { "step": "05", "title": "婚後關懷", "desc": "婚禮結束後追蹤新娘心得與感受，建立長期關係，歡迎日後晚宴或週年紀念再合作。" }
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "常見問答",
+      "items": [
+        { "q": "檔期通常需要多久前預約？", "a": "建議至少 4–6 個月，旺季（春、秋季）甚至要預留半年以上。我們一日僅接一組新人，先到先保留。" },
+        { "q": "可以離鄉、外縣市服務嗎？", "a": "可以。基於嘉義工作室，全台北中南皆可服務，外縣市加計交通與住宿費用。" },
+        { "q": "需要先試妝嗎？", "a": "建議試妝。試妝可以提前確認妝感方向、釐清細節、避免婚禮當天才發現偏差。" },
+        { "q": "可以更改日期或取消嗎？", "a": "若需更改日期，於婚期 2 個月前可一次更改，視新檔期是否可調整。詳細條款於確認預約時提供。" },
+        { "q": "會搭配捧花、頭飾、配件嗎？", "a": "工作室提供基本頭飾、皇冠、髮飾、耳環租借，捧花可代訂或自行準備。" },
+        { "q": "海外婚禮有接嗎？", "a": "可。曾服務過日本、峇里島、沖繩等地海外婚禮，需提前 6 個月以上規劃。" }
+      ]
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "eyebrow": "Portfolio",
+      "titleA": "每一場儀式",
+      "titleB": "都是值得收藏的故事",
+      "intro": "以下作品橫跨白紗造型、宴客場、訂婚／文定、媽媽妝、晚宴與形象拍攝。點擊任一作品，閱讀那場儀式背後的故事。"
+    },
+    "categories": {
+      "all": "全部作品",
+      "bridal-white": "白紗造型",
+      "bridal-banquet": "宴客造型",
+      "engagement": "訂婚造型",
+      "mother": "媽媽妝",
+      "evening": "晚宴妝",
+      "editorial": "形象拍攝",
+      "process": "幕後紀錄"
+    },
+    "empty": "此類別目前尚無作品 — 敬請期待。",
+    "detail": {
+      "behindLens": "Behind the Lens",
+      "storyTitle": "那一天的故事",
+      "related": "Related",
+      "relatedTitle": "同類別作品",
+      "viewStory": "View Story",
+      "tagsLabel": "Tags",
+      "yearLabel": "Year"
+    }
+  },
+  "journal": {
+    "hero": {
+      "eyebrow": "Journal",
+      "title": "工作室日誌",
+      "intro": "彩妝筆記、婚前保養、造型趨勢——把這些年累積的心得，慢慢寫下來。"
+    },
+    "empty": "尚無文章發表，敬請期待。",
+    "prev": "← Previous",
+    "next": "Next →"
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Booking & Inquiry",
+      "titleA": "當你準備好",
+      "titleB": "我們開始一段對話",
+      "intro": "每場儀式都僅接一組新人，請至少提前 4–6 個月預約。填寫下方表單，或直接透過 LINE 聯繫——通常 48 小時內回覆。"
+    },
+    "cards": {
+      "line": { "label": "LINE 官方帳號", "sub": "最快的回覆管道" },
+      "phone": { "label": "電話", "sub": "09:00 – 21:00" },
+      "email": { "label": "Email", "sub": "正式合作 / 媒體洽詢" },
+      "ig": { "label": "Instagram", "sub": "最新作品搶先看" }
+    },
+    "form": {
+      "eyebrow": "Online Form",
+      "title": "線上預約表單",
+      "intro": "填寫以下表單後將寄送一封確認信至你提供的 Email；如需即時回覆，建議優先使用 LINE。",
+      "fallback": "如表單無法載入，請",
+      "fallbackLink": "點此於新分頁開啟"
+    },
+    "qr": {
+      "title": "最快的預約方式",
+      "intro": "掃描下方 QR Code，或點擊按鈕加我 LINE",
+      "addLine": "加入 LINE"
+    },
+    "hours": {
+      "label": "Working Hours",
+      "studioLabel": "Studio",
+      "studioNote": "確認預約後，將於婚期前 1 個月安排試妝地點。"
+    },
+    "area": {
+      "eyebrow": "Service Area",
+      "title": "駐點嘉義 ・ 全台預約",
+      "intro": "以嘉義為核心，服務範圍涵蓋台北、台中、台南、高雄、宜蘭、花蓮、海外婚禮。外縣市加計交通與住宿，海外婚禮另議。"
+    },
+    "cta": {
+      "title": "當你準備好",
+      "titleB": "走進儀式的那一刻",
+      "subtitle": "每個檔期都僅接一組新人，請至少提前 4–6 個月預約。\n訂金確認後即保留專屬日期，並安排免費試妝諮詢。",
+      "reply": "訊息回覆時間：每日 09:00 – 21:00",
+      "eyebrow": "Book Your Date"
+    }
+  },
+  "common": {
+    "lineHandle": "ye168248",
+    "since": "Since",
+    "studio": "嘉義．工作室"
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "message": "看來這條路線指引到了未開啟的章節。\n回到首頁，繼續探索屬於你的夢中造型。"
+  }
+}

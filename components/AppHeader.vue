@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import { siteConfig } from '~/data/site'
-
 const route = useRoute()
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 const scrollY = useScroll(typeof window !== 'undefined' ? window : null).y
 const isScrolled = computed(() => scrollY.value > 32)
 const mobileOpen = ref(false)
+
+const nav = computed(() => [
+  { label: t('nav.home'), to: localePath('/') },
+  { label: t('nav.about'), to: localePath('/about') },
+  { label: t('nav.services'), to: localePath('/services') },
+  { label: t('nav.portfolio'), to: localePath('/portfolio') },
+  { label: t('nav.journal'), to: localePath('/journal') },
+  { label: t('nav.contact'), to: localePath('/contact') },
+])
 
 watch(() => route.path, () => { mobileOpen.value = false })
 
@@ -25,44 +35,40 @@ watchEffect(() => {
     ]"
   >
     <div class="container-wide flex items-center justify-between py-5 lg:py-6">
-      <NuxtLink to="/" class="group flex items-center gap-3" aria-label="回首頁">
-        <span
-          class="font-display text-lg lg:text-xl text-wine-800 tracking-[0.4em] uppercase"
-        >Lan Yeh</span>
+      <NuxtLink :to="localePath('/')" class="group flex items-center gap-3" :aria-label="$t('nav.home')">
+        <span class="font-display text-lg lg:text-xl text-wine-800 tracking-[0.4em] uppercase">Lan Yeh</span>
         <span class="hidden sm:block h-4 w-px bg-wine-800/30" />
         <span class="hidden sm:block font-serif text-sm text-ink-700 tracking-[0.2em]">
-          時尚彩妝
+          {{ $t('brand.name') }}
         </span>
       </NuxtLink>
 
       <nav class="hidden lg:flex items-center gap-10">
         <NuxtLink
-          v-for="item in siteConfig.navigation"
+          v-for="item in nav"
           :key="item.to"
           :to="item.to"
           class="relative font-serif text-sm tracking-[0.3em] text-ink-800 transition-colors hover:text-wine-700"
           active-class="text-wine-800"
         >
           {{ item.label }}
-          <span
-            class="absolute -bottom-1.5 left-1/2 h-px w-0 -translate-x-1/2 bg-wine-700 transition-all duration-500 group-[.router-link-active]:w-6"
-          />
         </NuxtLink>
       </nav>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
+        <LocaleSwitcher />
         <UButton
-          to="/contact"
+          :to="localePath('/contact')"
           color="primary"
           variant="solid"
           size="md"
           class="hidden lg:inline-flex"
         >
-          線上預約
+          {{ $t('cta.book') }}
         </UButton>
         <button
           class="lg:hidden text-wine-800 p-2 -mr-2"
-          aria-label="切換選單"
+          :aria-label="$t('nav.home')"
           @click="mobileOpen = !mobileOpen"
         >
           <UIcon
@@ -80,7 +86,7 @@ watchEffect(() => {
       >
         <nav class="container-wide flex flex-col py-6 gap-1">
           <NuxtLink
-            v-for="item in siteConfig.navigation"
+            v-for="item in nav"
             :key="item.to"
             :to="item.to"
             class="py-3 font-serif text-lg tracking-wider text-ink-800"
@@ -88,8 +94,8 @@ watchEffect(() => {
           >
             {{ item.label }}
           </NuxtLink>
-          <UButton to="/contact" color="primary" block size="lg" class="mt-4">
-            線上預約
+          <UButton :to="localePath('/contact')" color="primary" block size="lg" class="mt-4">
+            {{ $t('cta.book') }}
           </UButton>
         </nav>
       </div>

@@ -19,8 +19,29 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/fonts',
     '@nuxtjs/seo',
+    '@nuxtjs/i18n',
+    '@vite-pwa/nuxt',
     '@vueuse/nuxt',
   ],
+
+  i18n: {
+    vueI18n: './i18n.config.ts',
+    strategy: 'prefix_except_default',
+    defaultLocale: 'zh-Hant',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'lanyeh_lang',
+      redirectOn: 'root',
+      fallbackLocale: 'zh-Hant',
+    },
+    locales: [
+      { code: 'zh-Hant', language: 'zh-Hant-TW', name: '繁體中文', file: 'zh-Hant.json', dir: 'ltr' },
+      { code: 'zh-Hans', language: 'zh-Hans-CN', name: '简体中文', file: 'zh-Hans.json', dir: 'ltr' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json', dir: 'ltr' },
+      { code: 'ja', language: 'ja-JP', name: '日本語', file: 'ja.json', dir: 'ltr' },
+    ],
+    baseUrl: SITE_URL,
+  },
 
   css: ['~/assets/css/main.css'],
 
@@ -121,6 +142,53 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
+  pwa: {
+    registerType: 'autoUpdate',
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2}'],
+      runtimeCaching: [
+        {
+          urlPattern: ({ url }) => url.origin === 'https://fonts.gstatic.com',
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'google-fonts',
+            expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            cacheableResponse: { statuses: [0, 200] },
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.origin === 'https://images.unsplash.com',
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'unsplash-images',
+            expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 * 30 },
+          },
+        },
+      ],
+    },
+    manifest: {
+      name: '葉小蘭時尚彩妝 ・ Lan Yeh Bridal Makeup',
+      short_name: '葉小蘭時尚彩妝',
+      description: '嘉義新娘秘書．葉小蘭老師．二十年資歷．全台預約服務。',
+      lang: 'zh-Hant',
+      theme_color: '#3a1d1f',
+      background_color: '#fbf7f1',
+      display: 'standalone',
+      orientation: 'portrait',
+      scope: '/',
+      start_url: '/',
+      categories: ['lifestyle', 'beauty'],
+      icons: [
+        { src: 'pwa-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+        { src: 'pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+        { src: 'pwa-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+      ],
+    },
+    devOptions: { enabled: false },
+    client: { installPrompt: true },
+  },
+
   linkChecker: {
     enabled: false, // we have external/dynamic links that fail in CI
   },
@@ -153,21 +221,10 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/': { prerender: true },
-    '/about': { prerender: true },
-    '/services': { prerender: true },
-    '/portfolio': { prerender: true },
-    '/portfolio/**': { prerender: true },
-    '/journal': { prerender: true },
-    '/journal/**': { prerender: true },
-    '/contact': { prerender: true },
-  },
-
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/sitemap.xml', '/robots.txt'],
+      routes: ['/', '/en', '/ja', '/zh-Hans', '/sitemap.xml', '/robots.txt'],
       failOnError: false,
     },
   },

@@ -1,19 +1,27 @@
 <script setup lang="ts">
 import { format, parseISO } from 'date-fns'
-import { zhTW } from 'date-fns/locale'
+import { zhTW, zhCN, enUS, ja } from 'date-fns/locale'
 
+const { t, locale } = useI18n()
 const route = useRoute()
+const localePath = useLocalePath()
 
-const { data: post } = await useAsyncData(route.path, () =>
-  queryCollection('journal').path(route.path).first(),
+// Resolve to the un-prefixed path used by @nuxt/content (locale prefix isn't part of MD source)
+const contentPath = computed(() => {
+  const localePrefix = locale.value === 'zh-Hant' ? '' : `/${locale.value}`
+  return route.path.startsWith(localePrefix) ? route.path.slice(localePrefix.length) || '/' : route.path
+})
+
+const { data: post } = await useAsyncData(contentPath.value, () =>
+  queryCollection('journal').path(contentPath.value).first(),
 )
 
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: '文章不存在', fatal: true })
 }
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
-  queryCollectionItemSurroundings('journal', route.path, { fields: ['title', 'description', 'cover'] })
+const { data: surround } = await useAsyncData(`${contentPath.value}-surround`, () =>
+  queryCollectionItemSurroundings('journal', contentPath.value, { fields: ['title', 'description', 'cover'] })
     .order('date', 'DESC'),
 )
 
@@ -41,13 +49,31 @@ useSchemaOrg([
   }),
 ])
 
+const dateLocale = computed(() => {
+  switch (locale.value) {
+    case 'zh-Hans': return zhCN
+    case 'en': return enUS
+    case 'ja': return ja
+    default: return zhTW
+  }
+})
+
+const dateFormat = computed(() => {
+  switch (locale.value) {
+    case 'en': return 'MMM d, yyyy'
+    case 'ja': return 'yyyy 年 M 月 d 日'
+    default: return 'yyyy 年 M 月 d 日'
+  }
+})
+
 const dateLabel = computed(() => {
   if (!post.value) return ''
-  try { return format(parseISO(post.value.date), 'yyyy 年 M 月 d 日', { locale: zhTW }) }
+  try { return format(parseISO(post.value.date), dateFormat.value, { locale: dateLocale.value }) }
   catch { return post.value.date }
 })
 
-const [prev, next] = computed(() => surround.value || [null, null]).value
+const prev = computed(() => surround.value?.[0])
+const next = computed(() => surround.value?.[1])
 </script>
 
 <template>
@@ -82,12 +108,12 @@ const [prev, next] = computed(() => surround.value || [null, null]).value
         <hr class="my-16 border-champagne-300/70">
 
         <div class="flex items-center justify-between gap-4 text-sm">
-          <NuxtLink v-if="prev" :to="prev.path" class="group flex-1 max-w-xs">
-            <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">← Previous</p>
+          <NuxtLink v-if="prev" :to="localePath(prev.path)" class="group flex-1 max-w-xs">
+            <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">{{ $t('journal.prev') }}</p>
             <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors">{{ prev.title }}</p>
           </NuxtLink>
-          <NuxtLink v-if="next" :to="next.path" class="group flex-1 max-w-xs text-right ml-auto">
-            <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">Next →</p>
+          <NuxtLink v-if="next" :to="localePath(next.path)" class="group flex-1 max-w-xs text-right ml-auto">
+            <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">{{ $t('journal.next') }}</p>
             <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors">{{ next.title }}</p>
           </NuxtLink>
         </div>

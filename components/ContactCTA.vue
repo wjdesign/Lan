@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { siteConfig } from '~/data/site'
+
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -13,26 +15,25 @@ import { siteConfig } from '~/data/site'
     </div>
     <div class="container-narrow relative grid lg:grid-cols-12 gap-12 items-center">
       <div class="lg:col-span-7" v-reveal>
-        <p class="eyebrow !text-champagne-300 mb-6">Book Your Date</p>
+        <p class="eyebrow !text-champagne-300 mb-6">{{ $t('contact.cta.eyebrow') }}</p>
         <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
-          當你準備好<br>
-          走進儀式的那一刻
+          {{ $t('contact.cta.title') }}<br>
+          {{ $t('contact.cta.titleB') }}
         </h2>
-        <p class="mt-6 text-champagne-100/85 font-serif leading-loose max-w-lg">
-          每個檔期都僅接一組新人，請至少提前 4–6 個月預約。<br>
-          訂金確認後即保留專屬日期，並安排免費試妝諮詢。
+        <p class="mt-6 text-champagne-100/85 font-serif leading-loose max-w-lg whitespace-pre-line">
+          {{ $t('contact.cta.subtitle') }}
         </p>
       </div>
       <div class="lg:col-span-5 flex flex-col gap-4" v-reveal="{ delay: 120 }">
         <UButton
-          to="/contact"
+          :to="localePath('/contact')"
           color="secondary"
           variant="solid"
           size="xl"
           block
           trailing-icon="i-lucide-arrow-right"
         >
-          線上預約諮詢
+          {{ $t('cta.bookOnline') }}
         </UButton>
         <UButton
           :to="siteConfig.contact.lineHref"
@@ -44,10 +45,10 @@ import { siteConfig } from '~/data/site'
           class="!border-champagne-100/40 !text-champagne-50 hover:!bg-champagne-50/10"
           trailing-icon="i-lucide-message-circle"
         >
-          LINE 直接洽詢
+          {{ $t('cta.lineInquiry') }}
         </UButton>
         <p class="text-center text-xs text-champagne-300/70 tracking-widest mt-2">
-          訊息回覆時間：每日 09:00 – 21:00
+          {{ $t('contact.cta.reply') }}
         </p>
       </div>
     </div>
