@@ -31,8 +31,15 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck --if-present || echo "typecheck skipped"
 
+      - name: Force rebuild better-sqlite3 for current Node
+        run: |
+          cd node_modules/.pnpm/better-sqlite3@*/node_modules/better-sqlite3 || exit 0
+          node -v
+          npx --no prebuild-install || pnpm rebuild
+
       - name: Build (SSG)
         env:
           NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
           NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
-        run: pnpm generate
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: pnpm generate 2>&1 | tail -300
