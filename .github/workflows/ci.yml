@@ -22,8 +22,8 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
 
-      - name: Install dependencies (verbose)
-        run: pnpm install --no-frozen-lockfile --strict-peer-dependencies=false --reporter=default 2>&1 | tail -200
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm lint --if-present || echo "lint skipped"
@@ -31,15 +31,9 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck --if-present || echo "typecheck skipped"
 
-      - name: Force rebuild better-sqlite3 for current Node
-        run: |
-          cd node_modules/.pnpm/better-sqlite3@*/node_modules/better-sqlite3 || exit 0
-          node -v
-          npx --no prebuild-install || pnpm rebuild
-
       - name: Build (SSG)
         env:
           NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
           NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
           NODE_OPTIONS: --max-old-space-size=4096
-        run: pnpm generate 2>&1 | tail -300
+        run: pnpm generate

@@ -137,6 +137,12 @@ export default defineNuxtConfig({
     sources: ['/api/__sitemap__/urls'],
   },
 
+  robots: {
+    // We ship a manual public/robots.txt; disable the auto-generator so it
+    // doesn't fight us when `site.url` has a base path (GH Pages /Lan/).
+    robotsTxt: false,
+  },
+
   ogImage: {
     // Disable dynamic OG renderer (no takumi/sharp installed) — use static fallback per page
     enabled: false,
