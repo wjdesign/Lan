@@ -160,7 +160,10 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2,mp3}'],
+      // Don't precache audio (3.7 MB is too big to ship in install bundle);
+      // the runtimeCaching rule below handles it on first play instead.
+      globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2}'],
+      globIgnores: ['**/audio/**'],
       // Each prerendered HTML embeds Tailwind CSS + payload, ~2 MB. Allow up
       // to 3 MB so PWA precache covers them.
       maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
@@ -180,6 +183,18 @@ export default defineNuxtConfig({
           options: {
             cacheName: 'unsplash-images',
             expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 * 30 },
+          },
+        },
+        {
+          // Background music — cache after first play, so revisits are silent
+          // for offline users too. Range requests are needed for <audio> seeking.
+          urlPattern: ({ request }) => request.destination === 'audio',
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'bg-audio',
+            rangeRequests: true,
+            expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            cacheableResponse: { statuses: [0, 200] },
           },
         },
       ],
