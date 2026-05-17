@@ -93,9 +93,11 @@ const nav = computed(() => [
       </div>
     </div>
     <div class="border-t border-champagne-300/10">
-      <div class="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-champagne-300/60">
-        <p>© {{ year }} {{ $t('brand.name') }} ・ {{ $t('footer.rights') }}</p>
-        <p class="font-script text-2xl text-champagne-200/70">
+      <div class="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-champagne-300/70">
+        <p class="font-display text-[16px] leading-none">
+          © {{ year }} {{ $t('brand.name') }} ・ {{ $t('footer.rights') }}
+        </p>
+        <p class="font-display text-[16px] leading-none text-champagne-200/80">
           {{ $t('footer.signature') }}
         </p>
       </div>
