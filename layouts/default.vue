@@ -9,5 +9,6 @@
     </main>
     <AppFooter />
     <BackgroundMusic />
+    <PwaInstall />
   </div>
 </template>
