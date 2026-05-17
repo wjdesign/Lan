@@ -56,7 +56,16 @@ onMounted(() => {
   const userMutedPref = restorePref()
   if (userMutedPref) return // user previously muted — respect, don't auto-unmute
 
-  const unmuteOnFirstInteraction = () => {
+  // Browsers' "user activation" gates audible playback. The official
+  // activation gestures are pointerdown / keydown / touchstart / click —
+  // mouse-wheel scroll is NOT one (touch scroll IS, since it starts with
+  // touchstart). We listen to every gesture event so that:
+  //   - mobile users scrolling with their finger → music plays (touchstart)
+  //   - desktop users clicking, tapping, or pressing a key → plays
+  //   - desktop users only wheel-scrolling → won't unmute (browser block),
+  //     they'll see the Music button and can click it directly
+  const events = ['pointerdown', 'keydown', 'touchstart', 'click']
+  const unmute = () => {
     if (!audio.value) return
     if (muted.value) {
       muted.value = false
@@ -65,11 +74,12 @@ onMounted(() => {
       audio.value.play().catch(() => {})
       remember(false)
     }
-    document.removeEventListener('pointerdown', unmuteOnFirstInteraction)
-    document.removeEventListener('keydown', unmuteOnFirstInteraction)
+    cleanup()
   }
-  document.addEventListener('pointerdown', unmuteOnFirstInteraction, { once: true })
-  document.addEventListener('keydown', unmuteOnFirstInteraction, { once: true })
+  const cleanup = () => {
+    for (const e of events) document.removeEventListener(e, unmute)
+  }
+  for (const e of events) document.addEventListener(e, unmute, { once: true, passive: true })
 })
 </script>
 
