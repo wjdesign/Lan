@@ -117,9 +117,17 @@ em.script,
   font-style: normal;
   font-weight: 400;
   /* Allura is a slim flowing script — bump the visual size so it reads at
-     the same optical weight as the surrounding serif. */
-  font-size: 1.6em;
-  line-height: 0.9;
+     the same optical weight as the surrounding serif. Slightly smaller on
+     mobile so long English hero subtitles don't crowd the header. */
+  font-size: 1.35em;
+  line-height: 0.95;
+}
+@media (min-width: 768px) {
+  em.script,
+  .script-em {
+    font-size: 1.6em;
+    line-height: 0.9;
+  }
 }
 
 /* Allura looks washed-out at small sizes; tighten kerning on the brand
