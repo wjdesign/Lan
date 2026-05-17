@@ -207,9 +207,38 @@
     "form": {
       "eyebrow": "Online Form",
       "title": "在线预约表单",
-      "intro": "填写以下表单后将寄送一封确认信至你提供的 Email；如需即时回覆，建议优先使用 LINE。",
-      "fallback": "如表单无法载入，请",
-      "fallbackLink": "点此于新分页开启"
+      "intro": "填写下方表单后，您的讯息会直接寄到小兰老师的信箱，老师会在 48 小时内回信；如需即时回覆，建议优先使用 LINE。",
+      "submit": "送出预约咨询",
+      "sending": "送出中⋯",
+      "privacy": "您的资料仅用于回覆预约咨询，不会分享给第三方。",
+      "successTitle": "已收到您的讯息 ✦",
+      "successBody": "感谢您联络叶小兰时尚彩妆。我们会在 48 小时内回信，如需即时联络，欢迎加 LINE：ye168248。",
+      "errorTitle": "送出失败",
+      "errorRetry": "请稍后再试，或改用",
+      "fields": {
+        "name": "姓名",
+        "email": "Email",
+        "phone": "电话 / LINE ID",
+        "phonePlaceholder": "09xx-xxx-xxx 或 LINE ID",
+        "eventDate": "婚期 / 活动日期",
+        "service": "服务项目",
+        "servicePlaceholder": "— 请选择 —",
+        "serviceOptions": {
+          "bridal": "新娘秘书",
+          "engagement": "订婚 / 文定造型",
+          "mother": "妈妈妆 / 婆婆妆",
+          "evening": "晚宴 / 派对造型",
+          "shoot": "婚纱 / 形象拍摄",
+          "lesson": "彩妆教学",
+          "other": "其他 / 不确定"
+        },
+        "message": "需求说明",
+        "messagePlaceholder": "请告诉我们大致场地、预计造型套数、特殊需求等，越详细越好。"
+      },
+      "errors": {
+        "required": "请填写姓名、Email 与需求说明这三个必填栏位。",
+        "network": "网路连线异常，无法送出表单。"
+      }
     },
     "qr": {
       "title": "最快的预约方式",

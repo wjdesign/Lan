@@ -207,9 +207,38 @@
     "form": {
       "eyebrow": "Online Form",
       "title": "Booking Form",
-      "intro": "After submission, a confirmation will be sent to the email you provide. For instant reply, please use LINE.",
-      "fallback": "If the form does not load, please",
-      "fallbackLink": "open in a new tab"
+      "intro": "Your message will be sent directly to Teacher Lan's inbox. You'll usually get a reply within 48 hours — for faster response, please use LINE.",
+      "submit": "Send inquiry",
+      "sending": "Sending…",
+      "privacy": "Your details are used only to reply to your inquiry and are never shared.",
+      "successTitle": "Message received ✦",
+      "successBody": "Thank you for reaching out to Lan Yeh Bridal Makeup. We'll reply within 48 hours. For an instant reply, please add us on LINE: ye168248.",
+      "errorTitle": "Could not send",
+      "errorRetry": "Please try again later, or contact us on",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone / LINE ID",
+        "phonePlaceholder": "Phone number or LINE ID",
+        "eventDate": "Wedding / event date",
+        "service": "Service",
+        "servicePlaceholder": "— please choose —",
+        "serviceOptions": {
+          "bridal": "Bridal Styling",
+          "engagement": "Engagement",
+          "mother": "Mother of the Bride",
+          "evening": "Evening / Gala",
+          "shoot": "Editorial / Bridal Shoot",
+          "lesson": "Private Lesson",
+          "other": "Other / Not sure yet"
+        },
+        "message": "Tell us more",
+        "messagePlaceholder": "Please share the venue, number of looks, and any special requests — the more detail, the better."
+      },
+      "errors": {
+        "required": "Please fill in your name, email, and message.",
+        "network": "Network issue — could not send the form."
+      }
     },
     "qr": {
       "title": "Fastest way to reach me",

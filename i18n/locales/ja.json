@@ -207,9 +207,38 @@
     "form": {
       "eyebrow": "Online Form",
       "title": "オンライン予約フォーム",
-      "intro": "送信後、ご記入いただいた Email へ確認メールをお送りします。即時の返信が必要な場合は LINE をご利用ください。",
-      "fallback": "フォームが読み込めない場合は、",
-      "fallbackLink": "別タブで開く"
+      "intro": "送信されたメッセージは小蘭先生のメールに直接届きます。通常 48 時間以内にお返事いたします。即時のご返信をご希望の場合は LINE をご利用ください。",
+      "submit": "問い合わせを送信",
+      "sending": "送信中⋯",
+      "privacy": "ご記入内容はお問い合わせへのご返信にのみ使用し、第三者と共有することはありません。",
+      "successTitle": "メッセージを受け付けました ✦",
+      "successBody": "葉小蘭ブライダルメイクへお問い合わせいただきありがとうございます。48 時間以内にご返信いたします。即時のご連絡は LINE：ye168248 までお願いいたします。",
+      "errorTitle": "送信に失敗しました",
+      "errorRetry": "しばらく経ってから再試行いただくか、",
+      "fields": {
+        "name": "お名前",
+        "email": "Email",
+        "phone": "電話 / LINE ID",
+        "phonePlaceholder": "電話番号または LINE ID",
+        "eventDate": "挙式 / イベント日",
+        "service": "ご希望のサービス",
+        "servicePlaceholder": "— 選択してください —",
+        "serviceOptions": {
+          "bridal": "ブライダルメイク",
+          "engagement": "結納・婚約",
+          "mother": "母親メイク",
+          "evening": "パーティーメイク",
+          "shoot": "撮影メイク",
+          "lesson": "プライベートレッスン",
+          "other": "その他 / 未定"
+        },
+        "message": "ご要望",
+        "messagePlaceholder": "会場、スタイル数、特別なご要望などを詳しくお書きください。"
+      },
+      "errors": {
+        "required": "お名前、Email、ご要望の 3 つは必須です。",
+        "network": "ネットワーク接続に問題があり、フォームを送信できませんでした。"
+      }
     },
     "qr": {
       "title": "最速のご連絡方法",

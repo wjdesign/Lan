@@ -35,18 +35,15 @@ const localePath = useLocalePath()
         >
           {{ $t('cta.bookOnline') }}
         </UButton>
-        <UButton
-          :to="siteConfig.contact.lineHref"
+        <a
+          :href="siteConfig.contact.lineHref"
           target="_blank"
-          variant="outline"
-          color="neutral"
-          size="xl"
-          block
-          class="!border-champagne-100/40 !text-champagne-50 hover:!bg-champagne-50/10"
-          trailing-icon="i-lucide-message-circle"
+          rel="noopener"
+          class="inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-base font-medium tracking-wider uppercase border border-champagne-50 text-champagne-50 bg-champagne-50/10 backdrop-blur-sm hover:bg-champagne-50 hover:text-wine-800 transition-all duration-300"
         >
           {{ $t('cta.lineInquiry') }}
-        </UButton>
+          <UIcon name="i-lucide-message-circle" class="size-5" />
+        </a>
         <p class="text-center text-xs text-champagne-300/70 tracking-widest mt-2">
           {{ $t('contact.cta.reply') }}
         </p>

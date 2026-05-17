@@ -88,9 +88,13 @@ const go = (i: number) => {
             <UButton :to="localePath('/contact')" size="xl" color="secondary" variant="solid" trailing-icon="i-lucide-arrow-right">
               {{ t('cta.bookConsultation') }}
             </UButton>
-            <UButton :to="localePath('/portfolio')" size="xl" color="neutral" variant="outline" class="!border-champagne-100/40 !text-champagne-50 hover:!bg-champagne-50/10">
+            <NuxtLink
+              :to="localePath('/portfolio')"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-medium tracking-wider uppercase border border-champagne-50 text-champagne-50 bg-champagne-50/15 backdrop-blur-sm hover:bg-champagne-50 hover:text-wine-800 transition-all duration-300"
+            >
               {{ t('cta.viewWorks') }}
-            </UButton>
+              <UIcon name="i-lucide-arrow-up-right" class="size-4" />
+            </NuxtLink>
           </div>
         </div>
 

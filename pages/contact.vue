@@ -90,20 +90,9 @@ const contactCards = computed(() => [
           <p class="text-ink-700 font-serif leading-loose mb-8 max-w-2xl">
             {{ $t('contact.form.intro') }}
           </p>
-          <div class="relative bg-white border border-champagne-300/70 rounded-sm overflow-hidden">
-            <iframe
-              :src="siteConfig.contact.bookingFormUrl"
-              loading="lazy"
-              class="w-full h-[860px]"
-              title="Booking form"
-            >
-              載入中…
-            </iframe>
+          <div class="bg-white border border-champagne-300/70 rounded-sm p-6 lg:p-10">
+            <BookingForm />
           </div>
-          <p class="mt-4 text-sm text-ink-500">
-            {{ $t('contact.form.fallback') }}
-            <a :href="siteConfig.contact.bookingFormShare" target="_blank" class="text-wine-700 underline">{{ $t('contact.form.fallbackLink') }}</a>。
-          </p>
         </div>
 
         <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-28" v-reveal="{ delay: 120 }">

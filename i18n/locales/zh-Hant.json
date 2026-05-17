@@ -207,9 +207,38 @@
     "form": {
       "eyebrow": "Online Form",
       "title": "線上預約表單",
-      "intro": "填寫以下表單後將寄送一封確認信至你提供的 Email；如需即時回覆，建議優先使用 LINE。",
-      "fallback": "如表單無法載入，請",
-      "fallbackLink": "點此於新分頁開啟"
+      "intro": "填寫下方表單後，您的訊息會直接寄到小蘭老師的信箱，老師會在 48 小時內回信；如需即時回覆，建議優先使用 LINE。",
+      "submit": "送出預約諮詢",
+      "sending": "送出中⋯",
+      "privacy": "您的資料僅用於回覆預約諮詢，不會分享給第三方。",
+      "successTitle": "已收到您的訊息 ✦",
+      "successBody": "感謝您聯絡葉小蘭時尚彩妝。我們會在 48 小時內回信，如需即時聯絡，歡迎加 LINE：ye168248。",
+      "errorTitle": "送出失敗",
+      "errorRetry": "請稍後再試，或改用",
+      "fields": {
+        "name": "姓名",
+        "email": "Email",
+        "phone": "電話 / LINE ID",
+        "phonePlaceholder": "09xx-xxx-xxx 或 LINE ID",
+        "eventDate": "婚期 / 活動日期",
+        "service": "服務項目",
+        "servicePlaceholder": "— 請選擇 —",
+        "serviceOptions": {
+          "bridal": "新娘秘書",
+          "engagement": "訂婚 / 文定造型",
+          "mother": "媽媽妝 / 婆婆妝",
+          "evening": "晚宴 / 派對造型",
+          "shoot": "婚紗 / 形象拍攝",
+          "lesson": "彩妝教學",
+          "other": "其他 / 不確定"
+        },
+        "message": "需求說明",
+        "messagePlaceholder": "請告訴我們大致場地、預計造型套數、特殊需求等，越詳細越好。"
+      },
+      "errors": {
+        "required": "請填寫姓名、Email 與需求說明這三個必填欄位。",
+        "network": "網路連線異常，無法送出表單。"
+      }
     },
     "qr": {
       "title": "最快的預約方式",

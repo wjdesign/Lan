@@ -30,10 +30,9 @@ export const siteConfig = {
     instagramUrl: 'https://www.instagram.com/ye168248/',
     facebookUrl: 'https://www.facebook.com/ye168248/',
     pixnetUrl: 'https://ye168248.pixnet.net/blog',
-    bookingFormUrl:
-      'https://docs.google.com/forms/d/e/1FAIpQLSfN4t8MAKmDRzywm40Zom-I-PSuwtNmtee_IhpUbeAs1rxovg/viewform?embedded=true',
-    bookingFormShare:
-      'https://docs.google.com/forms/d/e/1FAIpQLSfN4t8MAKmDRzywm40Zom-I-PSuwtNmtee_IhpUbeAs1rxovg/viewform',
+    // Native form submits to Formsubmit.co which forwards to the email below.
+    // No third-party account required.
+    formspreeEndpoint: 'https://formsubmit.co/ajax/ye168248@gmail.com',
     workingHours: '每日 09:00 – 21:00（LINE / 表單預約優先）',
   },
   socials: <SocialLink[]>[
