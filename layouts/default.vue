@@ -8,5 +8,6 @@
       <slot />
     </main>
     <AppFooter />
+    <BackgroundMusic />
   </div>
 </template>

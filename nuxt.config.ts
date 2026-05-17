@@ -160,7 +160,7 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2}'],
+      globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2,mp3}'],
       // Each prerendered HTML embeds Tailwind CSS + payload, ~2 MB. Allow up
       // to 3 MB so PWA precache covers them.
       maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
