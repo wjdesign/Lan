@@ -39,9 +39,11 @@ watchEffect(() => {
   <header
     :class="[
       'fixed inset-x-0 top-0 z-50 transition-all duration-200',
-      isScrolled || mobileOpen
-        ? 'bg-champagne-50/85 backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.04)]'
-        : 'bg-transparent',
+      mobileOpen
+        ? 'bg-champagne-50/95 backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.04)]'
+        : isScrolled
+          ? 'bg-champagne-50/40 backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.04)]'
+          : 'bg-transparent',
     ]"
   >
     <div class="container-wide flex items-center justify-between py-5 lg:py-6">
