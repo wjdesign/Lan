@@ -4,13 +4,13 @@ import { portfolio } from '~/data/portfolio'
 import { testimonials } from '~/data/testimonials'
 import { siteConfig } from '~/data/site'
 
+// Hero is full-bleed dark and pulled up behind the header — switch header text
+// to light while not scrolled. Declarative via route meta so it survives
+// same-page navigation (clicking "首頁" while already on home).
+definePageMeta({ darkHero: true })
+
 const { t, tm, rt, locale } = useI18n()
 const localePath = useLocalePath()
-
-// Hero is full-bleed dark — switch header text to light while it sits on top.
-const { setDarkHero } = useHeaderTheme()
-onMounted(() => setDarkHero(true))
-onBeforeUnmount(() => setDarkHero(false))
 
 useSeoMeta({
   title: () => t('brand.name') + ' ・ ' + t('brand.tagline'),

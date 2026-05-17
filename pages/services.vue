@@ -35,9 +35,16 @@ const faq = computed(() =>
           {{ $t('services.hero.titleA') }}<br>
           <span class="italic text-rose-600">{{ $t('services.hero.titleB') }}</span>
         </h1>
-        <p class="mt-8 text-ink-700 font-serif leading-loose text-base lg:text-lg max-w-2xl" v-reveal="{ delay: 160 }">
-          {{ $t('services.hero.intro') }}
-        </p>
+        <i18n-t
+          keypath="services.hero.intro"
+          tag="p"
+          class="mt-8 text-ink-700 font-serif leading-loose text-base lg:text-lg max-w-2xl"
+          v-reveal="{ delay: 160 }"
+        >
+          <template #strong>
+            <strong>{{ $t('services.hero.introStrong') }}</strong>
+          </template>
+        </i18n-t>
       </div>
     </section>
 
@@ -99,18 +106,13 @@ const faq = computed(() =>
           align="center"
         />
         <div class="space-y-3">
-          <details
+          <FaqItem
             v-for="(item, i) in faq"
             :key="i"
             v-reveal="{ delay: i * 50 }"
-            class="group bg-white border border-champagne-300/60 rounded-sm px-6 py-5 transition-colors duration-200 hover:border-rose-300 cursor-pointer"
-          >
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
-              <span class="font-serif text-lg text-wine-800">{{ item.q }}</span>
-              <UIcon name="i-lucide-plus" class="size-5 text-rose-500 transition-transform group-open:rotate-45" />
-            </summary>
-            <p class="mt-4 text-ink-700 font-serif leading-loose">{{ item.a }}</p>
-          </details>
+            :question="item.q"
+            :answer="item.a"
+          />
         </div>
       </div>
     </section>

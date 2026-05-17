@@ -11,6 +11,12 @@ const mobileOpen = ref(false)
 /** True when we're sitting transparently over a dark hero — invert text. */
 const onDark = computed(() => isDarkHero.value && !isScrolled.value && !mobileOpen.value)
 
+// Reset scroll position on every nav so same-route nav (e.g. clicking "首頁"
+// from home) snaps back to top instead of stranding the user mid-page.
+watch(() => route.fullPath, () => {
+  if (import.meta.client) window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+})
+
 const nav = computed(() => [
   { label: t('nav.home'), to: localePath('/') },
   { label: t('nav.about'), to: localePath('/about') },

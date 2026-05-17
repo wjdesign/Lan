@@ -4,10 +4,6 @@ import { siteConfig } from '~/data/site'
 
 const { t, tm, rt } = useI18n()
 
-const { setDarkHero } = useHeaderTheme()
-onMounted(() => setDarkHero(true))
-onBeforeUnmount(() => setDarkHero(false))
-
 useSeoMeta({
   title: () => t('nav.about') + ' ・ ' + t('brand.name'),
   description: () => t('about.hero.intro'),

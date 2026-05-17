@@ -128,7 +128,8 @@
       "eyebrow": "Services Overview",
       "titleA": "Every ceremony",
       "titleB": "deserves its own craft",
-      "intro": "From bridal coverage to gala styling, from private lessons to destination weddings — our six core services. Studio in Chiayi with on-location service across Taiwan: north (Taipei, Taoyuan, Hsinchu), central (Taichung, Changhua), south (Tainan, Kaohsiung, Pingtung), east (Yilan, Hualien, Taitung). Pricing tailored to your event, location, and number of looks. Inquire via LINE or the form."
+      "intro": "From bridal coverage to gala styling, from private lessons to destination weddings — our six core services. Studio in Chiayi with {strong}: north (Taipei, Taoyuan, Hsinchu), central (Taichung, Changhua), south (Tainan, Kaohsiung, Pingtung), east (Yilan, Hualien, Taitung). Pricing tailored to your event, location, and number of looks. Inquire via LINE or the form.",
+      "introStrong": "on-location service across all of Taiwan"
     },
     "flow": {
       "eyebrow": "Booking Flow",

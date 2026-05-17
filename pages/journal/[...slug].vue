@@ -6,10 +6,6 @@ const { t, locale } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
 
-const { setDarkHero } = useHeaderTheme()
-onMounted(() => setDarkHero(true))
-onBeforeUnmount(() => setDarkHero(false))
-
 // Resolve to the un-prefixed path used by @nuxt/content (locale prefix isn't part of MD source)
 const contentPath = computed(() => {
   const localePrefix = locale.value === 'zh-Hant' ? '' : `/${locale.value}`

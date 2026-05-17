@@ -112,6 +112,14 @@ em.script,
   line-height: 0.95;
 }
 
+/* Make <strong> inside body copy actually look strong on top of our
+   light serif body text. */
+.prose-strong strong,
+strong {
+  color: var(--color-wine-800);
+  font-weight: 600;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   letter-spacing: 0.01em;
