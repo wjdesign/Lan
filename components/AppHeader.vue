@@ -63,7 +63,7 @@ watchEffect(() => {
           v-for="item in nav"
           :key="item.to"
           :to="item.to"
-          :class="['relative font-serif text-sm tracking-[0.3em] transition-colors duration-200',
+          :class="['relative font-serif italic text-base tracking-[0.2em] transition-colors duration-200',
                    onDark ? 'text-champagne-100 hover:text-champagne-50' : 'text-ink-800 hover:text-wine-700']"
           :active-class="onDark ? 'text-champagne-50' : 'text-wine-800'"
         >
@@ -107,7 +107,7 @@ watchEffect(() => {
             v-for="item in nav"
             :key="item.to"
             :to="item.to"
-            class="py-3 font-serif text-lg tracking-wider text-ink-800"
+            class="py-3 font-serif italic text-xl tracking-wider text-ink-800"
             active-class="text-wine-800"
           >
             {{ item.label }}
