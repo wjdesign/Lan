@@ -12,7 +12,7 @@
 
 const SESSION_KEY = 'lanyeh_splash_seen'
 const REVEAL_MS = 2000 // slow, steady handwriting pace
-const HOLD_MS = 80     // barely any pause — fade begins right after the last letter
+const HOLD_MS = 0      // no forced wait — fade kicks in as soon as the last letter lands
 const FADE_MS = 400
 
 const visible = ref(true)
