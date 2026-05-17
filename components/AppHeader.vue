@@ -11,6 +11,8 @@ const mobileOpen = ref(false)
 /** True when we're sitting transparently over a dark hero — invert text. */
 const onDark = computed(() => isDarkHero.value && !isScrolled.value && !mobileOpen.value)
 
+const activeColor = computed(() => (onDark.value ? 'var(--color-champagne-50)' : 'var(--color-wine-800)'))
+
 // Reset scroll position on every nav so same-route nav (e.g. clicking "首頁"
 // from home) snaps back to top instead of stranding the user mid-page.
 watch(() => route.fullPath, () => {
@@ -45,6 +47,7 @@ watchEffect(() => {
           ? 'bg-champagne-50/40 backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.04)]'
           : 'bg-transparent',
     ]"
+    :style="{ '--active-color': activeColor }"
   >
     <div class="container-wide flex items-center justify-between py-5 lg:py-6">
       <NuxtLink :to="localePath('/')" class="group flex items-center gap-3" :aria-label="$t('nav.home')">
@@ -65,9 +68,9 @@ watchEffect(() => {
           v-for="item in nav"
           :key="item.to"
           :to="item.to"
-          :class="['relative font-serif italic text-base tracking-[0.2em] transition-colors duration-200',
+          :class="['nav-link relative font-serif italic text-base tracking-[0.2em] transition-colors duration-200',
                    onDark ? 'text-champagne-100 hover:text-champagne-50' : 'text-ink-800 hover:text-wine-700']"
-          :active-class="onDark ? 'text-champagne-50' : 'text-wine-800'"
+          active-class="is-active"
         >
           {{ item.label }}
         </NuxtLink>
@@ -134,5 +137,27 @@ watchEffect(() => {
 .mobile-menu-leave-to {
   opacity: 0;
   transform: translateY(-8px);
+}
+
+/* Underline that draws left → right on hover / active.
+   Length is 100% of the link so it follows variable label widths. */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+.nav-link.is-active {
+  color: var(--active-color, currentColor);
 }
 </style>
