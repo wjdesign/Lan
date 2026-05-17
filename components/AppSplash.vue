@@ -11,8 +11,8 @@
  */
 
 const SESSION_KEY = 'lanyeh_splash_seen'
-const REVEAL_MS = 1100 // slower, more handwriting-like
-const HOLD_MS = 60     // barely any pause — fade begins right after the last letter
+const REVEAL_MS = 2000 // slow, steady handwriting pace
+const HOLD_MS = 80     // barely any pause — fade begins right after the last letter
 const FADE_MS = 400
 
 const visible = ref(true)
@@ -77,9 +77,21 @@ onMounted(() => {
   color: #3a1d1f;
   letter-spacing: 0.01em;
   white-space: nowrap;
-  /* Reveal mask — animates from "fully clipped" to "fully visible" */
-  clip-path: inset(-0.2em 100% -0.2em 0);
-  animation: splash-reveal 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  /* Soft-edged mask sweeps left → right. mask-position is what we animate
+     (a single transform-style property) — smooth on GPU, not janky like
+     clip-path with non-linear easing. The gradient gives a feathered edge
+     that mimics ink flowing onto paper. */
+  -webkit-mask-image: linear-gradient(to right, #000 50%, transparent 60%);
+          mask-image: linear-gradient(to right, #000 50%, transparent 60%);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 220% 100%;
+          mask-size: 220% 100%;
+  -webkit-mask-position: 100% 0;
+          mask-position: 100% 0;
+  animation: splash-reveal 2000ms linear forwards;
+  will-change: mask-position, -webkit-mask-position;
+  transform: translateZ(0);
 }
 
 /* A small ink cursor that follows the reveal edge */
@@ -91,23 +103,31 @@ onMounted(() => {
   background: #3a1d1f;
   opacity: 0.4;
   left: 0;
-  animation: splash-cursor 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: splash-cursor 2000ms linear forwards;
+  will-change: left, opacity;
 }
 
 @keyframes splash-reveal {
-  from { clip-path: inset(-0.2em 100% -0.2em 0); }
-  to   { clip-path: inset(-0.2em 0 -0.2em 0); }
+  from {
+    -webkit-mask-position: 100% 0;
+            mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0% 0;
+            mask-position: 0% 0;
+  }
 }
 
 @keyframes splash-cursor {
   0%   { left: 0;    opacity: 0.5; }
-  90%  { left: 100%; opacity: 0.5; }
+  92%  { left: 100%; opacity: 0.5; }
   100% { left: 100%; opacity: 0; }
 }
 
 .splash-reduced .splash-text {
   animation: none;
-  clip-path: none;
+  -webkit-mask-image: none;
+          mask-image: none;
 }
 .splash-reduced .splash-cursor {
   animation: none;
