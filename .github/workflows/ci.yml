@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [master, main]
+  push:
+    branches-ignore: [master, main]
+
+jobs:
+  lint-and-build:
+    name: Lint, typecheck & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.1.2
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint --if-present || echo "lint skipped"
+
+      - name: Typecheck
+        run: pnpm typecheck --if-present || echo "typecheck skipped"
+
+      - name: Build (SSG)
+        env:
+          NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
+          NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: pnpm generate

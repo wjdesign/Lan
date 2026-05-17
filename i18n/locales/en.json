@@ -1,0 +1,278 @@
+{
+  "locale": {
+    "name": "English",
+    "short": "EN"
+  },
+  "brand": {
+    "name": "Lan Yeh Bridal Makeup",
+    "nameEn": "LAN YEH BRIDAL MAKEUP",
+    "headerSubtitle": "Bridal Makeup",
+    "tagline": "Quiet elegance, crafted for every ceremony"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "journal": "Journal",
+    "contact": "Booking"
+  },
+  "cta": {
+    "book": "Book Now",
+    "bookConsultation": "Start Booking",
+    "bookOnline": "Online Inquiry",
+    "lineInquiry": "Chat on LINE",
+    "lineConsult": "LINE Chat",
+    "viewWorks": "View Works",
+    "readMore": "Learn More",
+    "viewMore": "View More",
+    "viewAll": "View All",
+    "allWorks": "All Works",
+    "backHome": "Back to Home",
+    "scroll": "Scroll"
+  },
+  "home": {
+    "marquee": ["Bridal Couture", "Lan Yeh Bridal Makeup", "Since 2002", "Based in Chiayi · Available island-wide", "Editorial & Evening"],
+    "heroSlides": [
+      {
+        "eyebrow": "Bridal Couture",
+        "titleTop": "For the once-in-a-lifetime moment",
+        "titleBottom": "we craft the quietest elegance",
+        "excerpt": "From dawn preparation to candlelit banquet — twenty years of meticulous craft, designing the visual narrative of your day."
+      },
+      {
+        "eyebrow": "Evening & Gala",
+        "titleTop": "The moment you step into the light",
+        "titleBottom": "is your most radiant",
+        "excerpt": "Awards nights, brand events, intimate galas — making you the most luminous presence in the room."
+      },
+      {
+        "eyebrow": "Editorial",
+        "titleTop": "Every frame",
+        "titleBottom": "becomes a keepsake",
+        "excerpt": "Editorial and bridal shoots, with makeup designed alongside lighting and theme — studio or on-location."
+      }
+    ],
+    "about": {
+      "eyebrow": "About the Artist",
+      "titleA": "Makeup is a ceremony",
+      "titleB": "the moment you become",
+      "titleC": "most truly yourself",
+      "titleD": "",
+      "p1": "Since 2002, I've styled over a thousand brides and hundreds of banquets. When a bride walks in, I'm not looking for a style — I'm looking for the moment her gaze becomes most truly hers.",
+      "p2": "A bridal look is not a template — it's a conversation. From skin tone, features, gown texture, ceremony mood, to the light on the day — every element is composed so you become the most assured presence in your own ritual.",
+      "ctaAbout": "Meet Teacher Lan"
+    },
+    "stats": [
+      { "value": "20+", "label": "Years of Craft", "sub": "Years of Craft" },
+      { "value": "1500+", "label": "Brides Styled", "sub": "Brides Styled" },
+      { "value": "300+", "label": "Banquets Covered", "sub": "Banquets Covered" },
+      { "value": "Taiwan-wide", "label": "By Appointment", "sub": "Island-wide" }
+    ],
+    "services": {
+      "eyebrow": "Services",
+      "title": "From dawn light to candle glow",
+      "subtitle": "Bridal · Engagement · Mother of the Bride · Evening · Editorial · Private Lessons — every ceremony deserves a meticulous craft."
+    },
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "titleA": "Every ceremony",
+      "titleB": "is one of a kind"
+    },
+    "testimonials": {
+      "eyebrow": "Voices",
+      "title": "They Said",
+      "subtitle": "Every word from our brides is why I continue this work."
+    }
+  },
+  "footer": {
+    "navTitle": "Navigate",
+    "contactTitle": "Contact",
+    "region": "Service Area",
+    "rights": "All rights reserved.",
+    "signature": "Couture · Crafted in Chiayi"
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About",
+      "titleA": "Twenty years of craft",
+      "titleB": "for your most honest smile",
+      "intro": "Teacher Lan Yeh — studio in Chiayi, on-location service across Taiwan. From bridal coverage to editorial styling, our work appears in ballrooms and outdoor venues in Taipei, Taichung, Tainan, Kaohsiung, Yilan, Hualien, and at destination weddings abroad."
+    },
+    "profile": {
+      "eyebrow": "Lan Yeh ・ Founder & Lead Artist",
+      "titleA": "Beginning with one eyebrow pencil",
+      "titleB": "twenty years of craft",
+      "p1": "I trained under a strict teacher who made me practice base makeup for three full months. She said: the most important thing about a bride isn't her eyeshadow — it's the breathing quality of her skin. I've remembered that every day since.",
+      "p2": "I began in Taichung, then returned to my hometown Chiayi to open my own studio. Over the years I've styled more than a thousand couples. In this city I've watched girls walk into grand halls, down red carpets, into new lives. I remember the light, the laughter, and the moment they cried.",
+      "p3": "The heart of this work is not 'makeup' — it's 'accompaniment.' Sharing the most nervous hours before the ceremony, doing touch-ups, checking the hairstyle together. And when the day is done and the photographs come back — you look in the frame and say, 'Ah, that is me.'",
+      "quote": "— That moment is the whole reason I do this work."
+    },
+    "philosophy": {
+      "eyebrow": "Philosophy",
+      "title": "Four Beliefs of the Studio",
+      "items": [
+        { "title": "Seeing your essence", "desc": "No templates. From skin tone, bone structure, eye shape, to the way you speak and dress — your makeup should be an extension of you, not a mask." },
+        { "title": "Respecting the ceremony", "desc": "Sun-lit chapels, banquet halls, intimate engagements — each setting calls for its own intensity of light and color." },
+        { "title": "Camera-ready always", "desc": "4K cameras, long video, close family photos — your base must remain transparent yet enduring. Every layer is for the album you'll keep for life." },
+        { "title": "Companionship", "desc": "The hours before the ceremony are the most anxious. I will make these hours feel like a long chat with a trusted friend." }
+      ]
+    },
+    "timeline": {
+      "eyebrow": "Timeline",
+      "title": "The Studio's Journey",
+      "subtitle": "Over twenty years of meetings, each one a new beginning."
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services Overview",
+      "titleA": "Every ceremony",
+      "titleB": "deserves its own craft",
+      "intro": "From bridal coverage to gala styling, from private lessons to destination weddings — our six core services. Studio in Chiayi with {strong}: north (Taipei, Taoyuan, Hsinchu), central (Taichung, Changhua), south (Tainan, Kaohsiung, Pingtung), east (Yilan, Hualien, Taitung). Pricing tailored to your event, location, and number of looks. Inquire via LINE or the form.",
+      "introStrong": "on-location service across all of Taiwan"
+    },
+    "flow": {
+      "eyebrow": "Booking Flow",
+      "title": "Booking Process",
+      "items": [
+        { "step": "01", "title": "Inquiry", "desc": "Reach out via LINE or the form — share your date, venue, and estimated number of looks so we can confirm availability." },
+        { "step": "02", "title": "Quote & Reservation", "desc": "Once your date and needs are confirmed, a quote is provided. A deposit reserves your exclusive day." },
+        { "step": "03", "title": "Trial & Discussion", "desc": "One month before, we hold a trial session — discussing gown style, venue light, and skin condition to refine the look." },
+        { "step": "04", "title": "Wedding Day", "desc": "At the agreed time we arrive at your home or hotel — full-day touch-ups and look transitions, choreographed to your schedule." },
+        { "step": "05", "title": "Afterwards", "desc": "We follow up after the ceremony — building a long-term relationship, ready for anniversary shoots and evening events." }
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Frequently Asked",
+      "items": [
+        { "q": "How far in advance should I book?", "a": "At least 4–6 months; peak seasons (spring, autumn) often more. We accept only one couple per day." },
+        { "q": "Do you travel?", "a": "Yes. Based in Chiayi, we serve all of Taiwan; out-of-town engagements include travel and lodging." },
+        { "q": "Is a trial required?", "a": "Trial sessions are highly recommended to align on direction and avoid surprises on the day." },
+        { "q": "What about changes or cancellations?", "a": "Date changes are accommodated up to 2 months before, subject to availability. Full terms are provided upon booking." },
+        { "q": "Do you provide accessories?", "a": "We offer basic crown, headpiece, hairpins and earring rentals; bouquets can be ordered or provided by you." },
+        { "q": "Do you take destination weddings?", "a": "Yes — past work includes Japan, Bali, Okinawa. Please plan at least 6 months ahead." }
+      ]
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "eyebrow": "Portfolio",
+      "titleA": "Every ceremony",
+      "titleB": "is a story worth keeping",
+      "intro": "Bridal whites, banquet looks, engagements, mother styling, evening galas, and editorial shoots — click any work to read the story behind the day."
+    },
+    "categories": {
+      "all": "All Works",
+      "bridal-white": "Bridal · White",
+      "bridal-banquet": "Bridal · Banquet",
+      "engagement": "Engagement",
+      "mother": "Mother",
+      "evening": "Evening",
+      "editorial": "Editorial",
+      "process": "Process"
+    },
+    "empty": "No works in this category yet — please check back soon.",
+    "detail": {
+      "behindLens": "Behind the Lens",
+      "storyTitle": "The Story",
+      "related": "Related",
+      "relatedTitle": "More in this category",
+      "viewStory": "View Story",
+      "tagsLabel": "Tags",
+      "yearLabel": "Year"
+    }
+  },
+  "journal": {
+    "hero": {
+      "eyebrow": "Journal",
+      "title": "Studio Journal",
+      "intro": "Makeup notes, pre-wedding skincare, styling trends — twenty years of insight, written down slowly."
+    },
+    "empty": "No posts yet — please check back soon.",
+    "prev": "← Previous",
+    "next": "Next →"
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Booking & Inquiry",
+      "titleA": "When you're ready",
+      "titleB": "let's begin a conversation",
+      "intro": "Only one couple per day, please book 4–6 months in advance. Fill out the form below or reach me on LINE — usually within 48 hours."
+    },
+    "cards": {
+      "line": { "label": "LINE", "sub": "Fastest reply · 24h online" },
+      "phone": { "label": "Phone", "sub": "Voicemail open 24/7" },
+      "email": { "label": "Email", "sub": "Official / press inquiries" },
+      "ig": { "label": "Instagram", "sub": "Latest works" }
+    },
+    "form": {
+      "eyebrow": "Online Form",
+      "title": "Booking Form",
+      "intro": "Your message will be sent directly to Teacher Lan's inbox. You'll usually get a reply within 48 hours — for faster response, please use LINE.",
+      "submit": "Send inquiry",
+      "sending": "Sending…",
+      "privacy": "Your details are used only to reply to your inquiry and are never shared.",
+      "successTitle": "Message received ✦",
+      "successBody": "Thank you for reaching out to Lan Yeh Bridal Makeup. We'll reply within 48 hours. For an instant reply, please add us on LINE: ye168248.",
+      "errorTitle": "Could not send",
+      "errorRetry": "Please try again later, or contact us on",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone / LINE ID",
+        "phonePlaceholder": "Phone number or LINE ID",
+        "eventDate": "Wedding / event date",
+        "service": "Service",
+        "servicePlaceholder": "— please choose —",
+        "serviceOptions": {
+          "bridal": "Bridal Styling",
+          "engagement": "Engagement",
+          "mother": "Mother of the Bride",
+          "evening": "Evening / Gala",
+          "shoot": "Editorial / Bridal Shoot",
+          "lesson": "Private Lesson",
+          "other": "Other / Not sure yet"
+        },
+        "message": "Tell us more",
+        "messagePlaceholder": "Please share the venue, number of looks, and any special requests — the more detail, the better."
+      },
+      "errors": {
+        "required": "Please fill in your name, email, and message.",
+        "network": "Network issue — could not send the form."
+      }
+    },
+    "qr": {
+      "title": "Fastest way to reach me",
+      "intro": "Scan the QR code or tap to add me on LINE",
+      "addLine": "Add on LINE"
+    },
+    "hours": {
+      "label": "Working Hours",
+      "studioLabel": "Studio",
+      "studioNote": "Trial location confirmed one month before the ceremony."
+    },
+    "area": {
+      "eyebrow": "Service Area",
+      "title": "Chiayi studio ・ on-location across Taiwan",
+      "intro": "Based in Chiayi with on-location service throughout Taiwan: north — Taipei, Taoyuan, Hsinchu; central — Taichung, Changhua, Yunlin; south — Tainan, Kaohsiung, Pingtung; east — Yilan, Hualien, Taitung. Destination weddings welcome. Travel and lodging billed outside the home region; international weddings quoted separately."
+    },
+    "cta": {
+      "title": "When you're ready",
+      "titleB": "to step into the ceremony",
+      "subtitle": "Only one couple per day — please book at least 4–6 months in advance.\nOnce the deposit is confirmed, your date is reserved with a complimentary trial consultation.",
+      "reply": "Replies within 24 hours (LINE is fastest)",
+      "eyebrow": "Book Your Date"
+    }
+  },
+  "common": {
+    "lineHandle": "ye168248",
+    "since": "Since",
+    "studio": "Chiayi · Studio"
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "message": "It seems this path leads to an unwritten chapter.\nReturn home to continue exploring your dream look."
+  }
+}

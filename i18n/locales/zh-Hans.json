@@ -1,0 +1,278 @@
+{
+  "locale": {
+    "name": "简体中文",
+    "short": "简中"
+  },
+  "brand": {
+    "name": "叶小兰时尚彩妆",
+    "nameEn": "LAN YEH BRIDAL MAKEUP",
+    "headerSubtitle": "叶小兰时尚彩妆",
+    "tagline": "为每一场仪式 留下最从容的优雅"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于小兰",
+    "services": "彩妆服务",
+    "portfolio": "作品集",
+    "journal": "日志",
+    "contact": "预约"
+  },
+  "cta": {
+    "book": "在线预约",
+    "bookConsultation": "开始预约",
+    "bookOnline": "在线预约咨询",
+    "lineInquiry": "LINE 直接咨询",
+    "lineConsult": "LINE 咨询",
+    "viewWorks": "欣赏作品",
+    "readMore": "了解更多",
+    "viewMore": "查看更多",
+    "viewAll": "查看全部",
+    "allWorks": "All Works",
+    "backHome": "回到首页",
+    "scroll": "Scroll"
+  },
+  "home": {
+    "marquee": ["Bridal Couture", "叶小兰时尚彩妆", "Since 2002", "驻点嘉义．服务全台", "Editorial & Evening"],
+    "heroSlides": [
+      {
+        "eyebrow": "Bridal Couture",
+        "titleTop": "为一生一次的时刻",
+        "titleBottom": "留下最从容的优雅",
+        "excerpt": "从晨间迎娶到烛光宴客，二十年资历的细腻工序，为你打造一日多换的造型叙事。"
+      },
+      {
+        "eyebrow": "Evening & Gala",
+        "titleTop": "走进灯光的刹那",
+        "titleBottom": "是你最闪耀的一刻",
+        "excerpt": "颁奖典礼、品牌活动、晚宴派对——让你成为现场最具存在感的那一束光。"
+      },
+      {
+        "eyebrow": "Editorial",
+        "titleTop": "镜头里",
+        "titleBottom": "每一格都是收藏",
+        "excerpt": "形象拍摄、婚纱纪录，妆感配合光线与主题，从棚拍到外拍都掌握得宜。"
+      }
+    ],
+    "about": {
+      "eyebrow": "About the Artist",
+      "titleA": "妆是一种仪式",
+      "titleB": "是让你",
+      "titleC": "成为自己",
+      "titleD": "的时刻",
+      "p1": "从 2002 年踏入彩妆这一行，二十多年来经历过上千位新娘、上百场宴客现场。每一个女孩走进工作室的时候，我看的不是「你想要什么风格」——而是「你的眼神在哪一刻最像自己」。",
+      "p2": "我相信好的新娘妆，从来不是模板，而是一场深度的对话。从肤色、五官、礼服质地、仪式氛围、到当天的光线——所有元素都会被仔细安排，让你成为仪式里最从容的那个主角。",
+      "ctaAbout": "认识小兰老师"
+    },
+    "stats": [
+      { "value": "20+", "label": "年资历", "sub": "Years of Craft" },
+      { "value": "1500+", "label": "对新人", "sub": "Brides Styled" },
+      { "value": "300+", "label": "场宴客", "sub": "Banquets Covered" },
+      { "value": "全台", "label": "预约服务", "sub": "Island-wide" }
+    ],
+    "services": {
+      "eyebrow": "Services",
+      "title": "从晨光到烛光 一日从容",
+      "subtitle": "新娘秘书、订婚／妈妈造型、晚宴妆、形象拍摄、一对一彩妆教学——每一种仪式，都值得一份细腻的工序。"
+    },
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "titleA": "每一场仪式",
+      "titleB": "都是独一无二的"
+    },
+    "testimonials": {
+      "eyebrow": "Voices",
+      "title": "她们说",
+      "subtitle": "每一句回馈都是我继续做这份工作的理由。"
+    }
+  },
+  "footer": {
+    "navTitle": "导览",
+    "contactTitle": "联络",
+    "region": "服务区域",
+    "rights": "All rights reserved.",
+    "signature": "Couture · Crafted in Chiayi"
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About",
+      "titleA": "二十年的工序",
+      "titleB": "为的是你最坦率的笑",
+      "intro": "叶小兰老师——工作室位于嘉义，全台到府服务。从新娘秘书到形象彩妆，作品见于台北、台中、台南、高雄、宜兰、花莲，乃至海外婚礼现场。"
+    },
+    "profile": {
+      "eyebrow": "Lan Yeh ・ Founder & Lead Artist",
+      "titleA": "从一支眉笔开始的",
+      "titleB": "二十年工序",
+      "p1": "我最初接触彩妆时，师承一位脾气很严的老师。她让我练底妆练了整整三个月——她说，新娘最重要的不是眼影颜色，是「皮肤的呼吸感」。这句话我记到今天。",
+      "p2": "从台中入行、最后回到家乡嘉义成立工作室，我做过上千对新人的造型。在这座城市里，我看着一个又一个女孩走进大厅、走过红毯、走进新的人生。每一场，我都记得当天的光、当天的笑、和当天她哭出来的那一瞬间。",
+      "p3": "这份工作的核心，其实不是「化妆」——是「陪伴」。陪你度过仪式前最焦虑的几个小时、陪你补妆、陪你紧张地确认发型有没有歪。而当仪式结束，相片洗出来，你看着镜头里的自己会说——「啊，这就是我。」",
+      "quote": "— 那一刻，就是我做这份工作的全部意义。"
+    },
+    "philosophy": {
+      "eyebrow": "Philosophy",
+      "title": "工作室的四个信念",
+      "items": [
+        { "title": "看见你的特质", "desc": "不套模板。从肤色、骨架、眼型，到你说话的语速与穿搭风格——让妆感成为你的延伸而不是面具。" },
+        { "title": "尊重仪式氛围", "desc": "日光教堂、晚宴饭店、家中文定——不同的场合需要不同强度的光感与色彩饱和度。" },
+        { "title": "经得起镜头", "desc": "4K 摄影、长时间录影、近距离合照——底妆必须兼顾通透与耐看。每一处工序都为了「之后一辈子的相簿」。" },
+        { "title": "陪伴的能力", "desc": "化妆时是新娘最紧张的时刻。我会在这几个小时里，让你感觉像在和一位老朋友聊天。" }
+      ]
+    },
+    "timeline": {
+      "eyebrow": "Timeline",
+      "title": "工作室的轨迹",
+      "subtitle": "二十余年的旅程，每一年都是新的相遇。"
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services Overview",
+      "titleA": "每一场仪式",
+      "titleB": "都值得专属的工序",
+      "intro": "从新娘秘书到晚宴形象、从一对一教学到外景婚礼——以下是工作室主要的六大服务项目。工作室位于嘉义，{strong}：北至台北桃园、南至高雄屏东、东至花莲台东，海外婚礼亦可规划。实际费用依场次、地点、套数客制，请透过 LINE 或表单询价。",
+      "introStrong": "全台各县市到府服务"
+    },
+    "flow": {
+      "eyebrow": "Booking Flow",
+      "title": "预约流程",
+      "items": [
+        { "step": "01", "title": "在线咨询", "desc": "透过 LINE 或表单联络，提供婚期、场地、预估造型套数，确认档期。" },
+        { "step": "02", "title": "报价与保留", "desc": "确认档期与需求后提供报价，缴交订金即为你保留专属日期。" },
+        { "step": "03", "title": "试妆 / 造型讨论", "desc": "婚期前一个月安排试妆，依礼服风格、宴客场地光线、肌肤状况讨论妆感方向。" },
+        { "step": "04", "title": "婚礼当日", "desc": "依约定时间到府或到饭店，全日跟妆、补妆补发、配合仪式时间轴调整造型。" },
+        { "step": "05", "title": "婚后关怀", "desc": "婚礼结束后追踪新娘心得与感受，建立长期关系，欢迎日后晚宴或周年纪念再合作。" }
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "常见问答",
+      "items": [
+        { "q": "档期通常需要多久前预约？", "a": "建议至少 4–6 个月，旺季（春、秋季）甚至要预留半年以上。我们一日仅接一组新人，先到先保留。" },
+        { "q": "可以离乡、外县市服务吗？", "a": "可以。基于嘉义工作室，全台北中南皆可服务，外县市加计交通与住宿费用。" },
+        { "q": "需要先试妆吗？", "a": "建议试妆。试妆可以提前确认妆感方向、厘清细节、避免婚礼当天才发现偏差。" },
+        { "q": "可以更改日期或取消吗？", "a": "若需更改日期，于婚期 2 个月前可一次更改，视新档期是否可调整。详细条款于确认预约时提供。" },
+        { "q": "会搭配捧花、头饰、配件吗？", "a": "工作室提供基本头饰、皇冠、发饰、耳环租借，捧花可代订或自行准备。" },
+        { "q": "海外婚礼有接吗？", "a": "可。曾服务过日本、峇里岛、冲绳等地海外婚礼，需提前 6 个月以上规划。" }
+      ]
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "eyebrow": "Portfolio",
+      "titleA": "每一场仪式",
+      "titleB": "都是值得收藏的故事",
+      "intro": "以下作品横跨白纱造型、宴客场、订婚／文定、妈妈妆、晚宴与形象拍摄。点击任一作品，阅读那场仪式背后的故事。"
+    },
+    "categories": {
+      "all": "全部作品",
+      "bridal-white": "白纱造型",
+      "bridal-banquet": "宴客造型",
+      "engagement": "订婚造型",
+      "mother": "妈妈妆",
+      "evening": "晚宴妆",
+      "editorial": "形象拍摄",
+      "process": "幕后纪录"
+    },
+    "empty": "此类别目前尚无作品 — 敬请期待。",
+    "detail": {
+      "behindLens": "Behind the Lens",
+      "storyTitle": "那一天的故事",
+      "related": "Related",
+      "relatedTitle": "同类别作品",
+      "viewStory": "View Story",
+      "tagsLabel": "Tags",
+      "yearLabel": "Year"
+    }
+  },
+  "journal": {
+    "hero": {
+      "eyebrow": "Journal",
+      "title": "工作室日志",
+      "intro": "彩妆笔记、婚前保养、造型趋势——把这些年累积的心得，慢慢写下来。"
+    },
+    "empty": "尚无文章发表，敬请期待。",
+    "prev": "← Previous",
+    "next": "Next →"
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Booking & Inquiry",
+      "titleA": "当你准备好",
+      "titleB": "我们开始一段对话",
+      "intro": "每场仪式都仅接一组新人，请至少提前 4–6 个月预约。填写下方表单，或直接透过 LINE 联系——通常 48 小时内回覆。"
+    },
+    "cards": {
+      "line": { "label": "LINE 官方帐号", "sub": "最快的回覆管道．24h 在线" },
+      "phone": { "label": "电话", "sub": "24 小时皆可来电留言" },
+      "email": { "label": "Email", "sub": "正式合作 / 媒体洽询" },
+      "ig": { "label": "Instagram", "sub": "最新作品抢先看" }
+    },
+    "form": {
+      "eyebrow": "Online Form",
+      "title": "在线预约表单",
+      "intro": "填写下方表单后，您的讯息会直接寄到小兰老师的信箱，老师会在 48 小时内回信；如需即时回覆，建议优先使用 LINE。",
+      "submit": "送出预约咨询",
+      "sending": "送出中⋯",
+      "privacy": "您的资料仅用于回覆预约咨询，不会分享给第三方。",
+      "successTitle": "已收到您的讯息 ✦",
+      "successBody": "感谢您联络叶小兰时尚彩妆。我们会在 48 小时内回信，如需即时联络，欢迎加 LINE：ye168248。",
+      "errorTitle": "送出失败",
+      "errorRetry": "请稍后再试，或改用",
+      "fields": {
+        "name": "姓名",
+        "email": "Email",
+        "phone": "电话 / LINE ID",
+        "phonePlaceholder": "09xx-xxx-xxx 或 LINE ID",
+        "eventDate": "婚期 / 活动日期",
+        "service": "服务项目",
+        "servicePlaceholder": "— 请选择 —",
+        "serviceOptions": {
+          "bridal": "新娘秘书",
+          "engagement": "订婚 / 文定造型",
+          "mother": "妈妈妆 / 婆婆妆",
+          "evening": "晚宴 / 派对造型",
+          "shoot": "婚纱 / 形象拍摄",
+          "lesson": "彩妆教学",
+          "other": "其他 / 不确定"
+        },
+        "message": "需求说明",
+        "messagePlaceholder": "请告诉我们大致场地、预计造型套数、特殊需求等，越详细越好。"
+      },
+      "errors": {
+        "required": "请填写姓名、Email 与需求说明这三个必填栏位。",
+        "network": "网路连线异常，无法送出表单。"
+      }
+    },
+    "qr": {
+      "title": "最快的预约方式",
+      "intro": "扫描下方 QR Code，或点击按钮加我 LINE",
+      "addLine": "加入 LINE"
+    },
+    "hours": {
+      "label": "Working Hours",
+      "studioLabel": "Studio",
+      "studioNote": "确认预约后，将于婚期前 1 个月安排试妆地点。"
+    },
+    "area": {
+      "eyebrow": "Service Area",
+      "title": "嘉义工作室 ・ 全台到府服务",
+      "intro": "工作室位于嘉义，新娘秘书／妈妈妆／晚宴造型／彩妆教学皆可到府或到饭店服务。北至台北、桃园、新竹，中至台中、彰化、云林，南至台南、高雄、屏东，东至宜兰、花莲、台东，海外婚礼亦可规划。外县市加计交通与住宿，海外婚礼另议。"
+    },
+    "cta": {
+      "title": "当你准备好",
+      "titleB": "走进仪式的那一刻",
+      "subtitle": "每个档期都仅接一组新人，请至少提前 4–6 个月预约。\n订金确认后即保留专属日期，并安排免费试妆咨询。",
+      "reply": "讯息回覆：24 小时内必回（LINE 最快）",
+      "eyebrow": "Book Your Date"
+    }
+  },
+  "common": {
+    "lineHandle": "ye168248",
+    "since": "Since",
+    "studio": "嘉义．工作室"
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "message": "看来这条路线指引到了未开启的章节。\n回到首页，继续探索属于你的梦中造型。"
+  }
+}
