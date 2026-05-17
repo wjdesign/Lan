@@ -69,7 +69,11 @@ const go = (i: number) => {
       </div>
     </TransitionGroup>
 
-    <div class="relative z-10 h-full flex items-end pb-24 lg:pb-32">
+    <!-- pt-28/32 reserves space beneath the fixed header so longer hero
+         content (esp. English locale with the larger script subtitle)
+         can't crowd the wordmark. justify-end keeps the natural bottom
+         anchor on short content. -->
+    <div class="relative z-10 h-full flex flex-col justify-end pt-28 lg:pt-36 pb-20 lg:pb-32">
       <div class="container-wide w-full">
         <div class="max-w-3xl">
           <Transition name="hero-text" mode="out-in">
