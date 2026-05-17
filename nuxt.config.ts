@@ -218,9 +218,11 @@ export default defineNuxtConfig({
       { name: 'Noto Sans SC', provider: 'google', weights: [400, 700] },
       // English / Latin
       { name: 'Cormorant Garamond', provider: 'google', weights: [400, 500, 700] },
-      { name: 'Italiana', provider: 'google', weights: [400] },
-      // European pen-style script — used for English italic emphasis
-      { name: 'Italianno', provider: 'google', weights: [400] },
+      // Allura — flowing pen-script used for ALL Latin letters & digits in
+      // display / decorative slots (brand mark, hero titles, stats numbers,
+      // year markers, footer signature). CJK characters fall through to
+      // Noto Serif TC/SC via the font stack.
+      { name: 'Allura', provider: 'google', weights: [400] },
     ],
   },
 

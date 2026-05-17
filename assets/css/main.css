@@ -48,11 +48,19 @@
   --color-ink-500: #847a7e;
   --color-ink-300: #c5bcc0;
 
-  /* Fonts */
+  /* Fonts
+     - serif / sans  → body text in any language (CJK first, Latin co-glyphs)
+     - display       → big decorative headlines & numbers; Allura covers Latin
+                       glyphs, CJK falls through to Noto Serif TC/SC
+     - script        → same as display (kept for legacy hooks like .script-em)
+     - eyebrow       → small all-caps section labels; Allura doesn't read in
+                       uppercase tracking, so this stays a Latin serif
+  */
   --font-serif: 'Noto Serif TC', 'Cormorant Garamond', 'Songti TC', serif;
   --font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  --font-display: 'Italiana', 'Cormorant Garamond', 'Noto Serif TC', serif;
-  --font-script: 'Italianno', 'Cormorant Garamond', cursive;
+  --font-display: 'Allura', 'Cormorant Garamond', 'Noto Serif TC', serif;
+  --font-script: 'Allura', 'Cormorant Garamond', cursive;
+  --font-eyebrow: 'Cormorant Garamond', 'Noto Serif TC', serif;
 
   /* Spacing rhythm for sections */
   --section-y: clamp(4rem, 8vw, 8rem);
@@ -66,7 +74,7 @@
 :lang(zh-Hans) {
   --font-serif: 'Noto Serif SC', 'Cormorant Garamond', 'Songti SC', serif;
   --font-sans: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
-  --font-display: 'Italiana', 'Cormorant Garamond', 'Noto Serif SC', serif;
+  --font-display: 'Allura', 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
 :root {
@@ -108,8 +116,17 @@ em.script,
   font-family: var(--font-script);
   font-style: normal;
   font-weight: 400;
-  font-size: 1.35em;
-  line-height: 0.95;
+  /* Allura is a slim flowing script — bump the visual size so it reads at
+     the same optical weight as the surrounding serif. */
+  font-size: 1.6em;
+  line-height: 0.9;
+}
+
+/* Allura looks washed-out at small sizes; tighten kerning on the brand
+   mark and numbers so they don't fall apart on retina screens. */
+.font-display {
+  font-feature-settings: 'kern' 1, 'liga' 1, 'dlig' 1, 'swsh' 1;
+  letter-spacing: -0.01em;
 }
 
 /* Make <strong> inside body copy actually look strong on top of our
@@ -149,7 +166,7 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 0.75rem;
   color: var(--color-champagne-600);
-  font-family: var(--font-display);
+  font-family: var(--font-eyebrow);
   font-size: 0.875rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -167,11 +184,12 @@ h1, h2, h3, h4 {
 
 .eyebrow {
   display: inline-block;
-  font-family: var(--font-display);
+  font-family: var(--font-eyebrow);
   font-size: 0.75rem;
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--color-wine-700);
+  font-weight: 500;
 }
 
 .hairline {
