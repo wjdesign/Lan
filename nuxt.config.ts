@@ -29,9 +29,17 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     defaultLocale: 'zh-Hant',
     detectBrowserLanguage: {
+      // Auto-detect from navigator.languages on first visit, store the chosen
+      // locale in a cookie so LocaleSwitcher choices stick across sessions.
       useCookie: true,
       cookieKey: 'lanyeh_lang',
-      redirectOn: 'root',
+      cookieCrossOrigin: false,
+      // 'no prefix' means: on any URL that doesn't have a locale prefix
+      // (i.e. served as zh-Hant), redirect a non-zh-Hant device to its
+      // preferred locale. Lets a Japanese-locale visitor opening "/about"
+      // land directly on "/ja/about" without manual switching.
+      redirectOn: 'no prefix',
+      alwaysRedirect: false,
       fallbackLocale: 'zh-Hant',
     },
     locales: [
