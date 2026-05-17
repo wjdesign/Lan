@@ -57,7 +57,7 @@ watchEffect(() => {
         <span
           :class="['hidden sm:block font-serif text-sm tracking-[0.2em] transition-colors duration-200',
                    onDark ? 'text-champagne-100' : 'text-ink-700']"
-        >{{ $t('brand.name') }}</span>
+        >{{ $t('brand.headerSubtitle') }}</span>
       </NuxtLink>
 
       <nav class="hidden lg:flex items-center gap-10">
