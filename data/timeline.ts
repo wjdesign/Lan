@@ -40,7 +40,7 @@ export const timeline: TimelineItem[] = [
   },
   {
     year: 2026,
-    title: '網站全面改版',
-    description: '官網以 Nuxt 全新打造，讓更多新人能即時了解服務與作品。',
+    title: '邁向下個十年',
+    description: '從嘉義出發，繼續為全台與海外婚禮現場，留下值得收藏的每一場儀式。',
   },
 ]
