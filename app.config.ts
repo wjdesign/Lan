@@ -7,9 +7,9 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        // No rounded corners + always pointer cursor on hover. Hover/focus
-        // transitions are tuned to 200ms via the global stylesheet.
-        base: 'tracking-wider font-medium uppercase !rounded-none cursor-pointer transition-all duration-200',
+        // No rounded corners, font-serif (CJK glyphs use Noto Serif TC/SC for
+        // proper Chinese rendering on buttons), pointer cursor, 200ms hover.
+        base: 'font-serif tracking-wider font-medium uppercase !rounded-none cursor-pointer transition-all duration-200',
       },
       defaultVariants: {
         size: 'lg',

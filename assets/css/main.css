@@ -256,6 +256,21 @@ textarea {
   border-radius: 0;
 }
 
+/* Default font for any interactive UI surface (buttons / menus / selects /
+   inputs). Per-element classes like .font-display, .font-script can still
+   override on a case-by-case basis (e.g. the Music toggle, eyebrow labels). */
+button,
+select,
+input,
+textarea,
+[role='button'],
+[role='menu'],
+[role='menuitem'],
+[role='listbox'],
+[role='option'] {
+  font-family: var(--font-serif);
+}
+
 /* ───── Marquee ───── */
 @keyframes marquee {
   from { transform: translateX(0); }
