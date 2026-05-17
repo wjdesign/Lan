@@ -2,24 +2,27 @@
 /**
  * First-paint splash with a handwritten "Lan yeh makeup studio" in Allura.
  *
- * - Renders in SSR so the user sees something on the very first paint, even
- *   before Nuxt has hydrated.
- * - Reveals the text left → right via clip-path animation (mimics handwriting).
- * - Shows once per browser session; subsequent SPA navigations skip the
- *   splash entirely.
- * - Respects prefers-reduced-motion (renders static, very brief).
+ * Layout responsiveness
+ *   - ≥ 768px (md): both lines flow horizontally as a single visual line
+ *   - < 768px (mobile): lines stack vertically so the long script glyphs
+ *     never overflow the viewport
+ *
+ * Animation: each line has its own mask-position sweep, the second line
+ * starting after the first finishes — gives a continuous "writing" feel
+ * whether laid out in one row or two.
  */
 
 const SESSION_KEY = 'lanyeh_splash_seen'
-const REVEAL_MS = 2000 // slow, steady handwriting pace
-const HOLD_MS = 0      // no forced wait — fade kicks in as soon as the last letter lands
+const LINE_MS = 1000        // each line writes in 1.0s
+const STAGGER_MS = 800      // line 2 starts 0.8s after line 1
+const TOTAL_REVEAL_MS = STAGGER_MS + LINE_MS // 1.8s
+const HOLD_MS = 0
 const FADE_MS = 400
 
 const visible = ref(true)
 const reduced = ref(false)
 
 onMounted(() => {
-  // Returning user mid-session — skip entirely
   if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem(SESSION_KEY)) {
     visible.value = false
     return
@@ -29,7 +32,7 @@ onMounted(() => {
     typeof window !== 'undefined' &&
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
-  const total = reduced.value ? 300 : REVEAL_MS + HOLD_MS
+  const total = reduced.value ? 300 : TOTAL_REVEAL_MS + HOLD_MS
   setTimeout(() => {
     visible.value = false
     if (typeof sessionStorage !== 'undefined') sessionStorage.setItem(SESSION_KEY, '1')
@@ -45,10 +48,10 @@ onMounted(() => {
       :class="reduced ? 'splash-reduced' : ''"
       aria-hidden="true"
     >
-      <div class="splash-stage">
-        <p class="splash-text">Lan yeh makeup studio</p>
-        <span class="splash-cursor" />
-      </div>
+      <p class="splash-text">
+        <span class="splash-line splash-line-1">Lan yeh</span>
+        <span class="splash-line splash-line-2">makeup studio</span>
+      </p>
     </div>
   </Transition>
 </template>
@@ -64,23 +67,30 @@ onMounted(() => {
   padding: 0 1.5rem;
 }
 
-.splash-stage {
-  position: relative;
-  display: inline-block;
-}
-
 .splash-text {
   font-family: 'Allura', cursive;
   font-weight: 400;
   font-size: clamp(3rem, 13vw, 9rem);
-  line-height: 1;
+  line-height: 1.05;
   color: #3a1d1f;
   letter-spacing: 0.01em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .splash-text {
+    flex-direction: row;
+    gap: 0.3em;
+  }
+}
+
+.splash-line {
+  display: inline-block;
   white-space: nowrap;
-  /* Soft-edged mask sweeps left → right. mask-position is what we animate
-     (a single transform-style property) — smooth on GPU, not janky like
-     clip-path with non-linear easing. The gradient gives a feathered edge
-     that mimics ink flowing onto paper. */
   -webkit-mask-image: linear-gradient(to right, #000 50%, transparent 60%);
           mask-image: linear-gradient(to right, #000 50%, transparent 60%);
   -webkit-mask-repeat: no-repeat;
@@ -89,22 +99,13 @@ onMounted(() => {
           mask-size: 220% 100%;
   -webkit-mask-position: 100% 0;
           mask-position: 100% 0;
-  animation: splash-reveal 2000ms linear forwards;
+  animation: splash-reveal 1000ms linear forwards;
   will-change: mask-position, -webkit-mask-position;
   transform: translateZ(0);
 }
 
-/* A small ink cursor that follows the reveal edge */
-.splash-cursor {
-  position: absolute;
-  top: 8%;
-  bottom: 8%;
-  width: 1px;
-  background: #3a1d1f;
-  opacity: 0.4;
-  left: 0;
-  animation: splash-cursor 2000ms linear forwards;
-  will-change: left, opacity;
+.splash-line-2 {
+  animation-delay: 800ms;
 }
 
 @keyframes splash-reveal {
@@ -118,24 +119,14 @@ onMounted(() => {
   }
 }
 
-@keyframes splash-cursor {
-  0%   { left: 0;    opacity: 0.5; }
-  92%  { left: 100%; opacity: 0.5; }
-  100% { left: 100%; opacity: 0; }
-}
-
-.splash-reduced .splash-text {
+.splash-reduced .splash-line {
   animation: none;
   -webkit-mask-image: none;
           mask-image: none;
 }
-.splash-reduced .splash-cursor {
-  animation: none;
-  display: none;
-}
 
 .splash-leave-active {
-  transition: opacity v-bind('`${FADE_MS}ms`') cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .splash-leave-to {
   opacity: 0;
