@@ -211,8 +211,11 @@ export default defineNuxtConfig({
       background_color: '#fbf7f1',
       display: 'standalone',
       orientation: 'portrait',
-      scope: '/',
-      start_url: '/',
+      // GH Pages serves under /Lan/ — scope and start_url MUST match the
+      // baseURL exactly or Chrome silently rejects the install prompt.
+      scope: BASE_URL,
+      start_url: BASE_URL,
+      id: BASE_URL,
       categories: ['lifestyle', 'beauty'],
       icons: [
         { src: 'pwa-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
