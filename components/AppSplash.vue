@@ -11,8 +11,8 @@
  */
 
 const SESSION_KEY = 'lanyeh_splash_seen'
-const REVEAL_MS = 500
-const HOLD_MS = 200
+const REVEAL_MS = 1100 // slower, more handwriting-like
+const HOLD_MS = 60     // barely any pause — fade begins right after the last letter
 const FADE_MS = 400
 
 const visible = ref(true)
@@ -79,7 +79,7 @@ onMounted(() => {
   white-space: nowrap;
   /* Reveal mask — animates from "fully clipped" to "fully visible" */
   clip-path: inset(-0.2em 100% -0.2em 0);
-  animation: splash-reveal 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: splash-reveal 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* A small ink cursor that follows the reveal edge */
@@ -91,7 +91,7 @@ onMounted(() => {
   background: #3a1d1f;
   opacity: 0.4;
   left: 0;
-  animation: splash-cursor 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: splash-cursor 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes splash-reveal {
