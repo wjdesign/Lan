@@ -75,7 +75,7 @@ const go = (i: number) => {
           <Transition name="hero-text" mode="out-in">
             <div :key="active">
               <p class="eyebrow !text-champagne-200 mb-6">{{ slides[active]?.eyebrow }}</p>
-              <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05]">
+              <h1 class="hero-title font-display leading-[1.1]">
                 <span class="block">{{ slides[active]?.titleTop }}</span>
                 <span class="block italic text-champagne-200">
                   <em
@@ -159,5 +159,15 @@ const go = (i: number) => {
 .hero-kenburns {
   animation: kenburns 12s ease-out forwards;
   will-change: transform;
+}
+
+/* Fluid hero title size — scales smoothly from 320px → 1440px+ viewports
+   without the 8-char Chinese phrases ever wrapping mid-word on mobile. */
+.hero-title {
+  font-size: clamp(2rem, 9vw, 5.5rem);
+  /* Modern browsers: prefer balanced wrapping for short headlines */
+  text-wrap: balance;
+  word-break: keep-all;       /* don't split inside CJK clauses */
+  overflow-wrap: break-word;  /* but allow break between phrases if needed */
 }
 </style>
