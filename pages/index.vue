@@ -61,7 +61,7 @@ const stats = computed(() =>
               loading="lazy"
             />
           </div>
-          <div class="hidden lg:block absolute -bottom-10 -right-10 w-48 aspect-square bg-wine-800 text-champagne-50 p-6 flex flex-col justify-end rounded-sm">
+          <div class="hidden lg:flex absolute -bottom-10 -right-10 w-48 aspect-square bg-wine-800 text-champagne-50 p-6 flex-col justify-end">
             <p class="font-display text-4xl leading-none">{{ $t('common.since') }}</p>
             <p class="font-display text-6xl leading-none mt-2">2002</p>
             <p class="mt-3 text-xs tracking-[0.3em] uppercase text-champagne-200">{{ $t('common.studio') }}</p>
