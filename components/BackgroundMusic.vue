@@ -14,7 +14,7 @@
  *     localStorage so returning visitors get what they chose.
  */
 const SRC = '/audio/ambient.mp3'
-const TARGET_VOLUME = 0.18 // keep it soft — atmosphere, not foreground
+const TARGET_VOLUME = 0.55 // soft ambience, but audible without straining
 const STORAGE_KEY = 'lanyeh_bg_music_muted'
 
 const audio = ref<HTMLAudioElement | null>(null)
