@@ -47,9 +47,9 @@ watchEffect(() => {
     <div class="container-wide flex items-center justify-between py-5 lg:py-6">
       <NuxtLink :to="localePath('/')" class="group flex items-center gap-3" :aria-label="$t('nav.home')">
         <span
-          :class="['font-display text-lg lg:text-xl tracking-[0.4em] uppercase transition-colors duration-200',
+          :class="['font-display text-3xl lg:text-4xl leading-none transition-colors duration-200',
                    onDark ? 'text-champagne-50' : 'text-wine-800']"
-        >Lan Yeh</span>
+        >Lan yeh</span>
         <span :class="['hidden sm:block h-4 w-px transition-colors duration-200',
                        onDark ? 'bg-champagne-100/40' : 'bg-wine-800/30']" />
         <span
