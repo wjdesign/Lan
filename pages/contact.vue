@@ -69,7 +69,7 @@ const contactCards = computed(() => [
             target="_blank"
             rel="noopener"
             v-reveal="{ delay: i * 80 }"
-            class="group relative overflow-hidden bg-white border border-champagne-300/70 rounded-sm p-7 transition-all hover:border-wine-700 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(58,29,31,0.3)]"
+            class="group relative overflow-hidden bg-white border border-champagne-300/70 rounded-sm p-7 transition-all duration-200 hover:border-wine-700 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(58,29,31,0.3)]"
           >
             <div :class="['size-12 rounded-full grid place-items-center text-white mb-5 transition-transform group-hover:scale-110', c.accent]">
               <UIcon :name="c.icon" class="size-6" />

@@ -41,7 +41,7 @@ const catLabel = (value: string) => t(`portfolio.categories.${value}`)
             v-for="cat in portfolioCategories"
             :key="cat.value"
             :class="[
-              'px-5 py-2.5 text-sm font-serif tracking-wider border transition-all',
+              'px-5 py-2.5 text-sm font-serif tracking-wider border transition-all duration-200 cursor-pointer',
               active === cat.value
                 ? 'bg-wine-800 text-champagne-50 border-wine-800'
                 : 'text-ink-700 border-champagne-300 hover:border-wine-700 hover:text-wine-800',

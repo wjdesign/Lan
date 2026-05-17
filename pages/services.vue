@@ -103,7 +103,7 @@ const faq = computed(() =>
             v-for="(item, i) in faq"
             :key="i"
             v-reveal="{ delay: i * 50 }"
-            class="group bg-white border border-champagne-300/60 rounded-sm px-6 py-5 transition-colors hover:border-rose-300"
+            class="group bg-white border border-champagne-300/60 rounded-sm px-6 py-5 transition-colors duration-200 hover:border-rose-300 cursor-pointer"
           >
             <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
               <span class="font-serif text-lg text-wine-800">{{ item.q }}</span>

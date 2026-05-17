@@ -16,7 +16,7 @@ export const siteConfig = {
   contact: {
     artistName: '葉小蘭 老師',
     artistTitle: 'Founder & Lead Artist',
-    region: '嘉義｜全台預約',
+    region: '嘉義工作室｜全台到府服務',
     address: '嘉義市（預約制工作室）',
     phone: '0919-168-248',
     phoneRaw: '0919168248',
@@ -33,7 +33,7 @@ export const siteConfig = {
     // Native form submits to Formsubmit.co which forwards to the email below.
     // No third-party account required.
     formspreeEndpoint: 'https://formsubmit.co/ajax/ye168248@gmail.com',
-    workingHours: '每日 09:00 – 21:00（LINE / 表單預約優先）',
+    workingHours: '24 小時隨時在線回覆（LINE / 表單）',
   },
   socials: <SocialLink[]>[
     { label: 'Instagram', href: 'https://www.instagram.com/ye168248/', handle: '@ye168248', icon: 'i-lucide-instagram' },

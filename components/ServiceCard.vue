@@ -42,7 +42,7 @@ const localePath = useLocalePath()
       </ul>
       <NuxtLink
         :to="`${localePath('/services')}#${service.slug}`"
-        class="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.3em] uppercase text-wine-700 group-hover:gap-3 transition-all"
+        class="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.3em] uppercase text-wine-700 group-hover:gap-3 transition-all duration-200"
       >
         {{ $t('cta.readMore') }}
         <UIcon name="i-lucide-arrow-right" class="size-4" />

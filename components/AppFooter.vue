@@ -33,7 +33,7 @@ const nav = computed(() => [
             :href="s.href"
             target="_blank"
             rel="noopener"
-            class="grid place-items-center size-11 rounded-full border border-champagne-300/30 text-champagne-200 hover:bg-champagne-100 hover:text-wine-800 transition-all"
+            class="grid place-items-center size-11 rounded-full border border-champagne-300/30 text-champagne-200 hover:bg-champagne-100 hover:text-wine-800 transition-all duration-200"
             :aria-label="s.label"
           >
             <UIcon :name="s.icon" class="size-5" />
@@ -45,7 +45,7 @@ const nav = computed(() => [
         <h3 class="text-sm tracking-[0.3em] uppercase text-champagne-300 mb-6">{{ $t('footer.navTitle') }}</h3>
         <ul class="space-y-3 font-serif">
           <li v-for="item in nav" :key="item.to">
-            <NuxtLink :to="item.to" class="text-champagne-100/80 hover:text-champagne-50 transition-colors">
+            <NuxtLink :to="item.to" class="text-champagne-100/80 hover:text-champagne-50 transition-colors duration-200">
               {{ item.label }}
             </NuxtLink>
           </li>
@@ -95,8 +95,8 @@ const nav = computed(() => [
     <div class="border-t border-champagne-300/10">
       <div class="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-champagne-300/60">
         <p>© {{ year }} {{ $t('brand.name') }} ・ {{ $t('footer.rights') }}</p>
-        <p class="tracking-wider">
-          Site rebuilt in Nuxt．Designed with quiet luxury.
+        <p class="font-script text-2xl text-champagne-200/70">
+          {{ $t('footer.signature') }}
         </p>
       </div>
     </div>

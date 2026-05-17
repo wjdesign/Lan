@@ -3,6 +3,10 @@ import { portfolio } from '~/data/portfolio'
 
 const { t } = useI18n()
 const route = useRoute()
+
+const { setDarkHero } = useHeaderTheme()
+onMounted(() => setDarkHero(true))
+onBeforeUnmount(() => setDarkHero(false))
 const slug = computed(() => route.params.slug as string)
 const work = computed(() => portfolio.find(p => p.slug === slug.value))
 

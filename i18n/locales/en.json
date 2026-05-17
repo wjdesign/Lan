@@ -88,14 +88,15 @@
     "navTitle": "Navigate",
     "contactTitle": "Contact",
     "region": "Service Area",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "signature": "Couture · Crafted in Chiayi"
   },
   "about": {
     "hero": {
       "eyebrow": "About",
       "titleA": "Twenty years of craft",
       "titleB": "for your most honest smile",
-      "intro": "Teacher Lan Yeh — based in Chiayi, available across Taiwan. From bridal coverage to editorial styling, our works appear in ballrooms and outdoor weddings across the island."
+      "intro": "Teacher Lan Yeh — studio in Chiayi, on-location service across Taiwan. From bridal coverage to editorial styling, our work appears in ballrooms and outdoor venues in Taipei, Taichung, Tainan, Kaohsiung, Yilan, Hualien, and at destination weddings abroad."
     },
     "profile": {
       "eyebrow": "Lan Yeh ・ Founder & Lead Artist",
@@ -127,7 +128,7 @@
       "eyebrow": "Services Overview",
       "titleA": "Every ceremony",
       "titleB": "deserves its own craft",
-      "intro": "From bridal coverage to gala styling, from private lessons to destination weddings — our six core services. Pricing is tailored to your event, location, and number of looks. Please inquire via LINE or the form."
+      "intro": "From bridal coverage to gala styling, from private lessons to destination weddings — our six core services. Studio in Chiayi with on-location service across Taiwan: north (Taipei, Taoyuan, Hsinchu), central (Taichung, Changhua), south (Tainan, Kaohsiung, Pingtung), east (Yilan, Hualien, Taitung). Pricing tailored to your event, location, and number of looks. Inquire via LINE or the form."
     },
     "flow": {
       "eyebrow": "Booking Flow",
@@ -199,8 +200,8 @@
       "intro": "Only one couple per day, please book 4–6 months in advance. Fill out the form below or reach me on LINE — usually within 48 hours."
     },
     "cards": {
-      "line": { "label": "LINE", "sub": "Fastest response" },
-      "phone": { "label": "Phone", "sub": "09:00 – 21:00" },
+      "line": { "label": "LINE", "sub": "Fastest reply · 24h online" },
+      "phone": { "label": "Phone", "sub": "Voicemail open 24/7" },
       "email": { "label": "Email", "sub": "Official / press inquiries" },
       "ig": { "label": "Instagram", "sub": "Latest works" }
     },
@@ -252,14 +253,14 @@
     },
     "area": {
       "eyebrow": "Service Area",
-      "title": "Based in Chiayi ・ Bookings island-wide",
-      "intro": "Chiayi-based with service across Taipei, Taichung, Tainan, Kaohsiung, Yilan, Hualien, and destination weddings. Travel and lodging billed outside the home region; international weddings quoted separately."
+      "title": "Chiayi studio ・ on-location across Taiwan",
+      "intro": "Based in Chiayi with on-location service throughout Taiwan: north — Taipei, Taoyuan, Hsinchu; central — Taichung, Changhua, Yunlin; south — Tainan, Kaohsiung, Pingtung; east — Yilan, Hualien, Taitung. Destination weddings welcome. Travel and lodging billed outside the home region; international weddings quoted separately."
     },
     "cta": {
       "title": "When you're ready",
       "titleB": "to step into the ceremony",
       "subtitle": "Only one couple per day — please book at least 4–6 months in advance.\nOnce the deposit is confirmed, your date is reserved with a complimentary trial consultation.",
-      "reply": "Reply hours: 09:00 – 21:00 daily",
+      "reply": "Replies within 24 hours (LINE is fastest)",
       "eyebrow": "Book Your Date"
     }
   },

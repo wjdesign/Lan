@@ -4,6 +4,10 @@ import { siteConfig } from '~/data/site'
 
 const { t, tm, rt } = useI18n()
 
+const { setDarkHero } = useHeaderTheme()
+onMounted(() => setDarkHero(true))
+onBeforeUnmount(() => setDarkHero(false))
+
 useSeoMeta({
   title: () => t('nav.about') + ' ・ ' + t('brand.name'),
   description: () => t('about.hero.intro'),
@@ -65,7 +69,7 @@ const philosophies = computed(() => {
               :href="s.href"
               target="_blank"
               rel="noopener"
-              class="flex items-center gap-3 p-4 border border-champagne-300/70 hover:border-wine-700 hover:bg-white transition-colors"
+              class="flex items-center gap-3 p-4 border border-champagne-300/70 hover:border-wine-700 hover:bg-white transition-colors duration-200"
             >
               <UIcon :name="s.icon" class="size-5 text-wine-700" />
               <div class="flex flex-col">

@@ -6,6 +6,10 @@ const { t, locale } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
 
+const { setDarkHero } = useHeaderTheme()
+onMounted(() => setDarkHero(true))
+onBeforeUnmount(() => setDarkHero(false))
+
 // Resolve to the un-prefixed path used by @nuxt/content (locale prefix isn't part of MD source)
 const contentPath = computed(() => {
   const localePrefix = locale.value === 'zh-Hant' ? '' : `/${locale.value}`
@@ -110,11 +114,11 @@ const next = computed(() => surround.value?.[1])
         <div class="flex items-center justify-between gap-4 text-sm">
           <NuxtLink v-if="prev" :to="localePath(prev.path)" class="group flex-1 max-w-xs">
             <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">{{ $t('journal.prev') }}</p>
-            <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors">{{ prev.title }}</p>
+            <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors duration-200">{{ prev.title }}</p>
           </NuxtLink>
           <NuxtLink v-if="next" :to="localePath(next.path)" class="group flex-1 max-w-xs text-right ml-auto">
             <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">{{ $t('journal.next') }}</p>
-            <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors">{{ next.title }}</p>
+            <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors duration-200">{{ next.title }}</p>
           </NuxtLink>
         </div>
       </div>

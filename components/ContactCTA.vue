@@ -39,7 +39,7 @@ const localePath = useLocalePath()
           :href="siteConfig.contact.lineHref"
           target="_blank"
           rel="noopener"
-          class="inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-base font-medium tracking-wider uppercase border border-champagne-50 text-champagne-50 bg-champagne-50/10 backdrop-blur-sm hover:bg-champagne-50 hover:text-wine-800 transition-all duration-300"
+          class="inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-base font-medium tracking-wider uppercase border border-champagne-50 text-champagne-50 bg-champagne-50/10 backdrop-blur-sm hover:bg-champagne-50 hover:text-wine-800 transition-all duration-200 cursor-pointer"
         >
           {{ $t('cta.lineInquiry') }}
           <UIcon name="i-lucide-message-circle" class="size-5" />

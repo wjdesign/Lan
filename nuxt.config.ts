@@ -153,6 +153,9 @@ export default defineNuxtConfig({
     workbox: {
       navigateFallback: '/',
       globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2}'],
+      // Each prerendered HTML embeds Tailwind CSS + payload, ~2 MB. Allow up
+      // to 3 MB so PWA precache covers them.
+      maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
       runtimeCaching: [
         {
           urlPattern: ({ url }) => url.origin === 'https://fonts.gstatic.com',
@@ -205,11 +208,28 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: 'Noto Serif TC', provider: 'google', weights: [400, 500, 600, 700, 900] },
-      { name: 'Noto Sans TC', provider: 'google', weights: [300, 400, 500, 700] },
-      { name: 'Cormorant Garamond', provider: 'google', weights: [300, 400, 500, 600, 700] },
+      // Traditional Chinese (zh-Hant) — default. Keep only weights actually used
+      // (each weight × ~80 unicode subsets = many @font-face rules — we cap aggressively).
+      { name: 'Noto Serif TC', provider: 'google', weights: [400, 500, 700] },
+      { name: 'Noto Sans TC', provider: 'google', weights: [400, 700] },
+      // Simplified Chinese (zh-Hans) — switched via :lang(zh-Hans) CSS rule
+      // so strokes render with even weight instead of falling back to system fonts.
+      { name: 'Noto Serif SC', provider: 'google', weights: [400, 500, 700] },
+      { name: 'Noto Sans SC', provider: 'google', weights: [400, 700] },
+      // English / Latin
+      { name: 'Cormorant Garamond', provider: 'google', weights: [400, 500, 700] },
       { name: 'Italiana', provider: 'google', weights: [400] },
+      // European pen-style script — used for English italic emphasis
+      { name: 'Italianno', provider: 'google', weights: [400] },
     ],
+  },
+
+  // Don't inline page-level CSS into the prerendered HTML — with @nuxt/fonts
+  // emitting ~2000 @font-face rules across 4 CJK font families, inlining
+  // bloats each HTML to 2 MB. Load CSS as separate cacheable files instead;
+  // they'll be cached by the SW and reused across navigations.
+  features: {
+    inlineStyles: false,
   },
 
   image: {

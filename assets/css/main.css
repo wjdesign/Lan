@@ -52,9 +52,21 @@
   --font-serif: 'Noto Serif TC', 'Cormorant Garamond', 'Songti TC', serif;
   --font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
   --font-display: 'Italiana', 'Cormorant Garamond', 'Noto Serif TC', serif;
+  --font-script: 'Italianno', 'Cormorant Garamond', cursive;
 
   /* Spacing rhythm for sections */
   --section-y: clamp(4rem, 8vw, 8rem);
+}
+
+/* ───── Simplified-Chinese font swap ─────────────────────────
+   Noto Serif TC / Sans TC do not include all simplified characters
+   with consistent weight, causing uneven stroke rendering. When the
+   document is in zh-Hans, swap to the SC family so glyphs match.
+*/
+:lang(zh-Hans) {
+  --font-serif: 'Noto Serif SC', 'Cormorant Garamond', 'Songti SC', serif;
+  --font-sans: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  --font-display: 'Italiana', 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
 :root {
@@ -87,6 +99,18 @@ body {
 .font-display { font-family: var(--font-display); letter-spacing: 0.02em; }
 .font-serif   { font-family: var(--font-serif); }
 .font-sans    { font-family: var(--font-sans); }
+.font-script  { font-family: var(--font-script); letter-spacing: 0; }
+
+/* Pen-script italic for English/Latin emphasis inside otherwise serif content.
+   Use as <em class="script">phrase</em>. */
+em.script,
+.script-em {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.35em;
+  line-height: 0.95;
+}
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
@@ -182,10 +206,28 @@ h1, h2, h3, h4 {
   overflow: hidden;
 }
 .img-zoom img {
-  transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .img-zoom:hover img {
   transform: scale(1.06);
+}
+
+/* ───── Buttons: zero radius, pointer cursor, 200ms transitions ─────
+   The whole site reads more couture without rounded corners. Nuxt UI's
+   default button has rounded-md; we override globally. */
+button:not(:disabled),
+[role='button'],
+select {
+  cursor: pointer;
+}
+button {
+  border-radius: 0;
+  transition-duration: 200ms;
+}
+input,
+select,
+textarea {
+  border-radius: 0;
 }
 
 /* ───── Marquee ───── */

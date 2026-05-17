@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, tm, rt } = useI18n()
+const { t, tm, rt, locale } = useI18n()
 const localePath = useLocalePath()
 
 interface Slide {
@@ -77,7 +77,13 @@ const go = (i: number) => {
               <p class="eyebrow !text-champagne-200 mb-6">{{ slides[active]?.eyebrow }}</p>
               <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05]">
                 <span class="block">{{ slides[active]?.titleTop }}</span>
-                <span class="block italic text-champagne-200">{{ slides[active]?.titleBottom }}</span>
+                <span class="block italic text-champagne-200">
+                  <em
+                    v-if="locale === 'en'"
+                    class="script-em text-champagne-200 not-italic"
+                  >{{ slides[active]?.titleBottom }}</em>
+                  <template v-else>{{ slides[active]?.titleBottom }}</template>
+                </span>
               </h1>
               <p class="mt-8 max-w-xl text-champagne-100/90 leading-loose font-serif text-base lg:text-lg">
                 {{ slides[active]?.excerpt }}
@@ -90,7 +96,7 @@ const go = (i: number) => {
             </UButton>
             <NuxtLink
               :to="localePath('/portfolio')"
-              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-medium tracking-wider uppercase border border-champagne-50 text-champagne-50 bg-champagne-50/15 backdrop-blur-sm hover:bg-champagne-50 hover:text-wine-800 transition-all duration-300"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-medium tracking-wider uppercase border border-champagne-50 text-champagne-50 bg-champagne-50/15 backdrop-blur-sm hover:bg-champagne-50 hover:text-wine-800 transition-all duration-200 cursor-pointer"
             >
               {{ t('cta.viewWorks') }}
               <UIcon name="i-lucide-arrow-up-right" class="size-4" />

@@ -7,6 +7,11 @@ import { siteConfig } from '~/data/site'
 const { t, tm, rt, locale } = useI18n()
 const localePath = useLocalePath()
 
+// Hero is full-bleed dark — switch header text to light while it sits on top.
+const { setDarkHero } = useHeaderTheme()
+onMounted(() => setDarkHero(true))
+onBeforeUnmount(() => setDarkHero(false))
+
 useSeoMeta({
   title: () => t('brand.name') + ' ・ ' + t('brand.tagline'),
   description: () => locale.value === 'zh-Hant'
@@ -125,7 +130,7 @@ const stats = computed(() =>
               <span class="italic">{{ $t('home.portfolio.titleB') }}</span>
             </h2>
           </div>
-          <NuxtLink :to="localePath('/portfolio')" class="inline-flex items-center gap-3 self-start lg:self-end text-sm tracking-[0.35em] uppercase text-wine-700 hover:gap-5 transition-all">
+          <NuxtLink :to="localePath('/portfolio')" class="inline-flex items-center gap-3 self-start lg:self-end text-sm tracking-[0.35em] uppercase text-wine-700 hover:gap-5 transition-all duration-200">
             {{ $t('cta.allWorks') }}
             <span class="block w-8 h-px bg-wine-700" />
           </NuxtLink>

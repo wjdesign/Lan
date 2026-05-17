@@ -62,11 +62,11 @@ const dateLabel = (iso: string) => {
                 <span class="text-rose-500">{{ post.category }}</span>
                 <span v-if="post.readingTime" class="text-ink-500">・ {{ post.readingTime }}</span>
               </p>
-              <h2 class="font-display text-2xl lg:text-3xl text-wine-800 leading-tight group-hover:text-rose-700 transition-colors">
+              <h2 class="font-display text-2xl lg:text-3xl text-wine-800 leading-tight group-hover:text-rose-700 transition-colors duration-200">
                 {{ post.title }}
               </h2>
               <p class="mt-3 text-ink-700 font-serif leading-loose line-clamp-2">{{ post.description }}</p>
-              <span class="mt-5 inline-flex items-center gap-2 text-sm tracking-[0.3em] uppercase text-wine-700 group-hover:gap-3 transition-all">
+              <span class="mt-5 inline-flex items-center gap-2 text-sm tracking-[0.3em] uppercase text-wine-700 group-hover:gap-3 transition-all duration-200">
                 {{ $t('cta.readMore') }} <UIcon name="i-lucide-arrow-right" class="size-4" />
               </span>
             </NuxtLink>
