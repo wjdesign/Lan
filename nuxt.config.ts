@@ -136,7 +136,7 @@ export default defineNuxtConfig({
       sameAs: [
         'https://www.instagram.com/ye168248/',
         'https://www.facebook.com/ye168248/',
-        'https://line.me/R/ti/p/ye168248',
+        'https://line.me/R/ti/p/~ye168248',
         'https://ye168248.pixnet.net/blog',
       ],
       priceRange: 'NT$ 6,800 – NT$ 30,000+',

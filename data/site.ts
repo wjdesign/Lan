@@ -23,9 +23,9 @@ export const siteConfig = {
     phoneHref: 'tel:+886919168248',
     email: 'ye168248@gmail.com',
     line: 'ye168248',
-    lineHref: 'https://line.me/R/ti/p/ye168248',
+    lineHref: 'https://line.me/R/ti/p/~ye168248',
     lineQrUrl:
-      'https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fline.me%2FR%2Fti%2Fp%2Fye168248',
+      'https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fline.me%2FR%2Fti%2Fp%2F~ye168248',
     instagram: '@ye168248',
     instagramUrl: 'https://www.instagram.com/ye168248/',
     facebookUrl: 'https://www.facebook.com/ye168248/',
@@ -38,7 +38,7 @@ export const siteConfig = {
   socials: <SocialLink[]>[
     { label: 'Instagram', href: 'https://www.instagram.com/ye168248/', handle: '@ye168248', icon: 'i-lucide-instagram' },
     { label: 'Facebook', href: 'https://www.facebook.com/ye168248/', handle: '葉小蘭', icon: 'i-lucide-facebook' },
-    { label: 'LINE', href: 'https://line.me/R/ti/p/ye168248', handle: 'ye168248', icon: 'i-lucide-message-circle' },
+    { label: 'LINE', href: 'https://line.me/R/ti/p/~ye168248', handle: 'ye168248', icon: 'i-lucide-message-circle' },
     { label: 'Pixnet', href: 'https://ye168248.pixnet.net/blog', handle: '部落格', icon: 'i-lucide-book-open' },
   ],
   navigation: [
