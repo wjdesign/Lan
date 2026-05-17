@@ -11,6 +11,7 @@ useHead(head)
 
 <template>
   <UApp>
+    <AppSplash />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
