@@ -14,7 +14,10 @@
  *     localStorage so returning visitors get what they chose.
  */
 const SRC = '/audio/ambient.mp3'
-const TARGET_VOLUME = 0.55 // soft ambience, but audible without straining
+// The source MP3 is mastered very softly — even at 1.0 (HTML5 max) it sits at
+// reasonable background level. If even this isn't enough we'd need WebAudio +
+// GainNode to push past 1.0, but try the simple ceiling first.
+const TARGET_VOLUME = 1.0
 const STORAGE_KEY = 'lanyeh_bg_music_muted'
 
 const audio = ref<HTMLAudioElement | null>(null)
