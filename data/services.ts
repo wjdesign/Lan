@@ -60,7 +60,7 @@ export const services: Service[] = [
       'en': 'Refined, tender, photograph-ready. Color planning that complements the bride and the entire family portrait.',
       'ja': '上品で柔らかなメイクで、当日のお母様の優雅さを引き立てます。新婦と家族写真全体の色設計に調和する仕上がりに。',
     },
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600&auto=format&fit=crop&q=80',
+    image: '/images/services/mother.jpg',
     icon: 'i-ph-flower-duotone',
     highlights: [
       { 'zh-Hant': '含護膚＋專業底妝', 'zh-Hans': '含护肤＋专业底妆', 'en': 'Skincare prep + professional base', 'ja': 'スキンケアと丁寧なベースメイク' },
@@ -88,7 +88,7 @@ export const services: Service[] = [
       'en': 'Awards, year-end galas, brand events. Make-up tailored to lighting, dress code, and presence.',
       'ja': '授賞式や年末パーティー、ブランドイベントなど、ライトの中で最も輝く存在へ。',
     },
-    image: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1600&auto=format&fit=crop&q=80',
+    image: '/images/services/evening.jpg',
     icon: 'i-ph-star-duotone',
     highlights: [
       { 'zh-Hant': '妝感可從清新到強氣場任選', 'zh-Hans': '妆感可从清新到强气场任选', 'en': 'Soft-fresh to high-impact range', 'ja': 'ナチュラルから華やかまで幅広く対応' },
