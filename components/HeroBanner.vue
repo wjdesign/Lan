@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, tm } = useI18n()
+const { t, tm, rt } = useI18n()
 const localePath = useLocalePath()
 
 interface Slide {
@@ -17,13 +17,13 @@ const images = [
 ]
 
 const slides = computed<Slide[]>(() => {
-  const data = tm('home.heroSlides') as Array<{ eyebrow: string, titleTop: string, titleBottom: string, excerpt: string }>
+  const data = tm('home.heroSlides') as Array<Record<string, unknown>>
   return (data || []).map((s, i) => ({
     image: images[i] || images[0],
-    eyebrow: s.eyebrow,
-    titleTop: s.titleTop,
-    titleBottom: s.titleBottom,
-    excerpt: s.excerpt,
+    eyebrow: rt(s.eyebrow as never),
+    titleTop: rt(s.titleTop as never),
+    titleBottom: rt(s.titleBottom as never),
+    excerpt: rt(s.excerpt as never),
   }))
 })
 

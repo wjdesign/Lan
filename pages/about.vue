@@ -2,7 +2,7 @@
 import { timeline } from '~/data/timeline'
 import { siteConfig } from '~/data/site'
 
-const { t, tm, locale } = useI18n()
+const { t, tm, rt } = useI18n()
 
 useSeoMeta({
   title: () => t('nav.about') + ' ・ ' + t('brand.name'),
@@ -12,9 +12,13 @@ useSeoMeta({
 })
 
 const philosophies = computed(() => {
-  const items = tm('about.philosophy.items') as { title: string, desc: string }[]
+  const items = tm('about.philosophy.items') as Array<Record<string, unknown>>
   const icons = ['i-ph-eye-duotone', 'i-ph-flower-tulip-duotone', 'i-ph-pencil-line-duotone', 'i-ph-heart-duotone']
-  return items.map((it, i) => ({ ...it, icon: icons[i] || icons[0] }))
+  return items.map((it, i) => ({
+    title: rt(it.title as never),
+    desc: rt(it.desc as never),
+    icon: icons[i] || icons[0],
+  }))
 })
 </script>
 

@@ -2,7 +2,7 @@
 import { services } from '~/data/services'
 import { useT } from '~/data/i18n'
 
-const { t, tm, locale } = useI18n()
+const { t, tm, rt } = useI18n()
 const tr = useT()
 
 useSeoMeta({
@@ -11,8 +11,19 @@ useSeoMeta({
   ogImage: '/og-image.png',
 })
 
-const flow = computed(() => tm('services.flow.items') as { step: string, title: string, desc: string }[])
-const faq = computed(() => tm('services.faq.items') as { q: string, a: string }[])
+const flow = computed(() =>
+  (tm('services.flow.items') as Array<Record<string, unknown>>).map(f => ({
+    step: rt(f.step as never),
+    title: rt(f.title as never),
+    desc: rt(f.desc as never),
+  })),
+)
+const faq = computed(() =>
+  (tm('services.faq.items') as Array<Record<string, unknown>>).map(f => ({
+    q: rt(f.q as never),
+    a: rt(f.a as never),
+  })),
+)
 </script>
 
 <template>

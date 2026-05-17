@@ -4,7 +4,7 @@ import { portfolio } from '~/data/portfolio'
 import { testimonials } from '~/data/testimonials'
 import { siteConfig } from '~/data/site'
 
-const { t, tm, locale } = useI18n()
+const { t, tm, rt, locale } = useI18n()
 const localePath = useLocalePath()
 
 useSeoMeta({
@@ -26,8 +26,16 @@ const heroServices = computed(() => services.slice(0, 4))
 const featuredWorks = computed(() => portfolio.filter(p => p.isReal).slice(0, 6))
 const heroTestimonials = computed(() => testimonials.slice(0, 3))
 
-const marqueeItems = computed(() => tm('home.marquee') as string[])
-const stats = computed(() => tm('home.stats') as { value: string, label: string, sub: string }[])
+const marqueeItems = computed(() =>
+  (tm('home.marquee') as unknown[]).map(item => rt(item as never)),
+)
+const stats = computed(() =>
+  (tm('home.stats') as Array<Record<string, unknown>>).map(s => ({
+    value: rt(s.value as never),
+    label: rt(s.label as never),
+    sub: rt(s.sub as never),
+  })),
+)
 </script>
 
 <template>
