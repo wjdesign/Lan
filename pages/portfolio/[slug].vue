@@ -29,7 +29,7 @@ const lightbox = ref<string | null>(null)
 <template>
   <div v-if="work">
     <section class="relative h-[80svh] min-h-[480px] overflow-hidden bg-wine-900 text-champagne-50">
-      <img :src="work.coverImage" :alt="work.title" class="absolute inset-0 size-full object-cover" />
+      <img :src="useAssetUrl(work.coverImage)" :alt="work.title" class="absolute inset-0 size-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-b from-wine-900/30 via-wine-900/40 to-wine-900/90" />
       <div class="relative h-full flex items-end pb-16">
         <div class="container-wide">
@@ -94,7 +94,7 @@ const lightbox = ref<string | null>(null)
           class="img-zoom relative aspect-[4/5] overflow-hidden rounded-sm group"
           @click="lightbox = img"
         >
-          <img :src="img" :alt="`${work.title} ${i + 1}`" class="absolute inset-0 size-full object-cover" loading="lazy" />
+          <img :src="useAssetUrl(img)" :alt="`${work.title} ${i + 1}`" class="absolute inset-0 size-full object-cover" loading="lazy" />
           <span class="absolute inset-0 bg-wine-900/0 group-hover:bg-wine-900/20 transition" />
         </button>
       </div>
@@ -128,7 +128,7 @@ const lightbox = ref<string | null>(null)
           >
             <UIcon name="i-lucide-x" class="size-8" />
           </button>
-          <img :src="lightbox" :alt="work.title" class="max-w-full max-h-[90vh] object-contain" />
+          <img :src="useAssetUrl(lightbox)" :alt="work.title" class="max-w-full max-h-[90vh] object-contain" />
         </div>
       </Transition>
     </Teleport>
