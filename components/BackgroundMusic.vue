@@ -13,7 +13,7 @@
  *  3. The user's last preference (muted vs playing) is remembered in
  *     localStorage so returning visitors get what they chose.
  */
-const SRC = '/audio/ambient.mp3'
+const SRC = useAssetUrl('/audio/ambient.mp3')
 // The source MP3 is mastered very softly — even at 1.0 (HTML5 max) it sits at
 // reasonable background level. If even this isn't enough we'd need WebAudio +
 // GainNode to push past 1.0, but try the simple ceiling first.

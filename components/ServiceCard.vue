@@ -14,7 +14,7 @@ const localePath = useLocalePath()
   >
     <div class="img-zoom relative aspect-[4/5] overflow-hidden">
       <img
-        :src="service.image"
+        :src="useAssetUrl(service.image)"
         :alt="t(service.title)"
         class="absolute inset-0 size-full object-cover"
         loading="lazy"

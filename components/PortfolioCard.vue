@@ -14,7 +14,7 @@ const localePath = useLocalePath()
   >
     <div class="relative aspect-[3/4] overflow-hidden">
       <img
-        :src="work.coverImage"
+        :src="useAssetUrl(work.coverImage)"
         :alt="work.title"
         class="absolute inset-0 size-full object-cover transition-opacity duration-700 group-hover:opacity-60"
         loading="lazy"

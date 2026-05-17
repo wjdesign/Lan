@@ -54,7 +54,7 @@ const dateLabel = (iso: string) => {
           >
             <NuxtLink :to="localePath(post.path)" class="block">
               <div class="img-zoom relative aspect-[16/10] overflow-hidden rounded-sm bg-champagne-100 mb-6">
-                <img :src="post.cover" :alt="post.title" class="absolute inset-0 size-full object-cover" loading="lazy" />
+                <img :src="useAssetUrl(post.cover)" :alt="post.title" class="absolute inset-0 size-full object-cover" loading="lazy" />
               </div>
               <p class="flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-ink-500 mb-3">
                 <span>{{ dateLabel(post.date) }}</span>

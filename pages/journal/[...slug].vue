@@ -79,7 +79,7 @@ const next = computed(() => surround.value?.[1])
 <template>
   <article v-if="post">
     <section class="relative bg-wine-900 text-champagne-50 overflow-hidden">
-      <img :src="post.cover" :alt="post.title" class="absolute inset-0 size-full object-cover opacity-50" />
+      <img :src="useAssetUrl(post.cover)" :alt="post.title" class="absolute inset-0 size-full object-cover opacity-50" />
       <div class="absolute inset-0 bg-gradient-to-b from-wine-900/40 to-wine-900/95" />
       <div class="relative container-narrow py-32 lg:py-40 text-center">
         <p class="flex items-center justify-center gap-3 text-xs tracking-[0.3em] uppercase text-champagne-200 mb-6">

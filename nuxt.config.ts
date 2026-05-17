@@ -1,6 +1,8 @@
 import { fileURLToPath } from 'node:url'
 
 const SITE_URL = process.env.NUXT_PUBLIC_SITE_URL || 'https://wjdesign.github.io'
+const BASE_URL = process.env.NUXT_APP_BASE_URL || '/'
+const withBase = (p: string) => (BASE_URL.replace(/\/$/, '') + (p.startsWith('/') ? p : `/${p}`))
 const GA4_ID = 'G-26E7R738DX'
 const GTM_ID = 'GTM-MJR2XMVJ'
 const GOOGLE_SITE_VERIFICATION = [
@@ -67,8 +69,9 @@ export default defineNuxtConfig({
         ...GOOGLE_SITE_VERIFICATION.map((c) => ({ name: 'google-site-verification', content: c })),
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'icon', type: 'image/x-icon', href: withBase('favicon.ico') },
+        { rel: 'icon', type: 'image/png', href: withBase('favicon.png') },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: withBase('apple-touch-icon.png') },
       ],
       script: [
         {
