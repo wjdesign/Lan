@@ -1,17 +1,31 @@
 <script setup lang="ts">
-import { portfolio } from '~/data/portfolio'
-
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
-const slug = computed(() => route.params.slug as string)
-const work = computed(() => portfolio.find(p => p.slug === slug.value))
+
+// Strip the locale prefix from the route path so it matches the markdown
+// file path stored in @nuxt/content (which is the source-of-truth path).
+const contentPath = computed(() => {
+  const localePrefix = locale.value === 'zh-Hant' ? '' : `/${locale.value}`
+  return route.path.startsWith(localePrefix)
+    ? route.path.slice(localePrefix.length) || '/'
+    : route.path
+})
+
+const { data: work } = await useAsyncData(`portfolio:${contentPath.value}`, () =>
+  queryCollection('portfolio').path(contentPath.value).first(),
+)
 
 if (!work.value) {
   throw createError({ statusCode: 404, statusMessage: 'Not Found', fatal: true })
 }
 
-const related = computed(() =>
-  portfolio.filter(p => p.slug !== work.value!.slug && p.category === work.value!.category).slice(0, 3),
+const { data: related } = await useAsyncData(`portfolio:${contentPath.value}:related`, () =>
+  queryCollection('portfolio')
+    .where('category', '=', work.value!.category)
+    .where('path', '<>', work.value!.path)
+    .order('year', 'DESC')
+    .limit(3)
+    .all(),
 )
 
 useSeoMeta({
@@ -47,9 +61,12 @@ const lightbox = ref<string | null>(null)
         <article class="lg:col-span-7" v-reveal>
           <span class="eyebrow block mb-4">{{ $t('portfolio.detail.behindLens') }}</span>
           <h2 class="font-display text-3xl lg:text-4xl text-wine-800 leading-tight mb-6">{{ $t('portfolio.detail.storyTitle') }}</h2>
-          <p class="text-ink-800 font-serif leading-loose">
-            {{ work.story || work.excerpt }}
-          </p>
+          <!-- Story body comes from the markdown body via ContentRenderer.
+               Falls back to excerpt if the body is empty. -->
+          <div class="text-ink-800 font-serif leading-loose prose-story">
+            <ContentRenderer v-if="work.body" :value="work" />
+            <p v-else>{{ work.excerpt }}</p>
+          </div>
         </article>
         <aside class="lg:col-span-5 space-y-6" v-reveal="{ delay: 120 }">
           <dl class="bg-champagne-100/60 p-8 space-y-5">
@@ -91,7 +108,8 @@ const lightbox = ref<string | null>(null)
           :key="i"
           v-reveal="{ delay: i * 80 }"
           type="button"
-          class="img-zoom relative aspect-[4/5] overflow-hidden group"
+          :title="$t('tooltips.lightboxOpen')"
+          class="img-zoom relative aspect-[4/5] overflow-hidden group cursor-pointer"
           @click="lightbox = img"
         >
           <img :src="useAssetUrl(img)" :alt="`${work.title} ${i + 1}`" class="absolute inset-0 size-full object-cover" loading="lazy" />
@@ -100,14 +118,14 @@ const lightbox = ref<string | null>(null)
       </div>
     </section>
 
-    <section v-if="related.length" class="section bg-champagne-100/60">
+    <section v-if="related?.length" class="section bg-champagne-100/60">
       <div class="container-wide">
         <SectionHeading
           :eyebrow="$t('portfolio.detail.related')"
           :title="$t('portfolio.detail.relatedTitle')"
         />
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-          <PortfolioCard v-for="(r, i) in related" :key="r.slug" :work="r" :index="i" />
+          <PortfolioCard v-for="(r, i) in related" :key="r.path" :work="r" :index="i" />
         </div>
       </div>
     </section>
@@ -122,8 +140,10 @@ const lightbox = ref<string | null>(null)
           @click="lightbox = null"
         >
           <button
-            class="absolute top-6 right-6 text-champagne-100 hover:text-white"
+            type="button"
+            class="absolute top-6 right-6 text-champagne-100 hover:text-white cursor-pointer"
             aria-label="close"
+            :title="$t('tooltips.lightboxClose')"
             @click="lightbox = null"
           >
             <UIcon name="i-lucide-x" class="size-8" />
@@ -143,5 +163,17 @@ const lightbox = ref<string | null>(null)
 .lightbox-enter-from,
 .lightbox-leave-to {
   opacity: 0;
+}
+
+.prose-story :deep(p) {
+  margin: 0.75rem 0;
+  line-height: 2;
+}
+.prose-story :deep(h2),
+.prose-story :deep(h3) {
+  font-family: var(--font-serif);
+  color: var(--color-wine-800);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 </style>

@@ -9,7 +9,8 @@ const localePath = useLocalePath()
 <template>
   <NuxtLink
     v-reveal="{ delay: (index ?? 0) * 60 }"
-    :to="localePath(`/portfolio/${work.slug}`)"
+    :to="localePath(work.path)"
+    :title="$t('tooltips.viewWork')"
     class="group block img-zoom relative overflow-hidden bg-wine-900"
   >
     <div class="relative aspect-[3/4] overflow-hidden">

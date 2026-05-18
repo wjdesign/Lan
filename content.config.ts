@@ -16,5 +16,43 @@ export default defineContentConfig({
         readingTime: z.string().optional(),
       }),
     }),
+
+    /**
+     * Portfolio works — each markdown file under content/portfolio/ becomes
+     * one piece. Sveltia CMS edits these directly; the page component reads
+     * them via `queryCollection('portfolio')`.
+     */
+    portfolio: defineCollection({
+      type: 'page',
+      source: 'portfolio/*.md',
+      schema: z.object({
+        title: z.string(),
+        category: z.enum([
+          'bridal-white',
+          'bridal-banquet',
+          'engagement',
+          'evening',
+          'editorial',
+          'mother',
+          'process',
+        ]),
+        year: z.number(),
+        location: z.string().optional(),
+        coverImage: z.string(),
+        images: z.array(z.string()).default([]),
+        excerpt: z.string(),
+        story: z.string().optional(),
+        credits: z
+          .object({
+            photography: z.string().optional(),
+            gown: z.string().optional(),
+            venue: z.string().optional(),
+          })
+          .optional(),
+        tags: z.array(z.string()).default([]),
+        isReal: z.boolean().default(true),
+        order: z.number().default(0), // for manual ordering inside the CMS
+      }),
+    }),
   },
 })

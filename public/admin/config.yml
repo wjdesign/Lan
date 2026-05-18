@@ -1,0 +1,224 @@
+# ─────────────────────────────────────────────────────────────────────
+# 葉小蘭時尚彩妝 ・ Sveltia CMS 設定
+#
+# 編輯介面：https://wjdesign.github.io/Lan/admin/
+# 文件：     https://github.com/sveltia/sveltia-cms
+# ─────────────────────────────────────────────────────────────────────
+
+# 將內容版本控制連到此 GitHub repo（必填）
+backend:
+  name: github
+  repo: wjdesign/Lan
+  branch: master
+  # 用 GitHub App OAuth — 客戶端認證，不需要 server proxy
+  # 操作步驟：
+  #   1. https://github.com/settings/apps → New GitHub App
+  #   2. Homepage URL = https://wjdesign.github.io/Lan/
+  #   3. Callback URL = https://wjdesign.github.io/Lan/admin/
+  #   4. Permissions → Contents: Read & write
+  #   5. 把 App ID 填到下面 client_id
+  auth_type: pkce
+  app_id: YOUR_GITHUB_APP_CLIENT_ID
+  commit_messages:
+    create: '新增 {{collection}}：{{slug}}'
+    update: '更新 {{collection}}：{{slug}}'
+    delete: '刪除 {{collection}}：{{slug}}'
+    uploadMedia: '上傳照片：{{path}}'
+    deleteMedia: '刪除照片：{{path}}'
+
+# 本機開發時可用：到專案根跑 `npx decap-server`，就能在本機編輯不需網路 push
+local_backend: true
+
+# 預設語言（後台介面語言）
+locale: zh-TW
+
+# 媒體（照片）儲存位置
+media_folder: 'public/images'
+public_folder: '/images'
+
+# 媒體上傳預設子資料夾（每個 collection 內可 override）
+media_library:
+  folder_support: true
+
+# 後台 UI 顯示的網站連結
+site_url: https://wjdesign.github.io/Lan/
+display_url: https://wjdesign.github.io/Lan/
+logo_url: https://wjdesign.github.io/Lan/pwa-512.png
+
+# 在「準備發布」流程中，先存草稿、確認後再 publish
+publish_mode: editorial_workflow
+
+# ─────────────────────────────────────────────────────────────────────
+# Collections
+# ─────────────────────────────────────────────────────────────────────
+collections:
+  # ──────────────────────────────
+  # 作品集（content/portfolio/*.md）
+  # ──────────────────────────────
+  - name: 'portfolio'
+    label: '作品集'
+    label_singular: '作品'
+    description: '新娘秘書、訂婚、晚宴、形象拍攝作品集'
+    folder: 'content/portfolio'
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    media_folder: '/public/images/portfolio'
+    public_folder: '/images/portfolio'
+    slug: '{{slug}}'
+    summary: '{{title}}（{{year}} ・ {{location}}）'
+    sortable_fields: ['order', 'year', 'title']
+    view_filters:
+      - label: '真實作品'
+        field: isReal
+        pattern: 'true'
+      - label: '示意作品'
+        field: isReal
+        pattern: 'false'
+    view_groups:
+      - label: '依類別'
+        field: category
+    fields:
+      - { name: title, label: '標題', widget: string, required: true, hint: '例：宴客．舉杯的那一刻' }
+      - {
+          name: category,
+          label: '類別',
+          widget: select,
+          required: true,
+          default: 'bridal-banquet',
+          options:
+            [
+              { label: '白紗造型', value: 'bridal-white' },
+              { label: '宴客造型', value: 'bridal-banquet' },
+              { label: '訂婚造型', value: 'engagement' },
+              { label: '媽媽妝', value: 'mother' },
+              { label: '晚宴妝', value: 'evening' },
+              { label: '形象拍攝', value: 'editorial' },
+              { label: '幕後紀錄', value: 'process' },
+            ],
+        }
+      - { name: year, label: '年份', widget: number, value_type: int, default: 2026, min: 2000, max: 2099 }
+      - { name: location, label: '地點', widget: string, required: false, hint: '例：嘉義．家中文定（可留空）' }
+      - {
+          name: coverImage,
+          label: '封面照',
+          widget: image,
+          required: true,
+          allow_multiple: false,
+          choose_url: false,
+          media_library: { config: { multiple: false } },
+        }
+      - {
+          name: images,
+          label: '圖集照片（含封面在內）',
+          widget: list,
+          field: { name: image, label: '照片', widget: image, allow_multiple: false },
+          required: false,
+          hint: '可拖曳排序；建議第一張與「封面照」相同',
+        }
+      - { name: excerpt, label: '摘要', widget: text, required: true, hint: '一兩句精華描述，會出現在卡片與分享卡' }
+      - {
+          name: credits,
+          label: '工作人員',
+          widget: object,
+          required: false,
+          collapsed: true,
+          fields:
+            [
+              { name: photography, label: '攝影師', widget: string, required: false },
+              { name: gown, label: '禮服品牌', widget: string, required: false },
+              { name: venue, label: '場地', widget: string, required: false },
+            ],
+        }
+      - {
+          name: tags,
+          label: '標籤',
+          widget: list,
+          default: [],
+          required: false,
+          hint: '例：宴客、暖光、訂婚',
+        }
+      - {
+          name: isReal,
+          label: '真實作品？',
+          widget: boolean,
+          default: true,
+          hint: '示意照／占位圖請取消勾選',
+        }
+      - {
+          name: order,
+          label: '排序',
+          widget: number,
+          value_type: int,
+          default: 99,
+          hint: '數字越小越前面（首頁與作品集列表的順序）',
+        }
+      - {
+          name: body,
+          label: '完整故事（可選填）',
+          widget: markdown,
+          required: false,
+          hint: '段落式描述當天的故事、設計理念。空白也沒關係。',
+          modes: [rich_text, raw],
+          buttons:
+            [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list, code],
+          editor_components: [image, code-block],
+        }
+
+  # ──────────────────────────────
+  # 工作室日誌 / 部落格（content/journal/*.md）
+  # ──────────────────────────────
+  - name: 'journal'
+    label: '日誌'
+    label_singular: '文章'
+    description: '工作室筆記、保養指南、造型趨勢分享'
+    folder: 'content/journal'
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    media_folder: '/public/images/journal'
+    public_folder: '/images/journal'
+    slug: '{{year}}-{{month}}-{{slug}}'
+    summary: '{{title}}（{{date | date("YYYY.MM.DD")}}）'
+    sortable_fields: ['date', 'title']
+    view_groups:
+      - label: '依分類'
+        field: category
+    fields:
+      - { name: title, label: '標題', widget: string, required: true }
+      - { name: description, label: '摘要', widget: text, required: true, hint: '一兩句概述（會用於 SEO 與分享卡）' }
+      - { name: date, label: '發布日期', widget: datetime, default: '', date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - {
+          name: cover,
+          label: '封面照',
+          widget: image,
+          required: true,
+        }
+      - { name: author, label: '作者', widget: string, default: '葉小蘭', required: false }
+      - {
+          name: category,
+          label: '分類',
+          widget: select,
+          default: '日誌',
+          options: ['造型筆記', '婚前指南', '工作室日誌', '造型趨勢', '日誌'],
+        }
+      - {
+          name: tags,
+          label: '標籤',
+          widget: list,
+          default: [],
+          required: false,
+        }
+      - { name: readingTime, label: '閱讀時間', widget: string, default: '5 min', required: false, hint: '例：5 min / 8 min' }
+      - {
+          name: body,
+          label: '正文',
+          widget: markdown,
+          required: true,
+          modes: [rich_text, raw],
+          buttons:
+            [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list, code],
+          editor_components: [image, code-block],
+        }

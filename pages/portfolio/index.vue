@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { portfolio, portfolioCategories, type PortfolioCategory } from '~/data/portfolio'
+import { portfolioCategories, type PortfolioCategory } from '~/data/portfolio'
 
 const { t } = useI18n()
 
@@ -9,12 +9,22 @@ useSeoMeta({
   ogImage: '/og-image.png',
 })
 
-const active = ref<PortfolioCategory | 'all'>('all')
-const filtered = computed(() =>
-  active.value === 'all'
-    ? portfolio
-    : portfolio.filter(p => p.category === active.value),
+// Works are now CMS-managed via @nuxt/content (content/portfolio/*.md).
+// Sorted by manual `order` field first, then year desc, then file order.
+const { data: works } = await useAsyncData('portfolio-list', () =>
+  queryCollection('portfolio')
+    .order('order', 'ASC')
+    .order('year', 'DESC')
+    .all(),
 )
+
+const active = ref<PortfolioCategory | 'all'>('all')
+const filtered = computed(() => {
+  const list = works.value || []
+  return active.value === 'all'
+    ? list
+    : list.filter(p => p.category === active.value)
+})
 
 const catLabel = (value: string) => t(`portfolio.categories.${value}`)
 </script>
@@ -61,7 +71,7 @@ const catLabel = (value: string) => t(`portfolio.categories.${value}`)
         >
           <PortfolioCard
             v-for="(work, i) in filtered"
-            :key="work.slug"
+            :key="work.path"
             :work="work"
             :index="i"
           />

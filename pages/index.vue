@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { services } from '~/data/services'
-import { portfolio } from '~/data/portfolio'
 import { testimonials } from '~/data/testimonials'
 import { siteConfig } from '~/data/site'
 
@@ -28,7 +27,15 @@ useSchemaOrg([
 ])
 
 const heroServices = computed(() => services.slice(0, 4))
-const featuredWorks = computed(() => portfolio.filter(p => p.isReal).slice(0, 6))
+// Featured portfolio — pull from @nuxt/content. isReal=true comes first
+// (real photos), capped at 6 cards on the home hero strip.
+const { data: featuredWorks } = await useAsyncData('home-featured', () =>
+  queryCollection('portfolio')
+    .where('isReal', '=', true)
+    .order('order', 'ASC')
+    .limit(6)
+    .all(),
+)
 const heroTestimonials = computed(() => testimonials)
 
 const marqueeItems = computed(() =>
@@ -138,8 +145,8 @@ const stats = computed(() =>
 
         <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           <PortfolioCard
-            v-for="(work, i) in featuredWorks"
-            :key="work.slug"
+            v-for="(work, i) in (featuredWorks || [])"
+            :key="work.path"
             :work="work"
             :index="i"
           />
