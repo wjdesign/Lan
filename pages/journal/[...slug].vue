@@ -94,6 +94,13 @@ const dateLabel = computed(() => {
 
 const prev = computed(() => surround.value?.[0])
 const next = computed(() => surround.value?.[1])
+
+/** @nuxt/content always emits a MarkdownRoot for body even when the file
+ *  is empty. Check the AST node count to know if real content exists. */
+const hasBody = computed(() => {
+  const value = (post.value?.body as { value?: unknown[] } | undefined)?.value
+  return Array.isArray(value) && value.length > 0
+})
 </script>
 
 <template>
@@ -109,6 +116,14 @@ const next = computed(() => surround.value?.[1])
         </p>
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-tight">{{ post.title }}</h1>
         <p class="mt-6 max-w-2xl mx-auto text-champagne-100/85 font-serif leading-loose">{{ post.description }}</p>
+        <p
+          v-if="post.author || post.readingTime"
+          class="mt-5 flex items-center justify-center gap-3 text-xs tracking-[0.3em] uppercase text-champagne-200/85"
+        >
+          <span v-if="post.author">{{ post.author }}</span>
+          <span v-if="post.author && post.readingTime" class="block w-4 h-px bg-champagne-200/60" />
+          <span v-if="post.readingTime">{{ post.readingTime }}</span>
+        </p>
         <div v-if="post.tags?.length" class="mt-8 flex flex-wrap justify-center gap-2">
           <span
             v-for="t in post.tags"
@@ -121,7 +136,13 @@ const next = computed(() => surround.value?.[1])
 
     <section class="section">
       <div class="container-narrow max-w-3xl">
-        <div class="prose-journal">
+        <!-- Lead paragraph (description) repeated above body for context.
+             If the markdown body has no actual content, this still gives
+             the reader something to read. -->
+        <p class="text-ink-700 font-serif text-lg italic leading-loose mb-10">
+          {{ post.description }}
+        </p>
+        <div v-if="hasBody" class="prose-journal">
           <ContentRenderer :value="post" />
         </div>
 
