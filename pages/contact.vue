@@ -16,6 +16,7 @@ const contactCards = computed(() => [
     href: siteConfig.contact.lineHref,
     icon: 'i-lucide-message-circle',
     accent: 'bg-[#06C755]',
+    tip: t('tooltips.lineChat'),
   },
   {
     label: t('contact.cards.phone.label'),
@@ -24,6 +25,7 @@ const contactCards = computed(() => [
     href: siteConfig.contact.phoneHref,
     icon: 'i-lucide-phone',
     accent: 'bg-wine-700',
+    tip: t('tooltips.phoneCall'),
   },
   {
     label: t('contact.cards.email.label'),
@@ -32,6 +34,7 @@ const contactCards = computed(() => [
     href: `mailto:${siteConfig.contact.email}`,
     icon: 'i-lucide-mail',
     accent: 'bg-champagne-700',
+    tip: t('tooltips.emailUs'),
   },
   {
     label: t('contact.cards.ig.label'),
@@ -40,6 +43,7 @@ const contactCards = computed(() => [
     href: siteConfig.contact.instagramUrl,
     icon: 'i-lucide-instagram',
     accent: 'bg-rose-500',
+    tip: t('tooltips.instagram'),
   },
 ])
 </script>
@@ -68,6 +72,7 @@ const contactCards = computed(() => [
             :href="c.href"
             target="_blank"
             rel="noopener"
+            :title="c.tip"
             v-reveal="{ delay: i * 80 }"
             class="group relative overflow-hidden bg-white border border-champagne-300/70 p-7 transition-all duration-200 hover:border-wine-700 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(58,29,31,0.3)]"
           >
@@ -117,6 +122,7 @@ const contactCards = computed(() => [
               size="lg"
               block
               trailing-icon="i-lucide-arrow-up-right"
+              :title="$t('tooltips.addLine')"
             >
               {{ $t('contact.qr.addLine') }}
             </UButton>

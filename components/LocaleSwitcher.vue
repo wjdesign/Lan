@@ -32,6 +32,7 @@ onClickOutside(root, () => (open.value = false))
       :aria-expanded="open"
       aria-haspopup="listbox"
       :aria-label="`Language: ${current?.name}`"
+      :title="$t('tooltips.locale')"
       @click="open = !open"
     >
       <UIcon name="i-lucide-globe" class="size-4" />

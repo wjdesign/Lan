@@ -75,15 +75,17 @@ onBeforeUnmount(() => {
     >
       <button
         type="button"
+        :title="$t('tooltips.installApp')"
         class="flex items-center gap-2 pl-4 pr-3 py-2 text-wine-800 hover:bg-wine-800/5 transition-colors duration-200"
         @click="install"
       >
         <UIcon name="i-lucide-download" class="size-4" />
-        <span class="font-serif text-sm tracking-wider">加入桌面</span>
+        <span class="font-serif text-sm tracking-wider">{{ $t('tooltips.installApp') }}</span>
       </button>
       <button
         type="button"
         aria-label="dismiss"
+        :title="$t('tooltips.dismissPrompt')"
         class="px-2 border-l border-wine-800/15 text-wine-800/60 hover:text-wine-800 hover:bg-wine-800/5 transition-colors duration-200"
         @click="dismiss"
       >

@@ -84,6 +84,7 @@ watchEffect(() => {
           variant="solid"
           size="md"
           class="hidden lg:inline-flex !cursor-pointer"
+          :title="$t('tooltips.book')"
         >
           {{ $t('cta.book') }}
         </UButton>
@@ -91,7 +92,8 @@ watchEffect(() => {
           type="button"
           :class="['lg:hidden p-2 -mr-2 cursor-pointer transition-colors duration-200',
                    onDark ? 'text-champagne-50' : 'text-wine-800']"
-          :aria-label="$t('nav.home')"
+          :aria-label="mobileOpen ? $t('tooltips.closeMenu') : $t('tooltips.menu')"
+          :title="mobileOpen ? $t('tooltips.closeMenu') : $t('tooltips.menu')"
           @click="mobileOpen = !mobileOpen"
         >
           <UIcon

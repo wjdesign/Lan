@@ -95,11 +95,12 @@ const go = (i: number) => {
             </div>
           </Transition>
           <div class="mt-10 flex flex-wrap gap-4">
-            <UButton :to="localePath('/contact')" size="xl" color="secondary" variant="solid" trailing-icon="i-lucide-arrow-right">
+            <UButton :to="localePath('/contact')" size="xl" color="secondary" variant="solid" trailing-icon="i-lucide-arrow-right" :title="t('tooltips.bookCta')">
               {{ t('cta.bookConsultation') }}
             </UButton>
             <NuxtLink
               :to="localePath('/portfolio')"
+              :title="t('tooltips.viewWorks')"
               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-medium tracking-wider uppercase border border-champagne-50 text-champagne-50 bg-champagne-50/15 backdrop-blur-sm hover:bg-champagne-50 hover:text-wine-800 transition-all duration-200 cursor-pointer"
             >
               {{ t('cta.viewWorks') }}
@@ -112,8 +113,10 @@ const go = (i: number) => {
           <button
             v-for="(slide, i) in slides"
             :key="i"
-            class="group flex items-center gap-3"
+            type="button"
+            class="group flex items-center gap-3 cursor-pointer"
             :aria-label="`${i + 1}`"
+            :title="t('tooltips.heroSlide')"
             @click="go(i)"
           >
             <span
