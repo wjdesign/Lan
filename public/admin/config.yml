@@ -24,7 +24,7 @@ backend:
   #   3. 把部署好的 Worker URL 填到下面 base_url。
   #
   # 詳細步驟見 docs/CMS_GUIDE.md。
-  base_url: https://YOUR-WORKER.workers.dev
+  base_url: https://sveltia-cms-auth.4006wayne.workers.dev
   commit_messages:
     create: '新增 {{collection}}：{{slug}}'
     update: '更新 {{collection}}：{{slug}}'
