@@ -50,6 +50,24 @@ display_url: https://wjdesign.github.io/Lan/
 logo_url: https://wjdesign.github.io/Lan/pwa-512.png
 
 # ─────────────────────────────────────────────────────────────────────
+# 多語系設定
+# ─────────────────────────────────────────────────────────────────────
+# structure: multiple_files → 每個內容項目會產生 <slug>.<locale>.md
+# 例：banquet-toast.zh-Hant.md / banquet-toast.en.md / banquet-toast.ja.md
+#
+# 編輯時，後台會顯示 4 個語系分頁，可分別填寫；空白語系前端會 fallback
+# 到 zh-Hant（預設語系）。
+#
+# DeepL 自動翻譯：在後台 Settings → Advanced 填入 DeepL API key
+# （免費 500,000 字/月：https://www.deepl.com/pro-api）
+# 之後寫完中文版，按右上「Translate from zh-Hant」可自動填入其他語系。
+i18n:
+  structure: multiple_files
+  locales: [zh-Hant, zh-Hans, en, ja]
+  default_locale: zh-Hant
+  save_all_locales: false
+
+# ─────────────────────────────────────────────────────────────────────
 # Collections
 # ─────────────────────────────────────────────────────────────────────
 collections:
@@ -65,6 +83,7 @@ collections:
     delete: true
     extension: md
     format: frontmatter
+    i18n: true
     media_folder: '/public/images/portfolio'
     public_folder: '/images/portfolio'
     slug: '{{slug}}'
@@ -81,12 +100,15 @@ collections:
       - label: '依類別'
         field: category
     fields:
-      - { name: title, label: '標題', widget: string, required: true, hint: '例：宴客．舉杯的那一刻' }
+      # i18n: translate  → 每個語系各自編輯
+      # i18n: duplicate  → 所有語系共用同一個值（改一處影響全部）
+      - { name: title, label: '標題', widget: string, required: true, i18n: translate, hint: '例：宴客．舉杯的那一刻' }
       - {
           name: category,
           label: '類別',
           widget: select,
           required: true,
+          i18n: duplicate,
           default: 'bridal-banquet',
           options:
             [
@@ -104,17 +126,19 @@ collections:
           label: '時間',
           widget: datetime,
           required: true,
+          i18n: duplicate,
           date_format: 'YYYY-MM-DD',
           time_format: 'HH:mm:ss',
           format: 'YYYY-MM-DDTHH:mm:ss',
           hint: '作品的時間，列表會依此由新到舊排序',
         }
-      - { name: location, label: '地點', widget: string, required: false, hint: '例：嘉義．家中文定（可留空）' }
+      - { name: location, label: '地點', widget: string, required: false, i18n: translate, hint: '例：嘉義．家中文定（可留空）' }
       - {
           name: coverImage,
           label: '封面照',
           widget: image,
           required: true,
+          i18n: duplicate,
           multiple: false,
           choose_url: false,
         }
@@ -122,22 +146,24 @@ collections:
           name: images,
           label: '圖集照片（含封面在內）',
           widget: list,
+          i18n: duplicate,
           field: { name: image, label: '照片', widget: image, multiple: false },
           required: false,
           hint: '可拖曳排序；建議第一張與「封面照」相同',
         }
-      - { name: excerpt, label: '摘要', widget: text, required: true, hint: '一兩句精華描述，會出現在卡片與分享卡' }
+      - { name: excerpt, label: '摘要', widget: text, required: true, i18n: translate, hint: '一兩句精華描述，會出現在卡片與分享卡' }
       - {
           name: credits,
           label: '工作人員',
           widget: object,
           required: false,
           collapsed: true,
+          i18n: true,
           fields:
             [
-              { name: photography, label: '攝影師', widget: string, required: false },
-              { name: gown, label: '禮服品牌', widget: string, required: false },
-              { name: venue, label: '場地', widget: string, required: false },
+              { name: photography, label: '攝影師', widget: string, required: false, i18n: duplicate },
+              { name: gown, label: '禮服品牌', widget: string, required: false, i18n: duplicate },
+              { name: venue, label: '場地', widget: string, required: false, i18n: translate },
             ],
         }
       - {
@@ -146,6 +172,7 @@ collections:
           widget: list,
           default: [],
           required: false,
+          i18n: translate,
           hint: '例：宴客、暖光、訂婚',
         }
       - {
@@ -153,6 +180,7 @@ collections:
           label: '真實作品？',
           widget: boolean,
           default: true,
+          i18n: duplicate,
           hint: '示意照／占位圖請取消勾選',
         }
       - {
@@ -160,6 +188,7 @@ collections:
           label: '完整故事（可選填）',
           widget: markdown,
           required: false,
+          i18n: translate,
           hint: '段落式描述當天的故事、設計理念。空白也沒關係。',
         }
 
@@ -175,6 +204,7 @@ collections:
     delete: true
     extension: md
     format: frontmatter
+    i18n: true
     media_folder: '/public/images/journal'
     public_folder: '/images/journal'
     slug: '{{year}}-{{month}}-{{slug}}'
@@ -184,16 +214,17 @@ collections:
       - label: '依分類'
         field: category
     fields:
-      - { name: title, label: '標題', widget: string, required: true }
-      - { name: description, label: '摘要', widget: text, required: true, hint: '一兩句概述（會用於 SEO 與分享卡）' }
-      - { name: date, label: '發布日期', widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
-      - { name: cover, label: '封面照', widget: image, required: true, multiple: false }
-      - { name: author, label: '作者', widget: string, default: '葉小蘭', required: false }
+      - { name: title, label: '標題', widget: string, required: true, i18n: translate }
+      - { name: description, label: '摘要', widget: text, required: true, i18n: translate, hint: '一兩句概述（會用於 SEO 與分享卡）' }
+      - { name: date, label: '發布日期', widget: datetime, i18n: duplicate, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { name: cover, label: '封面照', widget: image, required: true, i18n: duplicate, multiple: false }
+      - { name: author, label: '作者', widget: string, default: '葉小蘭', required: false, i18n: duplicate }
       - {
           name: category,
           label: '分類',
           widget: select,
           default: '日誌',
+          i18n: translate,
           options: ['造型筆記', '婚前指南', '工作室日誌', '造型趨勢', '日誌'],
         }
       - {
@@ -202,11 +233,13 @@ collections:
           widget: list,
           default: [],
           required: false,
+          i18n: translate,
         }
-      - { name: readingTime, label: '閱讀時間', widget: string, default: '5 min', required: false, hint: '例：5 min / 8 min' }
+      - { name: readingTime, label: '閱讀時間', widget: string, default: '5 min', required: false, i18n: duplicate, hint: '例：5 min / 8 min' }
       - {
           name: body,
           label: '正文',
           widget: markdown,
           required: true,
+          i18n: translate,
         }

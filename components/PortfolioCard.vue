@@ -10,12 +10,22 @@ const year = computed(() => {
   if (!props.work.date) return ''
   return new Date(props.work.date).getFullYear()
 })
+
+/**
+ * Map the locale-suffixed content path back to a clean URL.
+ *   /portfolio/banquet-toast.zh-Hant → /portfolio/banquet-toast
+ */
+const workUrl = computed(() =>
+  // @nuxt/content lowercases path segments, so the suffix in `path` is
+  // `.zh-hant` (lowercase). Match case-insensitively.
+  (props.work.path || '').replace(/\.(zh-hant|zh-hans|en|ja)$/i, ''),
+)
 </script>
 
 <template>
   <NuxtLink
     v-reveal="{ delay: (index ?? 0) * 60 }"
-    :to="localePath(work.path)"
+    :to="localePath(workUrl)"
     :title="$t('tooltips.viewWork')"
     class="group block img-zoom relative overflow-hidden bg-wine-900"
   >

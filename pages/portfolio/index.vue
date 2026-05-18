@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { portfolioCategories, type PortfolioCategory } from '~/data/portfolio'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 useSeoMeta({
   title: () => t('nav.portfolio') + ' ・ ' + t('brand.name'),
@@ -9,14 +9,39 @@ useSeoMeta({
   ogImage: '/og-image.png',
 })
 
-// Works are now CMS-managed via @nuxt/content (content/portfolio/*.md).
-// Sorted by `date` newest-first — set the datetime in Sveltia and the
-// order updates automatically.
-const { data: works } = await useAsyncData('portfolio-list', () =>
-  queryCollection('portfolio')
-    .order('date', 'DESC')
-    .all(),
-)
+/**
+ * Locale-aware portfolio listing.
+ *
+ * Strategy: try the locale-specific collection first; merge with zh-Hant
+ * as fallback so entries that haven't been translated yet still show up
+ * (in zh-Hant). De-duplicated by slug.
+ */
+type CollectionName = 'portfolioZhHant' | 'portfolioZhHans' | 'portfolioEn' | 'portfolioJa'
+const LOCALE_TO_COLLECTION: Record<string, CollectionName> = {
+  'zh-Hant': 'portfolioZhHant',
+  'zh-Hans': 'portfolioZhHans',
+  'en': 'portfolioEn',
+  'ja': 'portfolioJa',
+}
+
+const slug = (path: string) => path.replace(/\.(zh-hant|zh-hans|en|ja)$/i, '').split('/').pop()!
+
+const { data: works } = await useAsyncData(`portfolio-list:${locale.value}`, async () => {
+  const current = LOCALE_TO_COLLECTION[locale.value] || 'portfolioZhHant'
+  const fallback: CollectionName = 'portfolioZhHant'
+
+  const localized = await queryCollection(current).order('date', 'DESC').all()
+  if (current === fallback) return localized
+
+  // Fill in missing translations from zh-Hant
+  const localizedSlugs = new Set(localized.map(w => slug(w.path)))
+  const fallbackList = await queryCollection(fallback).order('date', 'DESC').all()
+  const missing = fallbackList.filter(w => !localizedSlugs.has(slug(w.path)))
+
+  return [...localized, ...missing].sort((a, b) =>
+    (b.date || '').localeCompare(a.date || ''),
+  )
+})
 
 const active = ref<PortfolioCategory | 'all'>('all')
 const filtered = computed(() => {

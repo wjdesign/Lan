@@ -2,31 +2,50 @@
 const { t, locale } = useI18n()
 const route = useRoute()
 
-// Strip the locale prefix from the route path so it matches the markdown
-// file path stored in @nuxt/content (which is the source-of-truth path).
-const contentPath = computed(() => {
-  const localePrefix = locale.value === 'zh-Hant' ? '' : `/${locale.value}`
-  return route.path.startsWith(localePrefix)
-    ? route.path.slice(localePrefix.length) || '/'
-    : route.path
-})
+const slug = computed(() => (route.params.slug as string) || '')
 
-const { data: work } = await useAsyncData(`portfolio:${contentPath.value}`, () =>
-  queryCollection('portfolio').path(contentPath.value).first(),
-)
+/**
+ * Look up a work in the current locale's collection; if missing, fall back
+ * to the zh-Hant version so a half-translated repo still shows something
+ * rather than a 404.
+ */
+type CollectionName = 'portfolioZhHant' | 'portfolioZhHans' | 'portfolioEn' | 'portfolioJa'
+const LOCALE_TO_COLLECTION: Record<string, CollectionName> = {
+  'zh-Hant': 'portfolioZhHant',
+  'zh-Hans': 'portfolioZhHans',
+  'en': 'portfolioEn',
+  'ja': 'portfolioJa',
+}
+
+const { data: work } = await useAsyncData(`portfolio:${locale.value}:${slug.value}`, async () => {
+  const current = LOCALE_TO_COLLECTION[locale.value] || 'portfolioZhHant'
+  const fallback: CollectionName = 'portfolioZhHant'
+
+  // The path stored in @nuxt/content for `banquet-toast.zh-Hant.md` is
+  // `/portfolio/banquet-toast.zh-hant` (lowercased). Build the lookup path
+  // to match that exact storage convention.
+  const localeSuffix = locale.value.toLowerCase()
+  const tryPath = `/portfolio/${slug.value}.${localeSuffix}`
+  const fallbackPath = `/portfolio/${slug.value}.zh-hant`
+
+  const localized = await queryCollection(current).path(tryPath).first()
+  if (localized) return localized
+  return await queryCollection(fallback).path(fallbackPath).first()
+})
 
 if (!work.value) {
   throw createError({ statusCode: 404, statusMessage: 'Not Found', fatal: true })
 }
 
-const { data: related } = await useAsyncData(`portfolio:${contentPath.value}:related`, () =>
-  queryCollection('portfolio')
+const { data: related } = await useAsyncData(`portfolio:${locale.value}:${slug.value}:related`, async () => {
+  const current = LOCALE_TO_COLLECTION[locale.value] || 'portfolioZhHant'
+  return await queryCollection(current)
     .where('category', '=', work.value!.category)
     .where('path', '<>', work.value!.path)
     .order('date', 'DESC')
     .limit(3)
-    .all(),
-)
+    .all()
+})
 
 /** Year-only label derived from ISO datetime for compact UI. */
 const year = computed(() => (work.value?.date ? new Date(work.value.date).getFullYear() : ''))
@@ -64,8 +83,6 @@ const lightbox = ref<string | null>(null)
         <article class="lg:col-span-7" v-reveal>
           <span class="eyebrow block mb-4">{{ $t('portfolio.detail.behindLens') }}</span>
           <h2 class="font-display text-3xl lg:text-4xl text-wine-800 leading-tight mb-6">{{ $t('portfolio.detail.storyTitle') }}</h2>
-          <!-- Story body comes from the markdown body via ContentRenderer.
-               Falls back to excerpt if the body is empty. -->
           <div class="text-ink-800 font-serif leading-loose prose-story">
             <ContentRenderer v-if="work.body" :value="work" />
             <p v-else>{{ work.excerpt }}</p>
