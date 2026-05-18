@@ -164,30 +164,63 @@ A：可以！所有更動都有 Git 歷史紀錄。請工程師幫忙還原（5 
 
 只有 wjdesign 需要看這一段。
 
-### 一次性設定（5 分鐘）
+### 一次性設定（約 10 分鐘）
 
-1. **GitHub 建立 GitHub App**
-   - 到 https://github.com/settings/apps → New GitHub App
-   - GitHub App name: `Lan Yeh CMS`（隨意）
-   - Homepage URL: `https://wjdesign.github.io/Lan/`
-   - Callback URL: `https://wjdesign.github.io/Lan/admin/`
-   - ✅ 取消勾 Webhook
-   - Permissions:
-     - Repository → Contents: **Read & write**
-     - Repository → Metadata: **Read-only**
-     - User → Email addresses: **Read-only**
-   - Where can this GitHub App be installed: **Only on this account**
-   - Create → 抓 **Client ID** 填到 `public/admin/config.yml` 的 `backend.app_id`
+#### A. 部署 Sveltia CMS Auth Worker（Cloudflare Workers，免費）
 
-2. **把 GitHub App 安裝到 wjdesign/Lan repo**
-   - 同一頁右上角「Install App」 → 選 wjdesign/Lan
-   - 完成
+GitHub 不支援 PKCE OAuth，所以需要一個 token-exchange proxy。Sveltia 官方
+提供現成的 worker，用 Cloudflare Workers 一鍵部署：
 
-3. **邀請老師為 collaborator**
-   - 在 https://github.com/wjdesign/Lan/settings/access → Add people
-   - 填老師的 GitHub username
-   - 角色給 **Write**（不需要 Admin）
-   - 老師收到信、接受邀請即可
+1. 註冊 Cloudflare 帳號（免費）：https://dash.cloudflare.com/sign-up
+2. 部署 worker：
+   ```bash
+   git clone https://github.com/sveltia/sveltia-cms-auth.git
+   cd sveltia-cms-auth
+   npx wrangler login
+   npx wrangler deploy
+   ```
+3. 取得部署完的 URL，例如 `https://sveltia-cms-auth.xxx.workers.dev`
+
+#### B. 建立 GitHub OAuth App
+
+> 注意：是 **OAuth App**（不是 GitHub App）
+
+1. https://github.com/settings/developers → OAuth Apps → New OAuth App
+2. Application name: `Lan Yeh Studio CMS`
+3. Homepage URL: `https://wjdesign.github.io/Lan/`
+4. Authorization callback URL: 上一步 worker URL + `/callback`
+   例：`https://sveltia-cms-auth.xxx.workers.dev/callback`
+5. Register application → 抓 **Client ID** 與 **Client Secret**
+
+#### C. 把 Client ID/Secret 填到 Worker
+
+```bash
+cd sveltia-cms-auth
+npx wrangler secret put GITHUB_CLIENT_ID
+# 貼上 Client ID
+npx wrangler secret put GITHUB_CLIENT_SECRET
+# 貼上 Client Secret
+```
+
+#### D. 更新 `public/admin/config.yml`
+
+把 `base_url:` 改成你的 worker URL：
+```yaml
+backend:
+  name: github
+  repo: wjdesign/Lan
+  branch: master
+  base_url: https://sveltia-cms-auth.xxx.workers.dev
+```
+
+commit + push 到 master 即可。
+
+#### E. 邀請老師為 collaborator
+
+- 在 https://github.com/wjdesign/Lan/settings/access → Add people
+- 填老師的 GitHub username
+- 角色給 **Write**（不需要 Admin）
+- 老師收到信、接受邀請即可
 
 ### 本機開發
 
