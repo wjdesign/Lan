@@ -36,7 +36,9 @@ export default defineContentConfig({
           'mother',
           'process',
         ]),
-        year: z.number(),
+        // ISO datetime (YYYY-MM-DDTHH:mm:ss). Used for chronological sort
+        // (newest first). Sveltia renders a datetime picker for this field.
+        date: z.string(),
         location: z.string().optional(),
         coverImage: z.string(),
         images: z.array(z.string()).default([]),
@@ -51,7 +53,6 @@ export default defineContentConfig({
           .optional(),
         tags: z.array(z.string()).default([]),
         isReal: z.boolean().default(true),
-        order: z.number().default(0), // for manual ordering inside the CMS
       }),
     }),
   },

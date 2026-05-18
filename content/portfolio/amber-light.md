@@ -1,7 +1,7 @@
 ---
 title: 琥珀光線下的儀式
 category: bridal-white
-year: 2025
+date: 2025-01-01T00:00:00
 location: 台南・晶英酒店
 coverImage: https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop&q=80
 images:

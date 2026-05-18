@@ -23,10 +23,13 @@ const { data: related } = await useAsyncData(`portfolio:${contentPath.value}:rel
   queryCollection('portfolio')
     .where('category', '=', work.value!.category)
     .where('path', '<>', work.value!.path)
-    .order('year', 'DESC')
+    .order('date', 'DESC')
     .limit(3)
     .all(),
 )
+
+/** Year-only label derived from ISO datetime for compact UI. */
+const year = computed(() => (work.value?.date ? new Date(work.value.date).getFullYear() : ''))
 
 useSeoMeta({
   title: () => `${work.value!.title}｜${t('brand.name')}`,
@@ -47,7 +50,7 @@ const lightbox = ref<string | null>(null)
       <div class="absolute inset-0 bg-gradient-to-b from-wine-900/30 via-wine-900/40 to-wine-900/90" />
       <div class="relative h-full flex items-end pb-16">
         <div class="container-wide">
-          <p class="eyebrow !text-champagne-300 mb-4">{{ work.year }} ・ {{ work.location || '' }}</p>
+          <p class="eyebrow !text-champagne-300 mb-4">{{ year }} ・ {{ work.location || '' }}</p>
           <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] max-w-4xl">
             {{ work.title }}
           </h1>
@@ -84,7 +87,7 @@ const lightbox = ref<string | null>(null)
             </div>
             <div>
               <dt class="text-xs tracking-widest text-ink-500 uppercase">{{ $t('portfolio.detail.yearLabel') }}</dt>
-              <dd class="font-serif text-ink-800 mt-1">{{ work.year }}</dd>
+              <dd class="font-serif text-ink-800 mt-1">{{ year }}</dd>
             </div>
             <div v-if="work.tags?.length">
               <dt class="text-xs tracking-widest text-ink-500 uppercase mb-2">{{ $t('portfolio.detail.tagsLabel') }}</dt>

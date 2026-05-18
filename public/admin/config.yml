@@ -67,8 +67,8 @@ collections:
     media_folder: '/public/images/portfolio'
     public_folder: '/images/portfolio'
     slug: '{{slug}}'
-    summary: '{{title}}（{{year}} ・ {{location}}）'
-    sortable_fields: ['order', 'year', 'title']
+    summary: '{{title}}（{{date | date("YYYY.MM.DD")}} ・ {{location}}）'
+    sortable_fields: ['date', 'title']
     view_filters:
       - label: '真實作品'
         field: isReal
@@ -98,7 +98,16 @@ collections:
               { label: '幕後紀錄', value: 'process' },
             ],
         }
-      - { name: year, label: '年份', widget: number, value_type: int, default: 2026, min: 2000, max: 2099 }
+      - {
+          name: date,
+          label: '時間',
+          widget: datetime,
+          required: true,
+          date_format: 'YYYY-MM-DD',
+          time_format: 'HH:mm:ss',
+          format: 'YYYY-MM-DDTHH:mm:ss',
+          hint: '作品的時間，列表會依此由新到舊排序',
+        }
       - { name: location, label: '地點', widget: string, required: false, hint: '例：嘉義．家中文定（可留空）' }
       - {
           name: coverImage,
@@ -144,14 +153,6 @@ collections:
           widget: boolean,
           default: true,
           hint: '示意照／占位圖請取消勾選',
-        }
-      - {
-          name: order,
-          label: '排序',
-          widget: number,
-          value_type: int,
-          default: 99,
-          hint: '數字越小越前面（首頁與作品集列表的順序）',
         }
       - {
           name: body,

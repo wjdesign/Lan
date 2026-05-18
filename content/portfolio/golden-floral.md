@@ -1,7 +1,7 @@
 ---
 title: 金色乾燥花藝
 category: editorial
-year: 2023
+date: 2023-01-01T00:00:00
 coverImage: /images/portfolio/345x350-5.jpg
 images:
   - "/images/portfolio/345x350-5.jpg"

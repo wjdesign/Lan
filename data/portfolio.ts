@@ -34,7 +34,7 @@ export interface PortfolioWork {
   path: string // injected by @nuxt/content (e.g. `/portfolio/banquet-toast`)
   title: string
   category: PortfolioCategory
-  year: number
+  date: string // ISO datetime (YYYY-MM-DDTHH:mm:ss)
   location?: string
   coverImage: string
   images: string[]
@@ -43,6 +43,5 @@ export interface PortfolioWork {
   credits?: { photography?: string, gown?: string, venue?: string }
   tags?: string[]
   isReal?: boolean
-  order?: number
   body?: unknown
 }

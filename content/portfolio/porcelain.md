@@ -1,7 +1,7 @@
 ---
 title: 瓷
 category: editorial
-year: 2024
+date: 2024-01-01T00:00:00
 coverImage: https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&auto=format&fit=crop&q=80
 images:
   - "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&auto=format&fit=crop&q=80"

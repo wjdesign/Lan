@@ -1,7 +1,7 @@
 ---
 title: 訂婚．金鏈與石榴紅
 category: engagement
-year: 2024
+date: 2024-01-01T00:00:00
 location: 嘉義．家中文定
 coverImage: /images/portfolio/345x350-4.jpg
 images:

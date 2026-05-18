@@ -1,7 +1,7 @@
 ---
 title: 深夜絲絨
 category: bridal-banquet
-year: 2025
+date: 2025-01-01T00:00:00
 coverImage: https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1600&auto=format&fit=crop&q=80
 images:
   - "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1600&auto=format&fit=crop&q=80"

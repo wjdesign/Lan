@@ -10,11 +10,11 @@ useSeoMeta({
 })
 
 // Works are now CMS-managed via @nuxt/content (content/portfolio/*.md).
-// Sorted by manual `order` field first, then year desc, then file order.
+// Sorted by `date` newest-first — set the datetime in Sveltia and the
+// order updates automatically.
 const { data: works } = await useAsyncData('portfolio-list', () =>
   queryCollection('portfolio')
-    .order('order', 'ASC')
-    .order('year', 'DESC')
+    .order('date', 'DESC')
     .all(),
 )
 

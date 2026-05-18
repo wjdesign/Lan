@@ -1,7 +1,7 @@
 ---
 title: 化妝間．凌晨四點
 category: process
-year: 2024
+date: 2024-01-01T00:00:00
 coverImage: /images/portfolio/345x350-2.jpg
 images:
   - "/images/portfolio/345x350-2.jpg"

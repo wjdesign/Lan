@@ -1,7 +1,7 @@
 ---
 title: 宴客．舉杯的那一刻
 category: bridal-banquet
-year: 2023
+date: 2023-01-01T00:00:00
 location: 台中・宴會廳
 coverImage: /images/portfolio/1035x350-1.jpg
 images:
