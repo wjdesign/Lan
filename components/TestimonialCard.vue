@@ -18,7 +18,7 @@ const dateLabel = computed(() => {
 <template>
   <figure
     v-reveal="{ delay: (index ?? 0) * 80 }"
-    class="relative h-full p-8 lg:p-10 bg-white border border-champagne-200/70 rounded-sm flex flex-col"
+    class="relative h-full p-8 lg:p-10 bg-white border border-champagne-200/70 flex flex-col"
   >
     <UIcon name="i-ph-quotes-duotone" class="size-9 text-champagne-400 mb-5" />
     <blockquote class="text-ink-800 font-serif leading-loose flex-1 text-[15px] lg:text-base">

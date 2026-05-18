@@ -50,7 +50,7 @@ const philosophies = computed(() => {
     <section class="section">
       <div class="container-wide grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
         <div v-reveal class="lg:col-span-5">
-          <div class="img-zoom relative aspect-[4/5] overflow-hidden rounded-sm bg-champagne-100">
+          <div class="img-zoom relative aspect-[4/5] overflow-hidden bg-champagne-100">
             <NuxtImg
               src="/images/about/teacher-lan.jpg"
               :alt="$t('brand.name')"
@@ -102,7 +102,7 @@ const philosophies = computed(() => {
           :title="$t('about.philosophy.title')"
           align="center"
         />
-        <div class="grid sm:grid-cols-2 gap-px bg-champagne-300/70 border border-champagne-300/70 rounded-sm overflow-hidden">
+        <div class="grid sm:grid-cols-2 gap-px bg-champagne-300/70 border border-champagne-300/70 overflow-hidden">
           <div
             v-for="(p, i) in philosophies"
             :key="p.title"

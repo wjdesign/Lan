@@ -53,7 +53,7 @@ const stats = computed(() =>
     <section class="section">
       <div class="container-wide grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
         <div v-reveal class="lg:col-span-5 relative">
-          <div class="img-zoom relative aspect-[4/5] overflow-hidden rounded-sm">
+          <div class="img-zoom relative aspect-[4/5] overflow-hidden">
             <NuxtImg
               src="/images/about/teacher-lan.jpg"
               :alt="$t('brand.name')"

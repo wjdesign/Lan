@@ -116,7 +116,7 @@ const submit = async () => {
           required
           type="text"
           autocomplete="name"
-          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 rounded-sm font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
+          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
         />
       </label>
       <label class="block">
@@ -128,7 +128,7 @@ const submit = async () => {
           required
           type="email"
           autocomplete="email"
-          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 rounded-sm font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
+          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
         />
       </label>
       <label class="block">
@@ -139,7 +139,7 @@ const submit = async () => {
           v-model="form.phone"
           type="tel"
           autocomplete="tel"
-          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 rounded-sm font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
+          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
           :placeholder="$t('contact.form.fields.phonePlaceholder')"
         />
       </label>
@@ -150,7 +150,7 @@ const submit = async () => {
         <input
           v-model="form.eventDate"
           type="date"
-          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 rounded-sm font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
+          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
         />
       </label>
     </div>
@@ -161,7 +161,7 @@ const submit = async () => {
       </span>
       <select
         v-model="form.service"
-        class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 rounded-sm font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
+        class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
       >
         <option value="">{{ $t('contact.form.fields.servicePlaceholder') }}</option>
         <option v-for="o in serviceOptions" :key="o.value" :value="o.value">{{ o.label }}</option>
@@ -176,7 +176,7 @@ const submit = async () => {
         v-model="form.message"
         required
         rows="6"
-        class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 rounded-sm font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition resize-vertical"
+        class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition resize-vertical"
         :placeholder="$t('contact.form.fields.messagePlaceholder')"
       />
     </label>
@@ -212,7 +212,7 @@ const submit = async () => {
     <Transition name="fade">
       <div
         v-if="status === 'success'"
-        class="mt-4 p-5 bg-emerald-50 border border-emerald-300 rounded-sm flex items-start gap-3"
+        class="mt-4 p-5 bg-emerald-50 border border-emerald-300 flex items-start gap-3"
       >
         <UIcon name="i-lucide-circle-check" class="size-6 text-emerald-600 mt-0.5 shrink-0" />
         <div>
@@ -227,7 +227,7 @@ const submit = async () => {
     <Transition name="fade">
       <div
         v-if="status === 'error'"
-        class="mt-4 p-5 bg-rose-50 border border-rose-300 rounded-sm flex items-start gap-3"
+        class="mt-4 p-5 bg-rose-50 border border-rose-300 flex items-start gap-3"
       >
         <UIcon name="i-lucide-alert-circle" class="size-6 text-rose-600 mt-0.5 shrink-0" />
         <div class="flex-1">
