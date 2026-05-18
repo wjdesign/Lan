@@ -50,6 +50,16 @@ const { data: related } = await useAsyncData(`portfolio:${locale.value}:${slug.v
 /** Year-only label derived from ISO datetime for compact UI. */
 const year = computed(() => (work.value?.date ? new Date(work.value.date).getFullYear() : ''))
 
+/**
+ * @nuxt/content always sets `body` to a MarkdownRoot object even for empty
+ * files, so `v-if="work.body"` is unreliable. Check the AST node count
+ * instead — non-empty markdown has at least one child.
+ */
+const hasBody = computed(() => {
+  const value = (work.value?.body as { value?: unknown[] } | undefined)?.value
+  return Array.isArray(value) && value.length > 0
+})
+
 useSeoMeta({
   title: () => `${work.value!.title}｜${t('brand.name')}`,
   description: () => work.value!.excerpt,
@@ -83,9 +93,16 @@ const lightbox = ref<string | null>(null)
         <article class="lg:col-span-7" v-reveal>
           <span class="eyebrow block mb-4">{{ $t('portfolio.detail.behindLens') }}</span>
           <h2 class="font-display text-3xl lg:text-4xl text-wine-800 leading-tight mb-6">{{ $t('portfolio.detail.storyTitle') }}</h2>
-          <div class="text-ink-800 font-serif leading-loose prose-story">
-            <ContentRenderer v-if="work.body" :value="work" />
-            <p v-else>{{ work.excerpt }}</p>
+          <!-- Excerpt always shown as a lead paragraph (slightly larger / italic).
+               Body story renders below if the markdown has actual content. -->
+          <p class="text-ink-700 font-serif text-lg italic leading-loose mb-6">
+            {{ work.excerpt }}
+          </p>
+          <div
+            v-if="hasBody"
+            class="text-ink-800 font-serif leading-loose prose-story"
+          >
+            <ContentRenderer :value="work" />
           </div>
         </article>
         <aside class="lg:col-span-5 space-y-6" v-reveal="{ delay: 120 }">
