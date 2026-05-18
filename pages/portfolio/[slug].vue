@@ -52,7 +52,7 @@ const lightbox = ref<string | null>(null)
           </p>
         </article>
         <aside class="lg:col-span-5 space-y-6" v-reveal="{ delay: 120 }">
-          <dl class="bg-champagne-100/60 p-8 rounded-sm space-y-5">
+          <dl class="bg-champagne-100/60 p-8 space-y-5">
             <div v-if="work.credits?.photography">
               <dt class="text-xs tracking-widest text-ink-500 uppercase">Photography</dt>
               <dd class="font-serif text-ink-800 mt-1">{{ work.credits.photography }}</dd>
@@ -91,7 +91,7 @@ const lightbox = ref<string | null>(null)
           :key="i"
           v-reveal="{ delay: i * 80 }"
           type="button"
-          class="img-zoom relative aspect-[4/5] overflow-hidden rounded-sm group"
+          class="img-zoom relative aspect-[4/5] overflow-hidden group"
           @click="lightbox = img"
         >
           <img :src="useAssetUrl(img)" :alt="`${work.title} ${i + 1}`" class="absolute inset-0 size-full object-cover" loading="lazy" />

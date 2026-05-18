@@ -52,7 +52,7 @@ const faq = computed(() =>
     <section v-for="(service, i) in services" :id="service.slug" :key="service.slug" class="section">
       <div class="container-wide grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div :class="['lg:col-span-6', i % 2 === 1 ? 'lg:order-2' : '']" v-reveal>
-          <div class="img-zoom relative aspect-[5/6] overflow-hidden rounded-sm">
+          <div class="img-zoom relative aspect-[5/6] overflow-hidden">
             <img :src="useAssetUrl(service.image)" :alt="tr(service.title)" class="absolute inset-0 size-full object-cover" loading="lazy" />
             <div class="absolute top-6 left-6 size-14 rounded-full bg-champagne-50/90 grid place-items-center">
               <UIcon :name="service.icon" class="size-7 text-wine-800" />

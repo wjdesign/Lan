@@ -10,7 +10,7 @@ const localePath = useLocalePath()
 <template>
   <article
     v-reveal="{ delay: (index ?? 0) * 80 }"
-    class="group relative overflow-hidden rounded-sm bg-white border border-champagne-200/60 transition-all duration-700 hover:shadow-[0_30px_80px_-30px_rgba(58,29,31,0.4)]"
+    class="group relative overflow-hidden bg-white border border-champagne-200/60 transition-all duration-700 hover:shadow-[0_30px_80px_-30px_rgba(58,29,31,0.4)]"
   >
     <div class="img-zoom relative aspect-[4/5] overflow-hidden">
       <img
