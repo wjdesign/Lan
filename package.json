@@ -16,6 +16,7 @@
     "@iconify-json/heroicons": "^1.2.2",
     "@iconify-json/lucide": "^1.2.30",
     "@iconify-json/ph": "^1.2.1",
+    "@internationalized/date": "^3.12.1",
     "@nuxt/content": "^3.5.1",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/image": "^1.8.1",
@@ -30,6 +31,7 @@
     "motion-v": "^0.13.0",
     "nuxt": "^3.14.0",
     "nuxt-og-image": "^6.5.0",
+    "tailwindcss": "4.3.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

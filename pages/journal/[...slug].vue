@@ -6,24 +6,44 @@ const { t, locale } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
 
-// Resolve to the un-prefixed path used by @nuxt/content (locale prefix isn't part of MD source)
-const contentPath = computed(() => {
-  const localePrefix = locale.value === 'zh-Hant' ? '' : `/${locale.value}`
-  return route.path.startsWith(localePrefix) ? route.path.slice(localePrefix.length) || '/' : route.path
+// Strip the locale prefix added by @nuxtjs/i18n so we can rebuild the
+// content path (with locale suffix) for @nuxt/content lookup.
+const cleanRoute = computed(() => {
+  const prefix = locale.value === 'zh-Hant' ? '' : `/${locale.value}`
+  return route.path.startsWith(prefix) ? route.path.slice(prefix.length) || '/' : route.path
 })
 
-const { data: post } = await useAsyncData(contentPath.value, () =>
-  queryCollection('journal').path(contentPath.value).first(),
-)
+type JournalCollection = 'journalZhHant' | 'journalZhHans' | 'journalEn' | 'journalJa'
+const JOURNAL_BY_LOCALE: Record<string, JournalCollection> = {
+  'zh-Hant': 'journalZhHant',
+  'zh-Hans': 'journalZhHans',
+  'en': 'journalEn',
+  'ja': 'journalJa',
+}
+
+const { data: post } = await useAsyncData(`journal:${locale.value}:${cleanRoute.value}`, async () => {
+  const current = JOURNAL_BY_LOCALE[locale.value] || 'journalZhHant'
+  // content path = cleanRoute + `.<locale>` (lowercased) — matches the way
+  // @nuxt/content stores paths.
+  const tryPath = `${cleanRoute.value}.${locale.value.toLowerCase()}`
+  const fallbackPath = `${cleanRoute.value}.zh-hant`
+
+  const localized = await queryCollection(current).path(tryPath).first()
+  if (localized) return localized
+  return await queryCollection('journalZhHant').path(fallbackPath).first()
+})
 
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: '文章不存在', fatal: true })
 }
 
-const { data: surround } = await useAsyncData(`${contentPath.value}-surround`, () =>
-  queryCollectionItemSurroundings('journal', contentPath.value, { fields: ['title', 'description', 'cover'] })
-    .order('date', 'DESC'),
-)
+const { data: surround } = await useAsyncData(`journal:${locale.value}:${cleanRoute.value}:surround`, async () => {
+  const current = JOURNAL_BY_LOCALE[locale.value] || 'journalZhHant'
+  return await queryCollectionItemSurroundings(current, post.value!.path, {
+    fields: ['title', 'description', 'cover'],
+  })
+    .order('date', 'DESC')
+})
 
 useSeoMeta({
   title: () => `${post.value!.title}｜葉小蘭時尚彩妝・日誌`,
@@ -74,6 +94,13 @@ const dateLabel = computed(() => {
 
 const prev = computed(() => surround.value?.[0])
 const next = computed(() => surround.value?.[1])
+
+/** @nuxt/content always emits a MarkdownRoot for body even when the file
+ *  is empty. Check the AST node count to know if real content exists. */
+const hasBody = computed(() => {
+  const value = (post.value?.body as { value?: unknown[] } | undefined)?.value
+  return Array.isArray(value) && value.length > 0
+})
 </script>
 
 <template>
@@ -89,6 +116,14 @@ const next = computed(() => surround.value?.[1])
         </p>
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-tight">{{ post.title }}</h1>
         <p class="mt-6 max-w-2xl mx-auto text-champagne-100/85 font-serif leading-loose">{{ post.description }}</p>
+        <p
+          v-if="post.author || post.readingTime"
+          class="mt-5 flex items-center justify-center gap-3 text-xs tracking-[0.3em] uppercase text-champagne-200/85"
+        >
+          <span v-if="post.author">{{ post.author }}</span>
+          <span v-if="post.author && post.readingTime" class="block w-4 h-px bg-champagne-200/60" />
+          <span v-if="post.readingTime">{{ post.readingTime }}</span>
+        </p>
         <div v-if="post.tags?.length" class="mt-8 flex flex-wrap justify-center gap-2">
           <span
             v-for="t in post.tags"
@@ -101,18 +136,24 @@ const next = computed(() => surround.value?.[1])
 
     <section class="section">
       <div class="container-narrow max-w-3xl">
-        <div class="prose-journal">
+        <!-- Lead paragraph (description) repeated above body for context.
+             If the markdown body has no actual content, this still gives
+             the reader something to read. -->
+        <p class="text-ink-700 font-serif text-lg italic leading-loose mb-10">
+          {{ post.description }}
+        </p>
+        <div v-if="hasBody" class="prose-journal">
           <ContentRenderer :value="post" />
         </div>
 
         <hr class="my-16 border-champagne-300/70">
 
         <div class="flex items-center justify-between gap-4 text-sm">
-          <NuxtLink v-if="prev" :to="localePath(prev.path)" class="group flex-1 max-w-xs">
+          <NuxtLink v-if="prev" :to="localePath(prev.path.replace(/\.(zh-hant|zh-hans|en|ja)$/i, ''))" class="group flex-1 max-w-xs">
             <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">{{ $t('journal.prev') }}</p>
             <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors duration-200">{{ prev.title }}</p>
           </NuxtLink>
-          <NuxtLink v-if="next" :to="localePath(next.path)" class="group flex-1 max-w-xs text-right ml-auto">
+          <NuxtLink v-if="next" :to="localePath(next.path.replace(/\.(zh-hant|zh-hans|en|ja)$/i, ''))" class="group flex-1 max-w-xs text-right ml-auto">
             <p class="text-xs uppercase tracking-widest text-ink-500 mb-1">{{ $t('journal.next') }}</p>
             <p class="font-serif text-wine-800 group-hover:text-rose-700 transition-colors duration-200">{{ next.title }}</p>
           </NuxtLink>

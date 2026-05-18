@@ -10,9 +10,29 @@ useSeoMeta({
   description: () => t('journal.hero.intro'),
 })
 
-const { data: posts } = await useAsyncData('journal-list', () =>
-  queryCollection('journal').order('date', 'DESC').all(),
-)
+type JournalCollection = 'journalZhHant' | 'journalZhHans' | 'journalEn' | 'journalJa'
+const JOURNAL_BY_LOCALE: Record<string, JournalCollection> = {
+  'zh-Hant': 'journalZhHant',
+  'zh-Hans': 'journalZhHans',
+  'en': 'journalEn',
+  'ja': 'journalJa',
+}
+const slugOf = (path: string) => path.replace(/\.(zh-hant|zh-hans|en|ja)$/i, '').split('/').pop()!
+
+const { data: posts } = await useAsyncData(`journal-list:${locale.value}`, async () => {
+  const current = JOURNAL_BY_LOCALE[locale.value] || 'journalZhHant'
+  const localized = await queryCollection(current).order('date', 'DESC').all()
+  if (current === 'journalZhHant') return localized
+
+  const seen = new Set(localized.map(p => slugOf(p.path)))
+  const fallback = await queryCollection('journalZhHant').order('date', 'DESC').all()
+  const missing = fallback.filter(p => !seen.has(slugOf(p.path)))
+  return [...localized, ...missing].sort((a, b) =>
+    (b.date || '').localeCompare(a.date || ''),
+  )
+})
+
+const postUrl = (path: string) => path.replace(/\.(zh-hant|zh-hans|en|ja)$/i, '')
 
 const dateLocale = computed(() => {
   switch (locale.value) {
@@ -52,7 +72,7 @@ const dateLabel = (iso: string) => {
             v-reveal="{ delay: i * 80 }"
             class="group"
           >
-            <NuxtLink :to="localePath(post.path)" class="block">
+            <NuxtLink :to="localePath(postUrl(post.path))" class="block">
               <div class="img-zoom relative aspect-[16/10] overflow-hidden bg-champagne-100 mb-6">
                 <img :src="useAssetUrl(post.cover)" :alt="post.title" class="absolute inset-0 size-full object-cover" loading="lazy" />
               </div>

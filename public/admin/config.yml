@@ -1,0 +1,245 @@
+# ─────────────────────────────────────────────────────────────────────
+# 葉小蘭時尚彩妝 ・ Sveltia CMS 設定
+#
+# 編輯介面：https://wjdesign.github.io/Lan/admin/
+# 文件：     https://sveltiacms.app/en/docs/
+# ─────────────────────────────────────────────────────────────────────
+
+# 將內容版本控制連到此 GitHub repo
+backend:
+  name: github
+  repo: wjdesign/Lan
+  branch: master
+  # GitHub OAuth 認證。GitHub 不支援 PKCE，所以採標準 OAuth flow，
+  # 需要一個 token-exchange 端點。最簡單的部署方式：
+  #
+  #   1. 在 GitHub 建立 OAuth App（不是 GitHub App）
+  #      Settings → Developer settings → OAuth Apps → New OAuth App
+  #      Authorization callback URL: https://sveltia-cms-auth.YOUR-WORKERS.workers.dev/callback
+  #
+  #   2. 用 Cloudflare Workers 一鍵部署 sveltia-cms-auth
+  #      https://github.com/sveltia/sveltia-cms-auth
+  #      （免費，5 分鐘完成）
+  #
+  #   3. 把部署好的 Worker URL 填到下面 base_url。
+  #
+  # 詳細步驟見 docs/CMS_GUIDE.md。
+  base_url: https://sveltia-cms-auth.4006wayne.workers.dev
+  commit_messages:
+    create: '新增 {{collection}}：{{slug}}'
+    update: '更新 {{collection}}：{{slug}}'
+    delete: '刪除 {{collection}}：{{slug}}'
+    uploadMedia: '上傳照片：{{path}}'
+    deleteMedia: '刪除照片：{{path}}'
+
+# 本機開發：到專案根跑 `npx decap-server`，admin 頁會走本機代理
+# 不需要任何 OAuth 設定就能編輯
+local_backend: true
+
+# 後台介面語言（繁中）
+# Sveltia 用 underscore 格式（不是 dash），與 Decap CMS 的 zh-TW 不同
+locale: zh_Hant
+
+# 媒體（照片）儲存位置
+media_folder: 'public/images'
+public_folder: '/images'
+
+# 後台 UI 顯示的網站連結
+site_url: https://wjdesign.github.io/Lan/
+display_url: https://wjdesign.github.io/Lan/
+logo_url: https://wjdesign.github.io/Lan/pwa-512.png
+
+# ─────────────────────────────────────────────────────────────────────
+# 多語系設定
+# ─────────────────────────────────────────────────────────────────────
+# structure: multiple_files → 每個內容項目會產生 <slug>.<locale>.md
+# 例：banquet-toast.zh-Hant.md / banquet-toast.en.md / banquet-toast.ja.md
+#
+# 編輯時，後台會顯示 4 個語系分頁，可分別填寫；空白語系前端會 fallback
+# 到 zh-Hant（預設語系）。
+#
+# DeepL 自動翻譯：在後台 Settings → Advanced 填入 DeepL API key
+# （免費 500,000 字/月：https://www.deepl.com/pro-api）
+# 之後寫完中文版，按右上「Translate from zh-Hant」可自動填入其他語系。
+i18n:
+  structure: multiple_files
+  locales: [zh-Hant, zh-Hans, en, ja]
+  default_locale: zh-Hant
+  save_all_locales: false
+
+# ─────────────────────────────────────────────────────────────────────
+# Collections
+# ─────────────────────────────────────────────────────────────────────
+collections:
+  # ──────────────────────────────
+  # 作品集（content/portfolio/*.md）
+  # ──────────────────────────────
+  - name: 'portfolio'
+    label: '作品集'
+    label_singular: '作品'
+    description: '新娘秘書、訂婚、晚宴、形象拍攝作品集'
+    folder: 'content/portfolio'
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    i18n: true
+    media_folder: '/public/images/portfolio'
+    public_folder: '/images/portfolio'
+    slug: '{{slug}}'
+    summary: '{{title}}（{{date | date("YYYY.MM.DD")}} ・ {{location}}）'
+    sortable_fields: ['date', 'title']
+    view_filters:
+      - label: '真實作品'
+        field: isReal
+        pattern: 'true'
+      - label: '示意作品'
+        field: isReal
+        pattern: 'false'
+    view_groups:
+      - label: '依類別'
+        field: category
+    fields:
+      # i18n: translate  → 每個語系各自編輯
+      # i18n: duplicate  → 所有語系共用同一個值（改一處影響全部）
+      - { name: title, label: '標題', widget: string, required: true, i18n: translate, hint: '例：宴客．舉杯的那一刻' }
+      - {
+          name: category,
+          label: '類別',
+          widget: select,
+          required: true,
+          i18n: duplicate,
+          default: 'bridal-banquet',
+          options:
+            [
+              { label: '白紗造型', value: 'bridal-white' },
+              { label: '宴客造型', value: 'bridal-banquet' },
+              { label: '訂婚造型', value: 'engagement' },
+              { label: '媽媽妝', value: 'mother' },
+              { label: '晚宴妝', value: 'evening' },
+              { label: '形象拍攝', value: 'editorial' },
+              { label: '幕後紀錄', value: 'process' },
+            ],
+        }
+      - {
+          name: date,
+          label: '時間',
+          widget: datetime,
+          required: true,
+          i18n: duplicate,
+          date_format: 'YYYY-MM-DD',
+          time_format: 'HH:mm:ss',
+          format: 'YYYY-MM-DDTHH:mm:ss',
+          hint: '作品的時間，列表會依此由新到舊排序',
+        }
+      - { name: location, label: '地點', widget: string, required: false, i18n: translate, hint: '例：嘉義．家中文定（可留空）' }
+      - {
+          name: coverImage,
+          label: '封面照',
+          widget: image,
+          required: true,
+          i18n: duplicate,
+          multiple: false,
+          choose_url: false,
+        }
+      - {
+          name: images,
+          label: '圖集照片（含封面在內）',
+          widget: list,
+          i18n: duplicate,
+          field: { name: image, label: '照片', widget: image, multiple: false },
+          required: false,
+          hint: '可拖曳排序；建議第一張與「封面照」相同',
+        }
+      - { name: excerpt, label: '摘要', widget: text, required: true, i18n: translate, hint: '一兩句精華描述，會出現在卡片與分享卡' }
+      - {
+          name: credits,
+          label: '工作人員',
+          widget: object,
+          required: false,
+          collapsed: true,
+          i18n: true,
+          fields:
+            [
+              { name: photography, label: '攝影師', widget: string, required: false, i18n: duplicate },
+              { name: gown, label: '禮服品牌', widget: string, required: false, i18n: duplicate },
+              { name: venue, label: '場地', widget: string, required: false, i18n: translate },
+            ],
+        }
+      - {
+          name: tags,
+          label: '標籤',
+          widget: list,
+          default: [],
+          required: false,
+          i18n: translate,
+          hint: '例：宴客、暖光、訂婚',
+        }
+      - {
+          name: isReal,
+          label: '真實作品？',
+          widget: boolean,
+          default: true,
+          i18n: duplicate,
+          hint: '示意照／占位圖請取消勾選',
+        }
+      - {
+          name: body,
+          label: '完整故事（可選填）',
+          widget: markdown,
+          required: false,
+          i18n: translate,
+          hint: '段落式描述當天的故事、設計理念。空白也沒關係。',
+        }
+
+  # ──────────────────────────────
+  # 工作室日誌 / 部落格（content/journal/*.md）
+  # ──────────────────────────────
+  - name: 'journal'
+    label: '日誌'
+    label_singular: '文章'
+    description: '工作室筆記、保養指南、造型趨勢分享'
+    folder: 'content/journal'
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    i18n: true
+    media_folder: '/public/images/journal'
+    public_folder: '/images/journal'
+    slug: '{{year}}-{{month}}-{{slug}}'
+    summary: '{{title}}（{{date | date("YYYY.MM.DD")}}）'
+    sortable_fields: ['date', 'title']
+    view_groups:
+      - label: '依分類'
+        field: category
+    fields:
+      - { name: title, label: '標題', widget: string, required: true, i18n: translate }
+      - { name: description, label: '摘要', widget: text, required: true, i18n: translate, hint: '一兩句概述（會用於 SEO 與分享卡）' }
+      - { name: date, label: '發布日期', widget: datetime, i18n: duplicate, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { name: cover, label: '封面照', widget: image, required: true, i18n: duplicate, multiple: false }
+      - { name: author, label: '作者', widget: string, default: '葉小蘭', required: false, i18n: duplicate }
+      - {
+          name: category,
+          label: '分類',
+          widget: select,
+          default: '日誌',
+          i18n: translate,
+          options: ['造型筆記', '婚前指南', '工作室日誌', '造型趨勢', '日誌'],
+        }
+      - {
+          name: tags,
+          label: '標籤',
+          widget: list,
+          default: [],
+          required: false,
+          i18n: translate,
+        }
+      - { name: readingTime, label: '閱讀時間', widget: string, default: '5 min', required: false, i18n: duplicate, hint: '例：5 min / 8 min' }
+      - {
+          name: body,
+          label: '正文',
+          widget: markdown,
+          required: true,
+          i18n: translate,
+        }

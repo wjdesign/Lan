@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { services } from '~/data/services'
-import { portfolio } from '~/data/portfolio'
 import { testimonials } from '~/data/testimonials'
 import { siteConfig } from '~/data/site'
 
@@ -28,7 +27,30 @@ useSchemaOrg([
 ])
 
 const heroServices = computed(() => services.slice(0, 4))
-const featuredWorks = computed(() => portfolio.filter(p => p.isReal).slice(0, 6))
+// Featured portfolio — pull from @nuxt/content per locale.
+// Falls back to zh-Hant entries when a translation is missing.
+const FEATURED_COLLECTION: Record<string, 'portfolioZhHant' | 'portfolioZhHans' | 'portfolioEn' | 'portfolioJa'> = {
+  'zh-Hant': 'portfolioZhHant',
+  'zh-Hans': 'portfolioZhHans',
+  'en': 'portfolioEn',
+  'ja': 'portfolioJa',
+}
+const slugOf = (path: string) => path.replace(/\.(zh-hant|zh-hans|en|ja)$/i, '').split('/').pop()!
+const { data: featuredWorks } = await useAsyncData(`home-featured:${locale.value}`, async () => {
+  const current = FEATURED_COLLECTION[locale.value] || 'portfolioZhHant'
+  const localized = await queryCollection(current)
+    .where('isReal', '=', true)
+    .order('date', 'DESC')
+    .limit(6)
+    .all()
+  if (current === 'portfolioZhHant') return localized
+  const seen = new Set(localized.map(w => slugOf(w.path)))
+  const fallback = await queryCollection('portfolioZhHant')
+    .where('isReal', '=', true)
+    .order('date', 'DESC')
+    .all()
+  return [...localized, ...fallback.filter(w => !seen.has(slugOf(w.path)))].slice(0, 6)
+})
 const heroTestimonials = computed(() => testimonials)
 
 const marqueeItems = computed(() =>
@@ -138,8 +160,8 @@ const stats = computed(() =>
 
         <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           <PortfolioCard
-            v-for="(work, i) in featuredWorks"
-            :key="work.slug"
+            v-for="(work, i) in (featuredWorks || [])"
+            :key="work.path"
             :work="work"
             :index="i"
           />

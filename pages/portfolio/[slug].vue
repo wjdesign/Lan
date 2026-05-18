@@ -1,18 +1,64 @@
 <script setup lang="ts">
-import { portfolio } from '~/data/portfolio'
-
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
-const slug = computed(() => route.params.slug as string)
-const work = computed(() => portfolio.find(p => p.slug === slug.value))
+
+const slug = computed(() => (route.params.slug as string) || '')
+
+/**
+ * Look up a work in the current locale's collection; if missing, fall back
+ * to the zh-Hant version so a half-translated repo still shows something
+ * rather than a 404.
+ */
+type CollectionName = 'portfolioZhHant' | 'portfolioZhHans' | 'portfolioEn' | 'portfolioJa'
+const LOCALE_TO_COLLECTION: Record<string, CollectionName> = {
+  'zh-Hant': 'portfolioZhHant',
+  'zh-Hans': 'portfolioZhHans',
+  'en': 'portfolioEn',
+  'ja': 'portfolioJa',
+}
+
+const { data: work } = await useAsyncData(`portfolio:${locale.value}:${slug.value}`, async () => {
+  const current = LOCALE_TO_COLLECTION[locale.value] || 'portfolioZhHant'
+  const fallback: CollectionName = 'portfolioZhHant'
+
+  // The path stored in @nuxt/content for `banquet-toast.zh-Hant.md` is
+  // `/portfolio/banquet-toast.zh-hant` (lowercased). Build the lookup path
+  // to match that exact storage convention.
+  const localeSuffix = locale.value.toLowerCase()
+  const tryPath = `/portfolio/${slug.value}.${localeSuffix}`
+  const fallbackPath = `/portfolio/${slug.value}.zh-hant`
+
+  const localized = await queryCollection(current).path(tryPath).first()
+  if (localized) return localized
+  return await queryCollection(fallback).path(fallbackPath).first()
+})
 
 if (!work.value) {
   throw createError({ statusCode: 404, statusMessage: 'Not Found', fatal: true })
 }
 
-const related = computed(() =>
-  portfolio.filter(p => p.slug !== work.value!.slug && p.category === work.value!.category).slice(0, 3),
-)
+const { data: related } = await useAsyncData(`portfolio:${locale.value}:${slug.value}:related`, async () => {
+  const current = LOCALE_TO_COLLECTION[locale.value] || 'portfolioZhHant'
+  return await queryCollection(current)
+    .where('category', '=', work.value!.category)
+    .where('path', '<>', work.value!.path)
+    .order('date', 'DESC')
+    .limit(3)
+    .all()
+})
+
+/** Year-only label derived from ISO datetime for compact UI. */
+const year = computed(() => (work.value?.date ? new Date(work.value.date).getFullYear() : ''))
+
+/**
+ * @nuxt/content always sets `body` to a MarkdownRoot object even for empty
+ * files, so `v-if="work.body"` is unreliable. Check the AST node count
+ * instead — non-empty markdown has at least one child.
+ */
+const hasBody = computed(() => {
+  const value = (work.value?.body as { value?: unknown[] } | undefined)?.value
+  return Array.isArray(value) && value.length > 0
+})
 
 useSeoMeta({
   title: () => `${work.value!.title}｜${t('brand.name')}`,
@@ -33,7 +79,7 @@ const lightbox = ref<string | null>(null)
       <div class="absolute inset-0 bg-gradient-to-b from-wine-900/30 via-wine-900/40 to-wine-900/90" />
       <div class="relative h-full flex items-end pb-16">
         <div class="container-wide">
-          <p class="eyebrow !text-champagne-300 mb-4">{{ work.year }} ・ {{ work.location || '' }}</p>
+          <p class="eyebrow !text-champagne-300 mb-4">{{ year }} ・ {{ work.location || '' }}</p>
           <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] max-w-4xl">
             {{ work.title }}
           </h1>
@@ -47,9 +93,17 @@ const lightbox = ref<string | null>(null)
         <article class="lg:col-span-7" v-reveal>
           <span class="eyebrow block mb-4">{{ $t('portfolio.detail.behindLens') }}</span>
           <h2 class="font-display text-3xl lg:text-4xl text-wine-800 leading-tight mb-6">{{ $t('portfolio.detail.storyTitle') }}</h2>
-          <p class="text-ink-800 font-serif leading-loose">
-            {{ work.story || work.excerpt }}
+          <!-- Excerpt always shown as a lead paragraph (slightly larger / italic).
+               Body story renders below if the markdown has actual content. -->
+          <p class="text-ink-700 font-serif text-lg italic leading-loose mb-6">
+            {{ work.excerpt }}
           </p>
+          <div
+            v-if="hasBody"
+            class="text-ink-800 font-serif leading-loose prose-story"
+          >
+            <ContentRenderer :value="work" />
+          </div>
         </article>
         <aside class="lg:col-span-5 space-y-6" v-reveal="{ delay: 120 }">
           <dl class="bg-champagne-100/60 p-8 space-y-5">
@@ -67,7 +121,7 @@ const lightbox = ref<string | null>(null)
             </div>
             <div>
               <dt class="text-xs tracking-widest text-ink-500 uppercase">{{ $t('portfolio.detail.yearLabel') }}</dt>
-              <dd class="font-serif text-ink-800 mt-1">{{ work.year }}</dd>
+              <dd class="font-serif text-ink-800 mt-1">{{ year }}</dd>
             </div>
             <div v-if="work.tags?.length">
               <dt class="text-xs tracking-widest text-ink-500 uppercase mb-2">{{ $t('portfolio.detail.tagsLabel') }}</dt>
@@ -91,7 +145,8 @@ const lightbox = ref<string | null>(null)
           :key="i"
           v-reveal="{ delay: i * 80 }"
           type="button"
-          class="img-zoom relative aspect-[4/5] overflow-hidden group"
+          :title="$t('tooltips.lightboxOpen')"
+          class="img-zoom relative aspect-[4/5] overflow-hidden group cursor-pointer"
           @click="lightbox = img"
         >
           <img :src="useAssetUrl(img)" :alt="`${work.title} ${i + 1}`" class="absolute inset-0 size-full object-cover" loading="lazy" />
@@ -100,14 +155,14 @@ const lightbox = ref<string | null>(null)
       </div>
     </section>
 
-    <section v-if="related.length" class="section bg-champagne-100/60">
+    <section v-if="related?.length" class="section bg-champagne-100/60">
       <div class="container-wide">
         <SectionHeading
           :eyebrow="$t('portfolio.detail.related')"
           :title="$t('portfolio.detail.relatedTitle')"
         />
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-          <PortfolioCard v-for="(r, i) in related" :key="r.slug" :work="r" :index="i" />
+          <PortfolioCard v-for="(r, i) in related" :key="r.path" :work="r" :index="i" />
         </div>
       </div>
     </section>
@@ -122,8 +177,10 @@ const lightbox = ref<string | null>(null)
           @click="lightbox = null"
         >
           <button
-            class="absolute top-6 right-6 text-champagne-100 hover:text-white"
+            type="button"
+            class="absolute top-6 right-6 text-champagne-100 hover:text-white cursor-pointer"
             aria-label="close"
+            :title="$t('tooltips.lightboxClose')"
             @click="lightbox = null"
           >
             <UIcon name="i-lucide-x" class="size-8" />
@@ -143,5 +200,17 @@ const lightbox = ref<string | null>(null)
 .lightbox-enter-from,
 .lightbox-leave-to {
   opacity: 0;
+}
+
+.prose-story :deep(p) {
+  margin: 0.75rem 0;
+  line-height: 2;
+}
+.prose-story :deep(h2),
+.prose-story :deep(h3) {
+  font-family: var(--font-serif);
+  color: var(--color-wine-800);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 </style>

@@ -224,6 +224,8 @@
         "phone": "電話 / LINE ID",
         "phonePlaceholder": "09xx-xxx-xxx 或 LINE ID",
         "eventDate": "婚期 / 活動日期",
+        "eventDatePlaceholder": "點此選擇日期",
+        "eventDateClear": "清除日期",
         "service": "服務項目",
         "servicePlaceholder": "— 請選擇 —",
         "serviceOptions": {

@@ -224,6 +224,8 @@
         "phone": "Phone / LINE ID",
         "phonePlaceholder": "Phone number or LINE ID",
         "eventDate": "Wedding / event date",
+        "eventDatePlaceholder": "Choose a date",
+        "eventDateClear": "Clear date",
         "service": "Service",
         "servicePlaceholder": "— please choose —",
         "serviceOptions": {

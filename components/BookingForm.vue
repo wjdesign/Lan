@@ -147,10 +147,9 @@ const submit = async () => {
         <span class="block text-xs tracking-[0.25em] uppercase text-ink-500 mb-2">
           {{ $t('contact.form.fields.eventDate') }}
         </span>
-        <input
+        <DateField
           v-model="form.eventDate"
-          type="date"
-          class="w-full px-4 py-3 bg-champagne-50 border border-champagne-300 font-serif text-ink-900 focus:border-wine-700 focus:bg-white focus:outline-none transition"
+          :placeholder="$t('contact.form.fields.eventDatePlaceholder')"
         />
       </label>
     </div>
