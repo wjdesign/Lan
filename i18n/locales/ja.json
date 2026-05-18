@@ -224,6 +224,8 @@
         "phone": "電話 / LINE ID",
         "phonePlaceholder": "電話番号または LINE ID",
         "eventDate": "挙式 / イベント日",
+        "eventDatePlaceholder": "日付を選択",
+        "eventDateClear": "クリア",
         "service": "ご希望のサービス",
         "servicePlaceholder": "— 選択してください —",
         "serviceOptions": {
