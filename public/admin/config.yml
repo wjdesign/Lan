@@ -37,7 +37,8 @@ backend:
 local_backend: true
 
 # 後台介面語言（繁中）
-locale: zh-TW
+# Sveltia 用 underscore 格式（不是 dash），與 Decap CMS 的 zh-TW 不同
+locale: zh_Hant
 
 # 媒體（照片）儲存位置
 media_folder: 'public/images'
