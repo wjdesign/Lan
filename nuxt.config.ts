@@ -163,6 +163,15 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
+      // Take over open tabs immediately when a new SW activates, so the
+      // i18n lazy-load hashes baked into the JS bundle stay in sync with
+      // the hashes on the server. Without these, returning visitors load
+      // the OLD JS (from HTTP cache / memory) that asks for OLD i18n hash
+      // paths which the new deploy has already overwritten → 404 → every
+      // page renders raw i18n keys until a manual hard-refresh.
+      skipWaiting: true,
+      clientsClaim: true,
+      cleanupOutdatedCaches: true,
       // Don't precache audio (3.7 MB is too big to ship in install bundle);
       // the runtimeCaching rule below handles it on first play instead.
       globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2}'],
