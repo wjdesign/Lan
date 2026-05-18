@@ -40,6 +40,8 @@ const catLabel = (value: string) => t(`portfolio.categories.${value}`)
           <button
             v-for="cat in portfolioCategories"
             :key="cat.value"
+            type="button"
+            :title="$t('tooltips.filterCategory')"
             :class="[
               'px-5 py-2.5 text-sm font-serif tracking-wider border transition-all duration-200 cursor-pointer',
               active === cat.value

@@ -29,7 +29,7 @@ useSchemaOrg([
 
 const heroServices = computed(() => services.slice(0, 4))
 const featuredWorks = computed(() => portfolio.filter(p => p.isReal).slice(0, 6))
-const heroTestimonials = computed(() => testimonials.slice(0, 3))
+const heroTestimonials = computed(() => testimonials)
 
 const marqueeItems = computed(() =>
   (tm('home.marquee') as unknown[]).map(item => rt(item as never)),
@@ -156,14 +156,7 @@ const stats = computed(() =>
           :subtitle="$t('home.testimonials.subtitle')"
           align="center"
         />
-        <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
-          <TestimonialCard
-            v-for="(t, i) in heroTestimonials"
-            :key="t.name"
-            :testimonial="t"
-            :index="i"
-          />
-        </div>
+        <TestimonialsCarousel :items="heroTestimonials" />
       </div>
     </section>
 
