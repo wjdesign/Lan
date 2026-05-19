@@ -151,7 +151,7 @@ collections:
           required: false,
           hint: '可拖曳排序；建議第一張與「封面照」相同',
         }
-      - { name: excerpt, label: '摘要', widget: text, required: true, i18n: translate, hint: '一兩句精華描述，會出現在卡片與分享卡' }
+      - { name: description, label: '摘要', widget: text, required: true, i18n: translate, hint: '一兩句精華描述，會出現在卡片與分享卡' }
       - {
           name: credits,
           label: '工作人員',

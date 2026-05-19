@@ -7,7 +7,7 @@ coverImage: /images/portfolio/1035x350-3.jpg
 images:
   - "/images/portfolio/1035x350-3.jpg"
   - "/images/portfolio/345x350-3.jpg"
-excerpt: 上唇彩前的最後一筆。每一道筆觸都是二十年練出來的肌肉記憶。
+description: 上唇彩前的最後一筆。每一道筆觸都是二十年練出來的肌肉記憶。
 tags:
   - 幕後
   - 工序

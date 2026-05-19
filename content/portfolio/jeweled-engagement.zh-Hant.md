@@ -7,7 +7,7 @@ coverImage: /images/portfolio/345x350-4.jpg
 images:
   - "/images/portfolio/345x350-4.jpg"
   - "/images/portfolio/345x350-7.jpg"
-excerpt: 搭配新娘的金鍊嫁妝，妝感選擇了石榴紅唇與透白底妝，氣場與喜氣兼得。
+description: 搭配新娘的金鍊嫁妝，妝感選擇了石榴紅唇與透白底妝，氣場與喜氣兼得。
 tags:
   - 訂婚
   - 石榴紅

@@ -62,9 +62,9 @@ const hasBody = computed(() => {
 
 useSeoMeta({
   title: () => `${work.value!.title}｜${t('brand.name')}`,
-  description: () => work.value!.excerpt,
+  description: () => work.value!.description,
   ogTitle: () => work.value!.title,
-  ogDescription: () => work.value!.excerpt,
+  ogDescription: () => work.value!.description,
   ogImage: () => work.value!.coverImage,
   twitterCard: 'summary_large_image',
 })
@@ -83,7 +83,7 @@ const lightbox = ref<string | null>(null)
           <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] max-w-4xl">
             {{ work.title }}
           </h1>
-          <p class="mt-6 max-w-2xl text-champagne-100/85 font-serif text-lg">{{ work.excerpt }}</p>
+          <p class="mt-6 max-w-2xl text-champagne-100/85 font-serif text-lg">{{ work.description }}</p>
         </div>
       </div>
     </section>
@@ -96,7 +96,7 @@ const lightbox = ref<string | null>(null)
           <!-- Excerpt always shown as a lead paragraph (slightly larger / italic).
                Body story renders below if the markdown has actual content. -->
           <p class="text-ink-700 font-serif text-lg italic leading-loose mb-6">
-            {{ work.excerpt }}
+            {{ work.description }}
           </p>
           <div
             v-if="hasBody"

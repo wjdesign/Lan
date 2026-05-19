@@ -7,7 +7,7 @@ coverImage: /images/portfolio/1035x350-1.jpg
 images:
   - "/images/portfolio/1035x350-1.jpg"
   - "/images/portfolio/345x350-4.jpg"
-excerpt: 迎賓敬酒、與每一桌的家人朋友碰杯——這時的妝，要禁得起暖光與長時間的笑。
+description: 迎賓敬酒、與每一桌的家人朋友碰杯——這時的妝，要禁得起暖光與長時間的笑。
 credits:
   venue: 台中宴會廳
 tags:

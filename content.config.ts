@@ -30,7 +30,9 @@ const portfolioSchema = z.object({
   location: z.string().optional(),
   coverImage: z.string(),
   images: z.array(z.string()).default([]),
-  excerpt: z.string(),
+  // Do not rename to `excerpt` — that key is reserved by @nuxt/content for
+  // body-derived excerpts and silently drops frontmatter values.
+  description: z.string(),
   story: z.string().optional(),
   credits: z
     .object({
