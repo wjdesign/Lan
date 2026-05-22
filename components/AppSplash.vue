@@ -2,58 +2,21 @@
 /**
  * First-paint splash with a handwritten "Lan yeh makeup studio" in Allura.
  *
- * Layout responsiveness
- *   - ≥ 768px (md): both lines flow horizontally as a single visual line
- *   - < 768px (mobile): lines stack vertically so the long script glyphs
- *     never overflow the viewport
- *
- * Animation: each line has its own mask-position sweep, the second line
- * starting after the first finishes — gives a continuous "writing" feel
- * whether laid out in one row or two.
+ * The splash is server-rendered and dismisses itself with a pure CSS
+ * animation (~2.8s) — it never waits for the JS bundle to hydrate, so on a
+ * slow device it can't block content the way a JS-timer dismissal would.
+ * Repeat visits within a session skip it: an inline <head> script (see
+ * nuxt.config.ts) sets `html.splash-seen`, which hides the overlay outright.
  */
-
-const SESSION_KEY = 'lanyeh_splash_seen'
-const LINE_MS = 1000        // each line writes in 1.0s
-const STAGGER_MS = 800      // line 2 starts 0.8s after line 1
-const TOTAL_REVEAL_MS = STAGGER_MS + LINE_MS // 1.8s
-const HOLD_MS = 0
-const FADE_MS = 400
-
-const visible = ref(true)
-const reduced = ref(false)
-
-onMounted(() => {
-  if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem(SESSION_KEY)) {
-    visible.value = false
-    return
-  }
-
-  reduced.value =
-    typeof window !== 'undefined' &&
-    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-
-  const total = reduced.value ? 300 : TOTAL_REVEAL_MS + HOLD_MS
-  setTimeout(() => {
-    visible.value = false
-    if (typeof sessionStorage !== 'undefined') sessionStorage.setItem(SESSION_KEY, '1')
-  }, total)
-})
 </script>
 
 <template>
-  <Transition name="splash">
-    <div
-      v-if="visible"
-      class="splash"
-      :class="reduced ? 'splash-reduced' : ''"
-      aria-hidden="true"
-    >
-      <p class="splash-text">
-        <span class="splash-line splash-line-1">Lan yeh</span>
-        <span class="splash-line splash-line-2">makeup studio</span>
-      </p>
-    </div>
-  </Transition>
+  <div class="splash" aria-hidden="true">
+    <p class="splash-text">
+      <span class="splash-line splash-line-1">Lan yeh</span>
+      <span class="splash-line splash-line-2">makeup studio</span>
+    </p>
+  </div>
 </template>
 
 <style scoped>
@@ -65,6 +28,19 @@ onMounted(() => {
   display: grid;
   place-items: center;
   padding: 0 1.5rem;
+  /* Self-dismisses via CSS so it never depends on JS hydration. The lines
+     finish "writing" at 1.8s; hold briefly, then fade out by 2.8s. */
+  animation: splash-dismiss 2800ms ease forwards;
+}
+
+/* Already visited this session — the inline head script set this class. */
+:global(html.splash-seen) .splash {
+  display: none;
+}
+
+@keyframes splash-dismiss {
+  0%, 79% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 
 .splash-text {
@@ -119,16 +95,19 @@ onMounted(() => {
   }
 }
 
-.splash-reduced .splash-line {
-  animation: none;
-  -webkit-mask-image: none;
-          mask-image: none;
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    animation: splash-dismiss-fast 500ms ease forwards;
+  }
+  .splash-line {
+    animation: none;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
 }
 
-.splash-leave-active {
-  transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.splash-leave-to {
-  opacity: 0;
+@keyframes splash-dismiss-fast {
+  0%, 40% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 </style>

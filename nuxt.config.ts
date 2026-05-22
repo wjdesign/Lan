@@ -71,6 +71,15 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: withBase('favicon.png') },
         { rel: 'apple-touch-icon', sizes: '180x180', href: withBase('apple-touch-icon.png') },
       ],
+      script: [
+        {
+          // Skip the opening splash on repeat visits within the same session.
+          // Runs before paint, so the splash never flashes for returning users.
+          key: 'splash-seen',
+          children: `try{var k='lanyeh_splash_seen';if(sessionStorage.getItem(k))document.documentElement.classList.add('splash-seen');else sessionStorage.setItem(k,'1')}catch(e){}`,
+          tagPosition: 'head',
+        },
+      ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'page', mode: 'out-in' },
