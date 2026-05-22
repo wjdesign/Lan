@@ -156,6 +156,9 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
+      // Let sitemaps / robots.txt bypass the SPA fallback, otherwise the
+      // service worker serves index.html in place of these non-page files.
+      navigateFallbackDenylist: [/\.xml/, /\.xsl/, /robots\.txt/],
       // Take over open tabs immediately when a new SW activates, so the
       // i18n lazy-load hashes baked into the JS bundle stay in sync with
       // the hashes on the server. Without these, returning visitors load
