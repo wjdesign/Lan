@@ -11,10 +11,16 @@ interface Slide {
 }
 
 const images = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop&q=70',
-  'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1600&auto=format&fit=crop&q=70',
-  'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&auto=format&fit=crop&q=70',
+  'https://images.unsplash.com/photo-1519741497674-611481863552?w=1280&auto=format&fit=crop&q=66',
+  'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1280&auto=format&fit=crop&q=66',
+  'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1280&auto=format&fit=crop&q=66',
 ]
+
+// The first hero image is the LCP element — preload it at high priority so it
+// starts downloading immediately instead of being discovered late.
+useHead({
+  link: [{ rel: 'preload', as: 'image', href: images[0], fetchpriority: 'high' }],
+})
 
 const slides = computed<Slide[]>(() => {
   const data = tm('home.heroSlides') as Array<Record<string, unknown>>

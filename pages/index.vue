@@ -80,6 +80,8 @@ const stats = computed(() =>
               src="/images/about/teacher-lan.jpg"
               :alt="$t('brand.name')"
               class="absolute inset-0 size-full object-cover"
+              format="webp"
+              width="640"
               loading="lazy"
             />
           </div>
