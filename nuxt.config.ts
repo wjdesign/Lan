@@ -85,6 +85,15 @@ export default defineNuxtConfig({
     layoutTransition: { name: 'page', mode: 'out-in' },
   },
 
+  // Build metadata — populated by CI (see .github/workflows/deploy.yml) and
+  // printed to the browser console so the live build version is verifiable.
+  runtimeConfig: {
+    public: {
+      buildSha: '',
+      buildTime: '',
+    },
+  },
+
   site: {
     url: SITE_URL,
     name: '葉小蘭時尚彩妝',
@@ -234,10 +243,10 @@ export default defineNuxtConfig({
       // (each weight × ~80 unicode subsets = many @font-face rules — we cap aggressively).
       { name: 'Noto Serif TC', provider: 'google', weights: [400, 500, 700] },
       { name: 'Noto Sans TC', provider: 'google', weights: [400, 700] },
-      // Simplified Chinese (zh-Hans) — switched via :lang(zh-Hans) CSS rule
-      // so strokes render with even weight instead of falling back to system fonts.
-      { name: 'Noto Serif SC', provider: 'google', weights: [400, 500, 700] },
-      { name: 'Noto Sans SC', provider: 'google', weights: [400, 700] },
+      // Simplified Chinese (Noto Serif/Sans SC) is intentionally NOT bundled
+      // here — it would add ~500 @font-face rules to the global render-blocking
+      // CSS for every visitor. It is loaded on demand, only for the zh-Hans
+      // locale, via a Google Fonts <link> injected in app.vue.
       // English / Latin
       { name: 'Cormorant Garamond', provider: 'google', weights: [400, 500, 700] },
       // Allura — flowing pen-script used for ALL Latin letters & digits in

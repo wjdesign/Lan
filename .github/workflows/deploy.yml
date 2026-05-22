@@ -44,7 +44,10 @@ jobs:
           # Served from the custom domain (public/CNAME) at the root path.
           NUXT_APP_BASE_URL: /
           NUXT_PUBLIC_SITE_URL: https://ye168248.com
-        run: pnpm generate
+          NUXT_PUBLIC_BUILD_SHA: ${{ github.sha }}
+        run: |
+          export NUXT_PUBLIC_BUILD_TIME="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          pnpm generate
 
       - name: Add SPA fallback (404 = 200 for client routing on GH Pages)
         run: cp .output/public/200.html .output/public/404.html || true
