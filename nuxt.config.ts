@@ -155,27 +155,32 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     workbox: {
-      navigateFallback: '/',
-      // Let sitemaps / robots.txt bypass the SPA fallback, otherwise the
-      // service worker serves index.html in place of these non-page files.
-      navigateFallbackDenylist: [/\.xml/, /\.xsl/, /robots\.txt/],
-      // Take over open tabs immediately when a new SW activates, so the
-      // i18n lazy-load hashes baked into the JS bundle stay in sync with
-      // the hashes on the server. Without these, returning visitors load
-      // the OLD JS (from HTTP cache / memory) that asks for OLD i18n hash
-      // paths which the new deploy has already overwritten → 404 → every
-      // page renders raw i18n keys until a manual hard-refresh.
+      // HTML is NOT precached — navigations go network-first (see runtimeCaching
+      // below), so a new deploy is picked up immediately and a returning visitor
+      // can never be stranded on a stale page referencing deleted JS chunks.
       skipWaiting: true,
       clientsClaim: true,
       cleanupOutdatedCaches: true,
-      // Don't precache audio (3.7 MB is too big to ship in install bundle);
-      // the runtimeCaching rule below handles it on first play instead.
-      globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,woff2}'],
+      // Precache the hashed, immutable build assets — but not HTML, and not the
+      // 3+ MB background audio (its runtimeCaching rule caches it on first play).
+      globPatterns: ['**/*.{js,css,ico,png,svg,webp,avif,woff2}'],
       globIgnores: ['**/audio/**'],
-      // Each prerendered HTML embeds Tailwind CSS + payload, ~2 MB. Allow up
-      // to 3 MB so PWA precache covers them.
       maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
       runtimeCaching: [
+        {
+          // HTML pages: network-first so every deploy is picked up instantly;
+          // falls back to cache only when offline. xml/xsl/txt are excluded so
+          // sitemaps and robots.txt pass straight through to the network.
+          urlPattern: ({ request, url }) =>
+            request.mode === 'navigate' && !/\.(xml|xsl|txt)$/i.test(url.pathname),
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'html-pages',
+            networkTimeoutSeconds: 3,
+            expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 7 },
+            cacheableResponse: { statuses: [200] },
+          },
+        },
         {
           urlPattern: ({ url }) => url.origin === 'https://fonts.gstatic.com',
           handler: 'CacheFirst',
