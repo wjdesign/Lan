@@ -3,8 +3,6 @@ import { fileURLToPath } from 'node:url'
 const SITE_URL = process.env.NUXT_PUBLIC_SITE_URL || 'https://wjdesign.github.io'
 const BASE_URL = process.env.NUXT_APP_BASE_URL || '/'
 const withBase = (p: string) => (BASE_URL.replace(/\/$/, '') + (p.startsWith('/') ? p : `/${p}`))
-const GA4_ID = 'G-26E7R738DX'
-const GTM_ID = 'GTM-MJR2XMVJ'
 const GOOGLE_SITE_VERIFICATION = [
   'gLCAsUu86RoTsFHAsfUVP_D6Gh4p2AbcOBNcEyYFcns',
   'vgDwI3LkxGDTcZPslwNlwDAAzqPANefA0Pf1zkTLz1k',
@@ -72,29 +70,6 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: withBase('favicon.ico') },
         { rel: 'icon', type: 'image/png', href: withBase('favicon.png') },
         { rel: 'apple-touch-icon', sizes: '180x180', href: withBase('apple-touch-icon.png') },
-      ],
-      script: [
-        {
-          // Google Tag Manager
-          children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
-          tagPosition: 'head',
-        },
-        {
-          // GA4
-          src: `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`,
-          async: true,
-          tagPosition: 'head',
-        },
-        {
-          children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA4_ID}');`,
-          tagPosition: 'head',
-        },
-      ],
-      noscript: [
-        {
-          children: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-          tagPosition: 'bodyOpen',
-        },
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },

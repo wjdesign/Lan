@@ -50,7 +50,7 @@ watchEffect(() => {
     :style="{ '--active-color': activeColor }"
   >
     <div class="container-wide flex items-center justify-between py-5 lg:py-6">
-      <NuxtLink :to="localePath('/')" class="group flex items-center gap-3" :aria-label="$t('nav.home')">
+      <NuxtLink :to="localePath('/')" class="group flex items-center gap-3" :title="$t('nav.home')">
         <span
           :class="['font-display text-3xl lg:text-4xl leading-none transition-colors duration-200',
                    onDark ? 'text-champagne-50' : 'text-wine-800']"

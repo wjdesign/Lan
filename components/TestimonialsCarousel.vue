@@ -61,12 +61,16 @@ const canNext = computed(() => activeIndex.value < total.value - 1)
         type="button"
         :title="$t('tooltips.heroSlide')"
         :aria-label="`Slide ${i + 1}`"
-        :class="[
-          'h-1.5 rounded-full transition-all duration-200 cursor-pointer',
-          activeIndex === i ? 'w-8 bg-wine-700' : 'w-1.5 bg-wine-700/30 hover:bg-wine-700/50',
-        ]"
+        class="group flex items-center justify-center size-6 cursor-pointer"
         @click="goTo(i)"
-      />
+      >
+        <span
+          :class="[
+            'h-1.5 rounded-full transition-all duration-200',
+            activeIndex === i ? 'w-8 bg-wine-700' : 'w-1.5 bg-wine-700/30 group-hover:bg-wine-700/50',
+          ]"
+        />
+      </button>
     </div>
 
     <!-- Prev / Next buttons -->

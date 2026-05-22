@@ -11,9 +11,9 @@ interface Slide {
 }
 
 const images = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=2200&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=2200&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=2200&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop&q=70',
+  'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1600&auto=format&fit=crop&q=70',
+  'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&auto=format&fit=crop&q=70',
 ]
 
 const slides = computed<Slide[]>(() => {
@@ -63,7 +63,8 @@ const go = (i: number) => {
           :alt="slide.titleTop"
           class="absolute inset-0 size-full object-cover hero-kenburns"
           loading="eager"
-          fetchpriority="high"
+          decoding="async"
+          :fetchpriority="i === 0 ? 'high' : 'low'"
         >
         <div class="absolute inset-0 bg-gradient-to-b from-wine-900/40 via-wine-900/30 to-wine-900/85" />
       </div>
@@ -115,7 +116,6 @@ const go = (i: number) => {
             :key="i"
             type="button"
             class="group flex items-center gap-3 cursor-pointer"
-            :aria-label="`${i + 1}`"
             :title="t('tooltips.heroSlide')"
             @click="go(i)"
           >

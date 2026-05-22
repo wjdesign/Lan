@@ -3,11 +3,10 @@
  * Tiny background-music player that respects browser autoplay policy.
  *
  * Behaviour
- *  1. On mount, try to auto-play muted (browsers allow this); once we have a
- *     user interaction anywhere on the page, unmute to the target volume.
- *     Most modern browsers gate audible playback behind a gesture, so this
- *     pattern is the kindest one: no "click to start" overlay needed in
- *     practice — the first real click anywhere starts the track.
+ *  1. The 3 MB MP3 is NOT preloaded. Playback (and the download) starts on the
+ *     first user interaction anywhere on the page — which is also the first
+ *     moment a browser would allow audible playback anyway. This keeps the
+ *     feature without adding 3 MB to the initial page load.
  *  2. A circular pill in the bottom-right shows play/pause + volume state.
  *     Click toggles muting.
  *  3. The user's last preference (muted vs playing) is remembered in
@@ -50,14 +49,10 @@ onMounted(() => {
   if (!audio.value) return
   audio.value.volume = TARGET_VOLUME
   audio.value.muted = true
-
-  // Try playing muted (allowed); content actually unmutes after first
-  // page interaction unless the user opted out previously.
-  audio.value.play().catch(() => {})
   ready.value = true
 
   const userMutedPref = restorePref()
-  if (userMutedPref) return // user previously muted — respect, don't auto-unmute
+  if (userMutedPref) return // user previously muted — wait for an explicit button click
 
   // Browsers' "user activation" gates audible playback. The official
   // activation gestures are pointerdown / keydown / touchstart / click —
@@ -88,7 +83,7 @@ onMounted(() => {
 
 <template>
   <div class="fixed bottom-5 right-5 z-40 print:hidden">
-    <audio ref="audio" :src="SRC" loop preload="auto" playsinline />
+    <audio ref="audio" :src="SRC" loop preload="none" playsinline />
     <button
       v-if="ready"
       type="button"

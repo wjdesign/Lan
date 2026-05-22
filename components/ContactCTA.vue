@@ -8,9 +8,11 @@ const localePath = useLocalePath()
   <section class="section bg-wine-800 text-champagne-50 relative overflow-hidden">
     <div class="absolute inset-0 opacity-[0.07] pointer-events-none">
       <img
-        src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=2000&auto=format&fit=crop&q=70"
+        src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&auto=format&fit=crop&q=50"
         class="size-full object-cover"
         alt=""
+        loading="lazy"
+        decoding="async"
       >
     </div>
     <div class="container-narrow relative grid lg:grid-cols-12 gap-12 items-center">

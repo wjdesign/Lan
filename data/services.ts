@@ -31,7 +31,7 @@ export const services: Service[] = [
       'en': 'From dawn preparation to candlelit banquet — a complete visual narrative for your wedding day. Makeup, hair, accessories, and on-the-spot touch-ups across multiple looks.',
       'ja': '朝の支度から夜の披露宴まで、一日を通して移り変わる花嫁のスタイルを丁寧に演出。メイク、ヘア、アクセサリーから当日のお直しまで一貫してサポートします。',
     },
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=900&auto=format&fit=crop&q=72',
     icon: 'i-ph-heart-duotone',
     highlights: [
       { 'zh-Hant': '一次定裝＋造型靈感提案', 'zh-Hans': '一次定装＋造型灵感提案', 'en': 'Pre-wedding trial & mood-board', 'ja': '事前リハーサルとスタイル提案' },
@@ -116,7 +116,7 @@ export const services: Service[] = [
       'en': 'Hands-on private coaching: skin analysis, base logic, three look scenarios for daily, date, and photo occasions.',
       'ja': '肌質診断からベース理論、デイリー／デート／撮影シーン別メイクまでマンツーマンで指導します。',
     },
-    image: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=72',
     icon: 'i-ph-pen-nib-duotone',
     highlights: [
       { 'zh-Hant': '全程使用你的自有產品', 'zh-Hans': '全程使用你的自有产品', 'en': 'Uses your own products', 'ja': 'ご自身のコスメを使用' },
@@ -144,7 +144,7 @@ export const services: Service[] = [
       'en': 'The engagement marks the two families coming together. Dignified but warm, radiant but never overdone.',
       'ja': '結納は両家が正式に出会う儀式。厳かでありながら華やかさのある、ちょうど良い佇まいを大切に。',
     },
-    image: 'https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=900&auto=format&fit=crop&q=72',
     icon: 'i-ph-diamond-duotone',
     highlights: [
       { 'zh-Hant': '含敬茶造型 + 宴客造型', 'zh-Hans': '含敬茶造型 + 宴客造型', 'en': 'Tea ceremony + banquet looks', 'ja': '茶礼と披露宴の二つのスタイル' },
@@ -172,7 +172,7 @@ export const services: Service[] = [
       'en': 'When you face the camera, every frame becomes a keepsake. Looks designed alongside photo themes and lighting — studio or on-location.',
       'ja': 'カメラに向かう瞬間、すべてのフレームが作品に。撮影テーマと光に合わせて、スタジオ・ロケーション両方に対応します。',
     },
-    image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=900&auto=format&fit=crop&q=72',
     icon: 'i-ph-camera-duotone',
     highlights: [
       { 'zh-Hant': '依主題客製多套造型', 'zh-Hans': '依主题客制多套造型', 'en': 'Multiple themed looks', 'ja': 'テーマ別に複数スタイル' },
