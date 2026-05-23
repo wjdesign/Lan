@@ -19,6 +19,16 @@
   </div>
 </template>
 
+<!-- Non-scoped block: the `html.splash-seen .splash` selector below MUST stay
+     non-scoped, because Vue's scoped-CSS compiler mishandles `:global()` here
+     and previously compiled it down to `.splash-seen { display: none }`, which
+     hid the entire <html> on repeat visits → blank white screen. -->
+<style>
+html.splash-seen .splash {
+  display: none !important;
+}
+</style>
+
 <style scoped>
 .splash {
   position: fixed;
@@ -31,11 +41,6 @@
   /* Self-dismisses via CSS so it never depends on JS hydration. The lines
      finish "writing" at 1.8s; hold briefly, then fade out by 2.8s. */
   animation: splash-dismiss 2800ms ease forwards;
-}
-
-/* Already visited this session — the inline head script set this class. */
-:global(html.splash-seen) .splash {
-  display: none;
 }
 
 @keyframes splash-dismiss {
