@@ -79,14 +79,6 @@ export default defineNuxtConfig({
           children: `try{var k='lanyeh_splash_seen';if(sessionStorage.getItem(k))document.documentElement.classList.add('splash-seen');else sessionStorage.setItem(k,'1')}catch(e){}`,
           tagPosition: 'head',
         },
-        {
-          // TEMP DEBUG: surface uncaught JS errors / failed resource loads as a
-          // red on-screen overlay, so a white-screen on a device without a
-          // console (iOS Safari) can still be diagnosed. Remove after diagnosing.
-          key: 'err-overlay',
-          children: `(function(){function box(){var d=document.getElementById('__errlog');if(!d){d=document.createElement('div');d.id='__errlog';d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:2147483647;background:#a00;color:#fff;font:11px/1.5 monospace;padding:10px;white-space:pre-wrap;max-height:75vh;overflow:auto;box-sizing:border-box';(document.body||document.documentElement).appendChild(d);}return d;}function log(m){try{box().textContent+=m+'\\n──────\\n';}catch(e){}}window.addEventListener('error',function(e){if(e.target&&e.target!==window&&e.target.tagName){log('資源載入失敗: <'+e.target.tagName+'> '+(e.target.src||e.target.href||''));}else{log('JS錯誤: '+(e.message||'')+'\\n'+(e.filename||'')+':'+(e.lineno||'')+'\\n'+((e.error&&e.error.stack)||'').slice(0,400));}},true);window.addEventListener('unhandledrejection',function(e){var r=e.reason||{};log('Promise未處理: '+((r.message||r.stack||r)+'').slice(0,500));});})();`,
-          tagPosition: 'head',
-        },
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
