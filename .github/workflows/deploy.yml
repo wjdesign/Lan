@@ -41,9 +41,9 @@ jobs:
 
       - name: Generate static site
         env:
-          # Served from the custom domain (public/CNAME) at the root path.
-          NUXT_APP_BASE_URL: /
-          NUXT_PUBLIC_SITE_URL: https://ye168248.com
+          # Served from GitHub Pages at the project path (no custom domain).
+          NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
+          NUXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
           NUXT_PUBLIC_BUILD_SHA: ${{ github.sha }}
         run: |
           export NUXT_PUBLIC_BUILD_TIME="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
