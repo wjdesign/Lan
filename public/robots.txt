@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wjdesign.github.io/Lan/sitemap_index.xml
