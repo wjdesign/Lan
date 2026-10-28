@@ -86,7 +86,10 @@ collections:
     i18n: true
     media_folder: '/public/images/portfolio'
     public_folder: '/images/portfolio'
-    slug: '{{slug}}'
+    # 日期前綴是保護措施：@nuxt/content 產生路由時會丟掉非 ASCII 字元，
+    # 中文標題若單獨當 slug 會塌成空字串，導致該作品沒有任何網址（404）。
+    # 加上日期後至少保證路徑不為空。想要好看的網址，請在後台自行設定 slug。
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     summary: '{{title}}（{{date | date("YYYY.MM.DD")}} ・ {{location}}）'
     sortable_fields: ['date', 'title']
     view_filters:
