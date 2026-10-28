@@ -139,6 +139,10 @@ export default defineNuxtConfig({
 
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
+    // crawlLinks re-applies app.baseURL to the homepage link, surfacing a
+    // bogus "/Lan" route (i.e. /Lan/Lan once the base is prepended) that 404s.
+    // Harmless when baseURL was "/", visible now that we serve from /Lan/.
+    exclude: ['/Lan'],
   },
 
   robots: {
